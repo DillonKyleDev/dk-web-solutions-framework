@@ -1,0 +1,24 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  screenshotPath: ../images/template-previews/home.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class='hero'>
+    <h1>Hello World!</h1>
+
+    <p>Paragraph</p>
+  </div>
+  
+  {% dnd_area "dnd_area"
+    label="Main section",
+    class="body-container body-container--home"
+  %}
+
+
+  {% end_dnd_area %}
+
+
+{% endblock body %}
