@@ -1,5 +1,25 @@
 [
   {
+    "name" : "site_logo",
+    "label" : "Site Logo",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "default" : {
+      "size_type" : "exact",
+      "src" : "",
+      "alt" : "image-alt-text",
+      "loading" : "lazy",
+      "width" : 128,
+      "height" : 128,
+      "max_width" : 128,
+      "max_height" : 128
+    }
+  },
+  {
     "label": "Global colors",
     "name": "global_colors",
     "type": "group",
