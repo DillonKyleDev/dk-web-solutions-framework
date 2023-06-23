@@ -1,1 +1,43 @@
-@import './two-column';
+// Settings
+@import './settings/variables';
+@import './settings/type';
+@import './settings/grid';
+@import './settings/form';
+
+// Blog
+@import './blog/blog';
+@import './blog/blog-post';
+@import './blog/blog-card';
+
+// Pages
+@import './search';
+@import './search-form';
+
+// Misc
+@import 'cta-btn';
+@import 'cta-link';
+@import 'site-header';
+@import 'site-footer';
+@import 'pagination';
+@import 'tag';
+@import 'card';
+
+html {
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  color: $body-text;
+  font-size: 16px;
+}
+
+a {
+  color: $inline-links;
+  text-decoration: none;
+}
+
+.main-content {
+  padding-top: $padding--xs;
+  padding-bottom: $padding--xs;
+}

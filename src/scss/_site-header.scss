@@ -1,0 +1,72 @@
+.body-container {
+  margin-top: 76px;
+}
+
+.site-header {
+  padding-top: $padding--xxs;
+  padding-bottom: $padding--xxs;
+  display: flex;
+  justify-content: space-between;   
+  align-items: center; 
+
+  &__logo {
+    font-size: 40px;
+    text-transform: uppercase;    
+    font-family: "Abhaya Libre";
+    font-weight: bold;
+    color: #712121;
+  }
+
+  &--bg {    
+    background-color: $neutral--white;
+    position: fixed;
+    z-index: 100;
+    // Change later when site is no longer using admin bar
+    top: 32px;    
+    width: 100%;
+  }
+  
+  .main-menu {    
+    margin-bottom: 0;
+
+    &, * {
+      list-style-type: none;      
+      text-decoration: none;
+      padding: 0;
+      display: flex;    
+    }
+
+    li:not(:last-child) {
+      margin-right: $padding--xxs;
+    }
+
+    li > a {      
+      @extend .cta-link;      
+    }
+
+    .sub-menu {
+      display: none;
+    }
+  }
+
+  .menu-item-has-children {
+    position: relative;
+  }
+
+  .sub-menu {
+    position: absolute;
+    min-width: 250px;
+    background-color: $neutral--white;
+    box-shadow: $shadow--level-4;
+    border-radius: 6px;
+    padding: $padding--xxxs;
+    top: calc(100%);
+    right: 50%;
+    left: 50%;
+    transform: translateX(-50%);    
+  }
+
+  .visible {
+    display: block !important;
+  }
+}

@@ -1,0 +1,35 @@
+.site-footer {
+  padding-top: $padding--xs;
+  padding-bottom: $padding--xs;
+  display: flex;
+  justify-content: space-between;   
+  align-items: center;   
+
+  &--bg {
+    background-color: $tertiary--light;
+  }
+  
+  .footer-menu {    
+    margin-bottom: 0;
+
+    &, * {
+      list-style-type: none;      
+      text-decoration: none;
+      padding: 0;
+      display: flex;    
+    }
+
+    li:not(:last-child) {
+        margin-right: $padding--xxxs;
+    }
+
+    li > a {      
+      @extend .cta-link;
+      @extend .cta-link--white;          
+    }
+
+    .sub-menu {
+      display: none;
+    }
+  }
+}

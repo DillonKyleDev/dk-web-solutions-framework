@@ -1,0 +1,11 @@
+.search-form {
+  form {
+    @extend .form;
+  }
+
+  button {
+    @extend .cta-btn;
+    @extend .cta-btn--primary-fill;
+    @extend .cta-btn--search;
+  }
+}

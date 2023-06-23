@@ -1,0 +1,74 @@
+.cta-link {  
+  transition: all 0.2s;
+  font-weight: 700;
+  font-size: 1em;
+  color: $primary;
+  text-decoration: none;  
+
+  &:hover {
+    color: $primary--dark !important;
+  }
+
+  // Sizes
+
+  &--small {
+    padding: .1em .3em;
+    font-size: .9em;
+  }
+
+  &--large {
+    padding: .5em .9em;
+    font-size: 1.1em;
+  }
+
+  // Colors
+
+  &--white {
+    color: $neutral--white;
+
+    &:hover {
+      color: $tertiary--dark !important;
+    }
+  }
+
+  &--primary {
+    color: $primary;
+
+    &:hover {
+      color: $primary--dark !important;
+    }
+  }
+
+  &--secondary {
+    color: $secondary;
+
+    &:hover {
+      color: $secondary--dark !important;
+    }
+  }
+
+  &--tertiary {
+    color: $tertiary;
+
+    &:hover {
+      color: $tertiary--dark !important;
+    }
+  }
+
+  // Styles
+
+  &--chevron {
+    &::after {
+      content: '\e5cc';
+      display: inline-block;
+      font-family: "Material Symbols Rounded";
+      line-height: 1;
+      transform: scale(1.4) translateY(2px) translateX(2px);
+      transition: transform .2s;
+    }
+
+    &:hover::after {
+      transform: scale(1.4) translateY(2px) translateX(7px);
+    }
+  }
+}

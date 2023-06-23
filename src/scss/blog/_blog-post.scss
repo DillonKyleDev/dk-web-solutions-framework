@@ -1,0 +1,15 @@
+.blog-post {
+  &__featured-image {
+    margin-bottom: $padding--small;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

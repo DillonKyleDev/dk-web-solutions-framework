@@ -1,0 +1,97 @@
+.cta-btn {
+  padding: .3em .6em;
+  border-radius: 6px;
+  border: solid 2px transparent;
+  transition: all 0.2s;
+  font-weight: 700;
+  font-size: 1em;
+
+  // Sizes
+
+  &--small {
+    padding: .1em .3em;
+    font-size: .75em;
+  }
+
+  &--large {
+    padding: .5em .9em;
+    border-radius: 8px;
+    font-size: 1.25em;
+  }
+
+  &--search {
+    height: 100%;    
+    border-radius: 3px;
+    border-width: 4px !important;
+  }
+
+  // Colors
+
+  &--primary-fill {
+    background-color: $primary;
+    border: solid 2px $primary;
+    color: white;
+
+    &:hover {
+      box-shadow: $shadow--level-1;
+      color: white;      
+    }
+  }
+
+  &--primary-stroke {    
+    color: $primary;
+    border: solid 2px $primary;
+
+    &:hover {
+      background-color: $primary;
+      color: white;
+    }
+  }
+
+  &--secondary-fill {
+    background-color: $secondary;
+    border: solid 2px $secondary;
+    color: white;
+
+    &:hover {
+      box-shadow: $shadow--level-1;
+      color: white;
+    }
+  }
+  
+  &--secondary-stroke {    
+    color: $secondary;
+    border: solid 2px $secondary;
+
+    &:hover {
+      background-color: $secondary;
+      color: white;
+    }
+  }
+
+  &--tertiary-fill {
+    background-color: $tertiary;
+    border: solid 2px $tertiary;
+    color: white;
+
+    &:hover {
+      box-shadow: $shadow--level-1;
+      color: white;
+    }
+  }
+
+  &--tertiary-stroke {    
+    color: $tertiary;
+    border: solid 2px $tertiary;
+
+    &:hover {
+      background-color: $tertiary;
+      color: white;
+    }
+  }
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

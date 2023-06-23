@@ -1,0 +1,25 @@
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $padding--xs;  
+
+  .page-numbers {
+    &:not(.dots) {
+      @extend .cta-btn;
+      @extend .cta-btn--tertiary-fill;
+    }
+
+    &.current {
+      @extend .disabled;      
+    }
+
+    &.dots {
+      font-weight: 600;      
+    }
+
+    &:not(:last-child) {
+      margin-right: $padding--xxxs;
+    }
+  }
+}

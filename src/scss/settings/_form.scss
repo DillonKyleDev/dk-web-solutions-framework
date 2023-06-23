@@ -1,0 +1,14 @@
+.form {
+  label {
+    display: none;
+  }
+  
+  height: 40px;
+
+  input {
+    height: 100%;
+    padding: 10px;
+    border: solid 1px $neutral--light;
+    border-radius: 3px;    
+  }
+}

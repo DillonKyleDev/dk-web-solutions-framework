@@ -1,0 +1,16 @@
+.tag {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4px;
+    row-gap: 3px;
+    margin-bottom: 5px;
+  }
+
+  display: block;
+  background-color: $tags--background;
+  color: $tags--text;
+  border-radius: 6px;
+  padding: 1px 5px;
+  font-weight: 500;
+}

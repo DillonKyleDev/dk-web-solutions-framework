@@ -1,0 +1,11 @@
+.search {
+  &__results-text {
+    border-bottom: solid 2px $neutral--light;
+    padding-bottom: $padding--xxs;
+    margin-bottom: $padding--xs;
+  }
+
+  &__no-results {
+    padding: $padding--xxxl 0;
+  }
+}

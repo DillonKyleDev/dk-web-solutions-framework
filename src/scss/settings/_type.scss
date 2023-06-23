@@ -1,0 +1,150 @@
+.on-light {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $body-text;
+  }
+}
+
+.on-dark {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $neutral--white;
+  }
+}
+
+.display--1 {
+  font-size: 64px;
+  margin-bottom: $padding--xs;
+}
+
+.display--2 {
+  font-size: 32px;
+  margin-bottom: $padding--xxs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 40px;
+  }
+
+  @media (min-width: $viewport-hd--min) {
+    font-size: 48px;
+  }
+}
+
+.display--3 {
+  font-size: 36px;
+  margin-bottom: $padding--xxxs;
+}
+
+
+.h1 {
+  display: block;
+  font-size: 28px;
+  line-height: calc(42 / 28);
+  margin-bottom: $padding--xs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 38px;
+    line-height: calc(45 / 38);
+  }
+}
+
+.h2 {
+  display: block;
+  font-size: 26px;
+  line-height: calc(39 / 26);
+  margin-bottom: $padding--xxxs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 46px;
+    line-height: calc(55 / 46);
+  }
+}
+
+.h3 {
+  display: block;
+  font-size: 23px;
+  line-height: calc(34 / 23);
+  margin-bottom: $padding--xxxs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 32px;
+    line-height: calc(38 / 32);
+  }
+}
+
+.h4 {
+  display: block;
+  font-size: 26px;
+  line-height: calc(39 / 26);
+  margin-bottom: $padding--xxxs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 26px;
+    line-height: calc(30 / 26);
+  }
+}
+
+.h5 {
+  display: block;
+  font-size: 18px;
+  line-height: calc(27 / 18);
+  margin-bottom: $padding--xxxs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 22px;
+    line-height: calc(33 / 22);
+  }
+}
+
+.h6 {
+  display: block;
+  font-size: 16px;
+  line-height: calc(24 / 16);
+  margin-bottom: $padding--xxxs;
+
+  @media (min-width: $viewport-tablet--min) {
+    font-size: 14px;
+    line-height: calc(21 / 14);
+  }
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+p {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: $body-text;
+
+  @media (min-width: $viewport-tablet--min) {      
+    line-height: 1.6;    
+  }
+
+  &.large {
+    font-size: 20px !important;
+
+    @media (min-width: $viewport-tablet--min) {      
+      line-height: 1.8;
+    }
+  }
+}

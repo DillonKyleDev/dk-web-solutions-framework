@@ -1,4 +1,4 @@
-(function () {
+export default function init() {
   // Variables
   var nav = document.querySelector('.header__navigation');
   var langSwitcher = document.querySelector('.header__language-switcher');
@@ -118,4 +118,4 @@
       }
     }
   });
-})();
+}
