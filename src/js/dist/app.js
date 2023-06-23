@@ -12,17 +12,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./settings */ "./src/js/settings.js");
 /* harmony import */ var _site_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./site-header */ "./src/js/site-header.js");
 /* harmony import */ var _owl_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./owl-carousel */ "./src/js/owl-carousel.js");
+/* harmony import */ var _magnific_popup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./magnific-popup */ "./src/js/magnific-popup.js");
 
 
 
-// import magnificPopup from './magnific-popup';
 
-$(document).ready(function () {
+$(document).ready(function ($) {
   (0,_settings__WEBPACK_IMPORTED_MODULE_0__["default"])();
   (0,_site_header__WEBPACK_IMPORTED_MODULE_1__["default"])();
   (0,_owl_carousel__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  // magnificPopup($);
+  (0,_magnific_popup__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
+
+/***/ }),
+
+/***/ "./src/js/magnific-popup.js":
+/*!**********************************!*\
+  !*** ./src/js/magnific-popup.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ init; }
+/* harmony export */ });
+function init() {
+  // Add image you want to popup like this in HTML
+  /* <a class="image-link" href="<?php echo get_template_directory_uri(); ?>/images/placeholder-image-wide.png"><img class="" src="<?php echo get_template_directory_uri(); ?>/images/placeholder-image-wide.png" alt="logo"/></a> */
+
+  $('.image-link').magnificPopup({
+    type: 'image',
+    callbacks: {
+      open: function open() {
+        console.log("Hello");
+        $('body').css('padding-right', '17px');
+        $('.site-header--bg').css('padding-right', '17px');
+      },
+      close: function close() {
+        $('body').css('padding-right', '0px');
+        $('.site-header--bg').css('padding-right', '0px');
+      }
+    }
+  });
+}
 
 /***/ }),
 

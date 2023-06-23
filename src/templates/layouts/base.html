@@ -18,14 +18,19 @@
     {{ standard_header_includes }}
 
     {# jQuery import #}
-    {{ require_js("https://code.jquery.com/jquery-3.7.0.slim.min.js", { position: "header" }) }}
+    {{ require_js("https://code.jquery.com/jquery-3.7.0.slim.min.js", { position: "header" }) }}    
 
     {# Owl Carousel imports #}
-    {{ require_js(get_asset_url("../../dependencies/owl-carousel/js/owl.carousel.min.js"), { position: "footer" }) }}    
-    {{ require_js(get_asset_url("../../js/dist/app.js"), { position: "footer", defer: true }) }}
-
+    {{ require_js(get_asset_url("../../dependencies/owl-carousel/js/owl.carousel.min.js")) }}    
     {{ require_css(get_asset_url("../../dependencies/owl-carousel/css/owl.carousel.min.css")) }}
     {{ require_css(get_asset_url("../../dependencies/owl-carousel/css/owl.theme.default.min.css")) }}
+
+    {# Magnific Popup imports #}
+    {{ require_js(get_asset_url("../../dependencies/magnific-popup/js/magnific-popup.js")) }}    
+    {{ require_css(get_asset_url("../../dependencies/magnific-popup/css/magnific-popup.css")) }}    
+
+    {# Main js import #}
+    {{ require_js(get_asset_url("../../js/dist/app.js")) }}
 
     <style>
       @font-face {
