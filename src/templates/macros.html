@@ -1,0 +1,11 @@
+{% macro module_base(module_name, styles) %}
+  <div class="module-base background-color--{{ styles.background_color }}">
+    <div class="{{ module_name }}">
+      {{ caller() }}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro image_popup(linkContent, imageLink, class) %}
+  <a class="image-link {{ class }}" href="{{ imageLink }}">{{ linkContent }}</a>
+{% endmacro %}

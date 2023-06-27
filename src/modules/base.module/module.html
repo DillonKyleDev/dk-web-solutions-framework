@@ -4,11 +4,10 @@
 {# Sets attributes used for the link field #}
 {% set module_name = "module-name" %}
 {% set styles = module.styles %}
-  
+
 {# Module #}
 {% call macros.module_base(module_name, styles) %}
-  <div class="{{ module_name }}">
+  <div class="{{ module_name }}__container">
     <p>Hello from base module</p>
   </div>
 {% endcall %}
-

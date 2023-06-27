@@ -27,7 +27,7 @@
     "webpack-watch": "npx mix watch",
     "hs-watch": "hs watch src dk-web-solutions",
     "production": "npm run production",
-    "stage": "npm run hs-watch && npm run webpack-watch"
+    "stage": "npm run webpack-watch"
   },
   "browserslist": [
     "defaults",

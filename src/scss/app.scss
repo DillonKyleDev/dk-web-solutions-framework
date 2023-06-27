@@ -22,6 +22,10 @@
 @import 'tag';
 @import 'card';
 
+* {
+  margin: 0;
+}
+
 html {
   width: 100%;
   margin: 0;
@@ -40,4 +44,8 @@ a {
 .main-content {
   padding-top: $padding--xs;
   padding-bottom: $padding--xs;
+}
+
+.drag-and-drop-area {
+
 }

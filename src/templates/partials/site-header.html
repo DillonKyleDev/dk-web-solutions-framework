@@ -2,15 +2,19 @@
   templateType: global_partial
   label: Website header
 -->
-<header class="header">
-  <div class="header__container content-wrapper">
-    <div class="header__logo header__logo--main">
+<header class="site-header">
+  <div class="site-header__container">
+    <div class="site-header__logo">
       {% module "site_logo"
         path="@hubspot/logo"
         img={
           "loading": "eager"
         }
       %}      
+    </div>
+
+    <div class="site-header__menu">
+      
     </div>
   </div>
 </header>

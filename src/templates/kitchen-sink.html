@@ -8,32 +8,11 @@
 
 {% block body %}
   
-  <div class='hero'>
-    <h1>Hello World!</h1>
-
-    <p>Paragraph</p>
-
-    <a class="image-link" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-cSB3QUA2NMc%2FYHJnoZGj3_I%2FAAAAAAAAA00%2FOv5SnSC_X0I4hpr8hYGF7eh6YlcbegrXQCLcBGAsYHQ%2Fw1200-h630-p-k-no-nu%2Fcode-1839406_1920.jpg&f=1&nofb=1&ipt=6140034341e29143013051e95b6a6ae3c174ac1f8386e60455074a2dce7fb003&ipo=images">Open popup</a>
-    
-
-    <div class="owl-carousel owl-theme owl-nav">
-      <div> Your Content </div>
-      <div> Your Content </div>
-      <div> Your Content </div>
-      <div> Your Content </div>
-      <div> Your Content </div>
-      <div> Your Content </div>
-      <div> Your Content </div>
-    </div>
-  </div>
-  
   {% dnd_area "dnd_area"
     label="Main section",
-    class="body-container body-container--home"
+    class="drag-and-drop-area"
   %}
 
-
   {% end_dnd_area %}
-
 
 {% endblock body %}

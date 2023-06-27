@@ -5,25 +5,22 @@
 .site-header {
   padding-top: $padding--xxs;
   padding-bottom: $padding--xxs;
+  margin: 0px $padding--small;
   display: flex;
   justify-content: space-between;   
   align-items: center; 
 
   &__logo {
-    font-size: 40px;
-    text-transform: uppercase;    
-    font-family: "Abhaya Libre";
-    font-weight: bold;
-    color: #712121;
+    img {
+      width: 80px !important;
+      height: 80px;
+    }
   }
 
   &--bg {    
     background-color: $neutral--white;
     position: fixed;
     z-index: 100;
-    // Change later when site is no longer using admin bar
-    top: 32px;    
-    width: 100%;
   }
   
   .main-menu {    
