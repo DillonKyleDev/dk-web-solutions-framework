@@ -5,7 +5,7 @@
   {% set padding_bottom = styles.padding_bottom %}
   {% set background_color = styles.background_color %}
 
-  <div class="{{ module_name }} module-base padding-top--{{ padding_top }} padding-bottom--{{ padding_bottom }} module--bg-{{ background_color }}">
+  <div class="{{ module_name }} module padding-top--{{ padding_top }} padding-bottom--{{ padding_bottom }} module--bg-{{ background_color }}">
     <div class="{{ module_name }}__inner constrain">
       {{ caller() }}
     </div>

@@ -1,0 +1,69 @@
+.module {
+  &__inner {
+
+  }
+
+  &--bg {
+
+  }
+}
+
+.padding-top {
+  &--xxxs {
+    padding-top: $padding--xxxs;
+  }
+  &--xxs {
+    padding-top: $padding--xxs;
+  }
+  &--xs {
+    padding-top: $padding--xs;
+  }
+  &--small {
+    padding-top: $padding--small;
+  }
+  &--medium {
+    padding-top: $padding--medium;
+  }
+  &--large {
+    padding-top: $padding--large;
+  }
+  &--xl {
+    padding-top: $padding--xl;
+  }
+  &--xxl {
+    padding-top: $padding--xxl;
+  }
+  &--xxxl {
+    padding-top: $padding--xxxl;
+  }
+}
+
+.padding-bottom {
+  &--xxxs {
+    padding-bottom: $padding--xxxs;
+  }
+  &--xxs {
+    padding-bottom: $padding--xxs;
+  }
+  &--xs {
+    padding-bottom: $padding--xs;
+  }
+  &--small {
+    padding-bottom: $padding--small;
+  }
+  &--medium {
+    padding-bottom: $padding--medium;
+  }
+  &--large {
+    padding-bottom: $padding--large;
+  }
+  &--xl {
+    padding-bottom: $padding--xl;
+  }
+  &--xxl {
+    padding-bottom: $padding--xxl;
+  }
+  &--xxxl {
+    padding-bottom: $padding--xxxl;
+  }
+}
