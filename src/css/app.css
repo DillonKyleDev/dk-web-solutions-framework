@@ -442,7 +442,6 @@ p.large {
 .site-header {
   padding-top: 20px;
   padding-bottom: 20px;
-  margin: 0px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -606,4 +605,17 @@ a {
 .main-content {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.constrain {
+  max-width: 1440px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.drag-and-drop-area,
+.dnd-section,
+.row-fluid {
+  padding: 0 !important;
+  max-width: unset !important;
 }

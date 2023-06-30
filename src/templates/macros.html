@@ -1,6 +1,12 @@
+
+
 {% macro module_base(module_name, styles) %}
-  <div class="module-base background-color--{{ styles.background_color }}">
-    <div class="{{ module_name }}">
+  {% set padding_top = styles.padding_top %}
+  {% set padding_bottom = styles.padding_bottom %}
+  {% set background_color = styles.background_color %}
+
+  <div class="{{ module_name }} module-base padding-top--{{ padding_top }} padding-bottom--{{ padding_bottom }} module--bg-{{ background_color }}">
+    <div class="{{ module_name }}__inner constrain">
       {{ caller() }}
     </div>
   </div>

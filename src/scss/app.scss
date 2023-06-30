@@ -3,6 +3,7 @@
 @import './settings/type';
 @import './settings/grid';
 @import './settings/form';
+@import './module-settings';
 
 // Blog
 @import './blog/blog';
@@ -23,7 +24,7 @@
 @import 'card';
 
 * {
-  margin: 0;
+  margin: 0;  
 }
 
 html {
@@ -46,6 +47,15 @@ a {
   padding-bottom: $padding--xs;
 }
 
-.drag-and-drop-area {
+.constrain {
+  max-width: 1440px;
+  padding: 0 $padding--xs;
+  margin: 0 auto;
+}
 
+.drag-and-drop-area,
+.dnd-section,
+.row-fluid {
+  padding: 0 !important;
+  max-width: unset !important;
 }
