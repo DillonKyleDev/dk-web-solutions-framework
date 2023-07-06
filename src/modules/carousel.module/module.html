@@ -4,16 +4,31 @@
 {# Sets attributes used for the link field #}
 {% set module_name = "carousel" %}
 {% set styles = module.styles %}
+{% set source = module.carousel_source %}
+{% set table = module.table %}
+{% set itemsVisible = module.items_visible %}
+{% set columns = module.carousel_columns %}
+{% set itemSpacing = module.item_spacing %}
+{% set itemPadding = module.item_padding %}
+{% set autoScroll_ = module.auto_scroll_ %}
 
 {# Module #}
 {% call macros.module_base(module_name, styles) %}
-  <div class="{{ module_name }}__container owl-carousel owl-theme owl-nav">
-    <div> Your Content </div>
-    <div> Your Content </div>
-    <div> Your Content </div>
-    <div> Your Content </div>
-    <div> Your Content </div>
-    <div> Your Content </div>
-    <div> Your Content </div>
+  <div class="{{ module_name }}__container owl-carousel owl-theme owl-nav grid  grid--padding-{{ itemPadding }}">
+    {% for column in columns %}
+      <div class="{{ module_name }}__item card">
+        <div class="{{ module_name }}__top-content card__top">
+          {% if source != "richtext" %}
+            <div class="{{ module_name }}__item-image card__image-container">
+              <img src={{ column.image.src }}>
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="{{ module_name }}__item-content card__content">
+          {{ column.richtext }}
+        </div>
+      </div>
+    {% endfor %}
   </div>
 {% endcall %}

@@ -2,8 +2,39 @@
   templateType: global_partial
   label: Website header
 -->
-<header class="site-header constrain">
-  <div class="site-header__container">
+
+{# Menu items #}
+
+{% macro menu_items() %}
+
+  {% set menu = menu(115672684668).children %}
+
+  {% macro render_link_item(link, depth) %}
+  
+    {% if link.url %}
+      <li class="menu__item menu__item--depth-{{ depth }} {{ "menu__item--has-children" if link.children }}">
+        <a class="menu__link" href="{{ link.url }}" {{ 'target="_blank" rel="noopener"' if link.linkTarget }}>{{ link.label }}</a>
+        {% if link.children %}
+          {% if depth %}
+            <ul class="menu__submenu menu__submenu--level-{{ depth + 1 }} no-list">              
+              {% for sublink in link.children %}
+                {{ render_link_item(sublink, depth + 1) }}
+              {% endfor %}
+            </ul>
+            {% endif %}
+        {% endif %}
+      </li>
+    {% endif %}
+  {% endmacro %}
+
+  {% for link in menu %}
+    {{ render_link_item(link, link.level) }}
+  {% endfor %}
+
+{% endmacro %}
+
+<header class="site-header">
+  <div class="site-header__wrapper constrain">
     <div class="site-header__logo">
       {% module "site_logo"
         path="@hubspot/logo"
@@ -13,8 +44,20 @@
       %}      
     </div>
 
-    <div class="site-header__menu">
-      
-    </div>
+    {# Desktop menu #}
+
+    <nav class="site-header__main-menu site-header__main-menu--desktop" aria-label="Main menu">
+      <ul class="menu no-list">
+        {{ menu_items() }}
+      </ul>
+    </nav>
+
+    {# Mobile menu #}
+
+    <nav class="site-header__main-menu site-header__main-menu--mobile" aria-label="Main menu">
+      <ul class="menu no-list">
+        {{ menu_items() }}
+      </ul>
+    </nav>
   </div>
 </header>

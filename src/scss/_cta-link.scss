@@ -1,9 +1,9 @@
-.cta-link {  
+.cta-link {
   transition: all 0.2s;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 16px;
   color: $primary;
-  text-decoration: none;  
+  text-decoration: none;
 
   &:hover {
     color: $primary--dark !important;
@@ -12,12 +12,12 @@
   // Sizes
 
   &--small {
-    padding: .1em .3em;
-    font-size: .9em;
+    padding: 0.1em 0.3em;
+    font-size: 0.9em;
   }
 
   &--large {
-    padding: .5em .9em;
+    padding: 0.5em 0.9em;
     font-size: 1.1em;
   }
 
@@ -61,10 +61,10 @@
     &::after {
       content: '\e5cc';
       display: inline-block;
-      font-family: "Material Symbols Rounded";
+      font-family: 'Material Symbols Rounded';
       line-height: 1;
       transform: scale(1.4) translateY(2px) translateX(2px);
-      transition: transform .2s;
+      transition: transform 0.2s;
     }
 
     &:hover::after {

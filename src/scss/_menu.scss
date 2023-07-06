@@ -1,0 +1,54 @@
+.menu {
+  display: flex;
+  padding: 0;
+
+  li {
+    padding: 4px;
+  }
+
+  > li:not(:last-child) {
+    margin-right: $padding--xxs;
+  }
+
+  li > a {
+    @extend .cta-link;
+    white-space: nowrap;
+    display: block;
+  }
+
+  &__item {
+    &--has-children {
+      position: relative;
+
+      > a {
+        &::after {
+          content: '\e5cf';
+          display: inline-block;
+          font-family: 'Material Symbols Rounded';
+          line-height: 1;
+          transform: scale(1.4) translateY(2px) translateX(2px);
+          transition: transform 0.3s;
+          background-color: transparent !important;
+        }
+      }
+
+      &:hover {
+        > a::after {
+          transform: scale(1.4) translateY(1px) translateX(2px) rotateX(180deg);
+        }
+
+        > .menu__submenu {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__submenu {
+    display: none;
+    position: absolute;
+    padding: $padding--xxxs;
+    border: solid 1px $neutral--light !important;
+    border-radius: 6px;
+  }
+}

@@ -5,6 +5,9 @@
 @import './settings/form';
 @import './module';
 
+// Global
+@import './menu';
+
 // Blog
 @import './blog/blog';
 @import './blog/blog-post';
@@ -23,8 +26,11 @@
 @import 'tag';
 @import 'card';
 
+// Modules
+@import 'socials';
+
 * {
-  margin: 0;  
+  margin: 0;
 }
 
 html {
@@ -35,6 +41,10 @@ html {
 body {
   color: $body-text;
   font-size: 16px;
+}
+
+.body-container {
+  margin-top: 76px;
 }
 
 a {
@@ -58,4 +68,10 @@ a {
 .row-fluid {
   padding: 0 !important;
   max-width: unset !important;
+}
+
+.no-list {
+  list-style: none;
+  list-style-type: none;
+  text-decoration: none;
 }

@@ -1,0 +1,17 @@
+{
+  "name": "card_type",
+  "id": "card_type",
+  "label": "Card Type",
+  "required": false,
+  "locked": false,
+  "multiple": "false",
+  "display": "select",
+  "choices": [
+    ["richtext", "Rich Text"],
+    ["icon", "Icon"],
+    ["image", "Image"],
+    ["testimonial", "Testimonial"]
+  ],
+  "type": "choice",
+  "default": "testimonial"
+}

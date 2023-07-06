@@ -1,0 +1,18 @@
+{
+  "required": false,
+  "locked": false,
+  "multiple": "false",
+  "display": "select",
+  "choices": [
+    ["xxxs", "XXXS"],
+    ["xxs", "XXS"],
+    ["xs", "XS"],
+    ["small", "Small"],
+    ["medium", "Medium"],
+    ["large", "Large"],
+    ["xl", "Xl"],
+    ["xxl", "XXL"],
+    ["xxxl", "XXXL"]
+  ],
+  "type": "choice"
+}

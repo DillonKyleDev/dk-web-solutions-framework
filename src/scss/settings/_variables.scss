@@ -1,20 +1,18 @@
-
 // Type
 $font--body: 'Roboto';
 $font--headlines: 'Times New Roman';
 
-
 // Colors
 // $primary: #2a7ad5;
-$primary: #712121;
+$primary: #213471;
 $primary--light: #7cb3f1;
 $primary--dark: #205899;
 $secondary: #d52a7a;
-$secondary--light: #E476A9;
+$secondary--light: #e476a9;
 $secondary--dark: #a72160;
 $tertiary: #7ad52a;
-$tertiary--light: #A9E476;
-$tertiary--dark: #57981E;
+$tertiary--light: #a9e476;
+$tertiary--dark: #57981e;
 
 $neutral--white: #fff;
 // $neutral--light: rgb(112, 112, 112);
@@ -33,12 +31,47 @@ $tags--background: #ffe25f;
 $tags--text: #424242;
 
 // Gradients
-$gradient--white: linear-gradient(0deg, rgba(255,255,255,0.9864320728291317) 0%, rgba(255,255,255,0.7903536414565826) 8%, rgba(255,255,255,0.3309698879551821) 36%, rgba(255,255,255,0) 47%, rgba(255,255,255,0) 100%);
-$gradient-overlay-light: linear-gradient(180deg, rgba(39,38,79,1) 0%, rgba(47,52,98,0.9360119047619048) 60%, rgba(56,58,124,0.8127626050420168) 100%, rgba(255,255,255,0) 100%);
-$gradient-overlay--medium:  linear-gradient(0deg, rgba(18,28,59,0.9864320728291317) 0%, rgba(27,31,61,1) 33%, rgba(30,33,69,0.7399334733893557) 64%, rgba(42,43,98,0.2329306722689075) 100%, rgba(0,0,0,1) 100%);
-$gradient-overlay--dark: linear-gradient(180deg, rgba(32,32,62,1) 0%, rgba(39,39,82,1) 30%, rgba(41,47,101,1) 60%, rgba(56,58,124,0.9108018207282913) 89%, rgba(73,80,143,0.8435749299719888) 100%);
-$gradient-overlay--dark-shine: linear-gradient(180deg, rgba(32,32,62,0.8435749299719888) 0%, rgba(32,32,62,0.7987570028011204) 2%, rgba(33,33,65,0.9360119047619048) 5%, rgba(39,39,82,1) 30%, rgba(41,47,101,1) 60%, rgba(56,58,124,0.9108018207282913) 89%, rgba(73,80,143,0.8435749299719888) 100%);
-
+$gradient--white: linear-gradient(
+  0deg,
+  rgba(255, 255, 255, 0.9864320728291317) 0%,
+  rgba(255, 255, 255, 0.7903536414565826) 8%,
+  rgba(255, 255, 255, 0.3309698879551821) 36%,
+  rgba(255, 255, 255, 0) 47%,
+  rgba(255, 255, 255, 0) 100%
+);
+$gradient-overlay-light: linear-gradient(
+  180deg,
+  rgba(39, 38, 79, 1) 0%,
+  rgba(47, 52, 98, 0.9360119047619048) 60%,
+  rgba(56, 58, 124, 0.8127626050420168) 100%,
+  rgba(255, 255, 255, 0) 100%
+);
+$gradient-overlay--medium: linear-gradient(
+  0deg,
+  rgba(18, 28, 59, 0.9864320728291317) 0%,
+  rgba(27, 31, 61, 1) 33%,
+  rgba(30, 33, 69, 0.7399334733893557) 64%,
+  rgba(42, 43, 98, 0.2329306722689075) 100%,
+  rgba(0, 0, 0, 1) 100%
+);
+$gradient-overlay--dark: linear-gradient(
+  180deg,
+  rgba(32, 32, 62, 1) 0%,
+  rgba(39, 39, 82, 1) 30%,
+  rgba(41, 47, 101, 1) 60%,
+  rgba(56, 58, 124, 0.9108018207282913) 89%,
+  rgba(73, 80, 143, 0.8435749299719888) 100%
+);
+$gradient-overlay--dark-shine: linear-gradient(
+  180deg,
+  rgba(32, 32, 62, 0.8435749299719888) 0%,
+  rgba(32, 32, 62, 0.7987570028011204) 2%,
+  rgba(33, 33, 65, 0.9360119047619048) 5%,
+  rgba(39, 39, 82, 1) 30%,
+  rgba(41, 47, 101, 1) 60%,
+  rgba(56, 58, 124, 0.9108018207282913) 89%,
+  rgba(73, 80, 143, 0.8435749299719888) 100%
+);
 
 // Spacing
 $padding--xxxs: 10px;
@@ -51,22 +84,24 @@ $padding--xl: 160px;
 $padding--xxl: 200px;
 $padding--xxxl: 250px;
 
-
 // Shadows
-$shadow--level-1: 0px 0px 5px rgba(0,0,0, 0.08), 0px 5px 5px rgba(0,0,0, 0.09);
-$shadow--level-2: 0px 0px 6px rgba(0,0,0, 0.06), 0px 6px 9px rgba(0,0,0, 0.13);
-$shadow--level-3: 0px 9px 23px rgba(0,0,0, 0.09), 0px 6px 8px rgba(0,0,0, 0.1);
-$shadow--level-4: 0px 14px 30px rgba(0,0,0, 0.1), 0px 3px 16px rgba(0,0,0, 0.07);
-$shadow--level-5: 4px 4px 10px 0px rgba(0,0,0,0.3);
-$shadow--level-6: 8px 8px 15px 0px rgba(0,0,0,0.50);
-$shadow--level-7: 10px 10px 20px 0px rgba(0,0,0,0.55);
-$shadow--level-8: 10px 10px 25px 0px rgba(0,0,0,0.60);
+$shadow--level-1: 0px 0px 5px rgba(0, 0, 0, 0.08),
+  0px 5px 5px rgba(0, 0, 0, 0.09);
+$shadow--level-2: 0px 0px 6px rgba(0, 0, 0, 0.06),
+  0px 6px 9px rgba(0, 0, 0, 0.13);
+$shadow--level-3: 0px 9px 23px rgba(0, 0, 0, 0.09),
+  0px 6px 8px rgba(0, 0, 0, 0.1);
+$shadow--level-4: 0px 14px 30px rgba(0, 0, 0, 0.1),
+  0px 3px 16px rgba(0, 0, 0, 0.07);
+$shadow--level-5: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+$shadow--level-6: 8px 8px 15px 0px rgba(0, 0, 0, 0.5);
+$shadow--level-7: 10px 10px 20px 0px rgba(0, 0, 0, 0.55);
+$shadow--level-8: 10px 10px 25px 0px rgba(0, 0, 0, 0.6);
 
-$shadow--sharp: 50px 50px 0px 0px rgba(0,0,0,0.085);
-
+$shadow--sharp: 50px 50px 0px 0px rgba(0, 0, 0, 0.085);
 
 // View Widths
-$viewport-mobile--max: 768px; 
+$viewport-mobile--max: 768px;
 $viewport-tablet--min: 769px;
 $viewport-tablet--max: 992px;
 $viewport-laptop--min: 993px;

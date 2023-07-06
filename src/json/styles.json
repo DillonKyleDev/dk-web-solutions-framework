@@ -1,0 +1,66 @@
+{
+  "label": "Styles",
+  "name": "styles",
+  "type": "group",
+  "tab": "STYLE",
+  "children": [
+    {
+      "name": "padding_top",
+      "label": "Padding Top",
+      "required": false,
+      "locked": false,
+      "multiple": "false",
+      "display": "select",
+      "choices": [
+        ["xxxs", "XXXS"],
+        ["xxs", "XXS"],
+        ["xs", "XS"],
+        ["small", "Small"],
+        ["medium", "Medium"],
+        ["large", "Large"],
+        ["xl", "Xl"],
+        ["xxl", "XXL"],
+        ["xxxl", "XXXL"]
+      ],
+      "type": "choice",
+      "default": "medium"
+    },
+    {
+      "name": "padding_bottom",
+      "label": "Padding Bottom",
+      "required": false,
+      "locked": false,
+      "multiple": "false",
+      "display": "select",
+      "choices": [
+        ["xxxs", "XXXS"],
+        ["xxs", "XXS"],
+        ["xs", "XS"],
+        ["small", "Small"],
+        ["medium", "Medium"],
+        ["large", "Large"],
+        ["xl", "Xl"],
+        ["xxl", "XXL"],
+        ["xxxl", "XXXL"]
+      ],
+      "type": "choice",
+      "default": "medium"
+    },
+    {
+      "name": "background_color",
+      "label": "Background Color",
+      "required": false,
+      "locked": false,
+      "multiple": "false",
+      "display": "select",
+      "choices": [
+        ["transparent", "Transparent"],
+        ["white", "White"],
+        ["primary", "Primary"],
+        ["secondary", "Secondary"]
+      ],
+      "type": "choice",
+      "default": "transparent"
+    }
+  ]
+}
