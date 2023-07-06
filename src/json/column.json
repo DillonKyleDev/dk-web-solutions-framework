@@ -20,20 +20,16 @@
       "default": "content"
     },
     {
-      "name": "appended_elements",
-      "label": "Appended Elements",
-      "type": "group",
-      "visibility": {
-        "controlling_field_path": "column_type",
-        "controlling_value_regex": "content",
-        "operator": "EQUAL"
-      },
+      "id": "ingredients",
+      "name": "ingredients",
+      "label": "Ingredients",
       "required": false,
       "locked": false,
       "occurrence": {
         "min": 1,
         "max": null,
-        "default": 1
+        "sorting_label_field": "ingredients.ingredient",
+        "default": null
       },
       "children": [
         {
@@ -45,53 +41,46 @@
           "multiple": "false",
           "display": "select",
           "choices": [
-            ["richtext", "Richtext"],
+            ["content", "Richtext"],
             ["list", "List"],
             ["cta-group", "CTA Group"],
             ["testimonial", "Testimonial"]
           ],
           "type": "choice",
-          "default": "richtext"
+          "default": "content"
         },
         {
-          "name": "richtext",
-          "id": "richtext",
+          "name": "text_conent",
+          "id": "text_conent",
           "label": "Richtext",
           "required": false,
           "locked": false,
           "type": "richtext",
-          "default": "<h3>Heading 3</h3><p>Paragraph example text</p>",
-          "visibility": {
-            "controlling_field_path": "element_type",
-            "controlling_value_regex": "richtext",
-            "operator": "EQUAL"
-          }
+          "default": "<h3>Heading 3</h3><p>Paragraph example text</p>"
         },
         {
-          "name": "cta_group",
-          "label": "CTA Group",
+          "name": "ingredient",
+          "label": "Ingredient",
           "required": false,
           "locked": false,
           "occurrence": {
             "min": 1,
             "max": null,
+            "sorting_label_field": null,
             "default": 1
           },
           "allow_new_line": false,
           "show_emoji_picker": true,
-          "type": "cta",
-          "visibility": {
-            "controlling_field_path": "element_type",
-            "controlling_value_regex": "cta-group",
-            "operator": "EQUAL"
-          }
+          "type": "text",
+          "default": ["1 cup water"]
         }
       ],
+      "type": "group",
       "default": [
         {
-          "element_type": "richtext",
-          "richtext": "<h3>Heading 3</h3><p>Paragraph example text</p>",
-          "cta_group": [ null ]
+          "element_type": "content",
+          "text_conent": "<h3>Heading 3</h3><p>Paragraph example text</p>",
+          "ingredient": ["1 cup water"]
         }
       ]
     }

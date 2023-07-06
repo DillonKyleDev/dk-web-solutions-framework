@@ -15,7 +15,6 @@ module.exports = (fieldOptions) => {
       label: 'Module Spacing',
       default: 'medium',
     })
-
   ];
 
   return [column];
