@@ -69,10 +69,8 @@
             "sorting_label_field": null,
             "default": 1
           },
-          "allow_new_line": false,
-          "show_emoji_picker": true,
           "type": "text",
-          "default": ["1 cup water"]
+          "default": [ "22112970" ]
         }
       ],
       "type": "group",
@@ -80,7 +78,7 @@
         {
           "element_type": "content",
           "text_conent": "<h3>Heading 3</h3><p>Paragraph example text</p>",
-          "ingredient": ["1 cup water"]
+          "ingredient": [ "22112970" ]
         }
       ]
     }

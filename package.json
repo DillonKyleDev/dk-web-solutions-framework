@@ -1,12 +1,8 @@
 {
-  "name": "@hubspot/cms-theme-boilerplate",
+  "name": "DK Web Solutions Framework",
   "version": "3.10.0",
-  "description": "Boilerplate project for building websites on the HubSpot CMS",
-  "repository": {
-    "type": "git",
-    "url": "git@git.hubteam.com:HubSpot/cms-theme-boilerplate.git"
-  },
-  "author": "",
+  "description": "Framework for HubSpot CMS built off of the boilerplate found here: git@git.hubteam.com:HubSpot/cms-theme-boilerplate.git",
+  "author": "Dillon Kyle",
   "license": "Apache-2.0",
   "devDependencies": {
     "autoprefixer": "^9.0.0",
