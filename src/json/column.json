@@ -1,94 +1,99 @@
-[
-  {
-    "name": "column_type",
-    "id": "column_type",
-    "label": "Column Type",
-    "required": false,
-    "locked": false,
-    "multiple": "false",
-    "display": "select",
-    "choices": [
-      ["content", "Content"],
-      ["image", "Image"]
-    ],
-    "type": "choice",
-    "default": "content"
-  },
-  {
-    "name": "appended_elements",
-    "label": "Appended Elements",
-    "visibility": {
-      "controlling_field_path": "column_type",
-      "controlling_value_regex": "content",
-      "operator": "EQUAL"
+{
+  "label": "Column",
+  "name": "column",
+  "type": "group",
+  "expanded": true,
+  "children": [
+    {
+      "name": "column_type",
+      "id": "column_type",
+      "label": "Column Type",
+      "required": false,
+      "locked": false,
+      "multiple": "false",
+      "display": "select",
+      "choices": [
+        ["content", "Content"],
+        ["image", "Image"]
+      ],
+      "type": "choice",
+      "default": "content"
     },
-    "required": false,
-    "locked": false,
-    "occurrence": {
-      "min": 1,
-      "max": null,
-      "default": null
-    },
-    "children": [
-      {
-        "name": "element_type",
-        "id": "element_type",
-        "label": "Element Type",
-        "required": false,
-        "locked": false,
-        "multiple": "false",
-        "display": "select",
-        "choices": [
-          ["richtext", "Richtext"],
-          ["list", "List"],
-          ["cta-group", "CTA Group"],
-          ["testimonial", "Testimonial"]
-        ],
-        "type": "choice",
-        "default": "richtext"
+    {
+      "name": "appended_elements",
+      "label": "Appended Elements",
+      "type": "group",
+      "visibility": {
+        "controlling_field_path": "column_type",
+        "controlling_value_regex": "content",
+        "operator": "EQUAL"
       },
-      {
-        "name": "richtext",
-        "id": "richtext",
-        "label": "Richtext",
-        "required": false,
-        "locked": false,
-        "type": "richtext",
-        "default": "<h3>Heading 3</h3><p>Paragraph example text</p>",
-        "visibility": {
-          "controlling_field_path": "element_type",
-          "controlling_value_regex": "richtext",
-          "operator": "EQUAL"
-        }
+      "required": false,
+      "locked": false,
+      "occurrence": {
+        "min": 1,
+        "max": null,
+        "default": 1
       },
-      {
-        "name": "cta_group",
-        "label": "CTA Group",
-        "required": false,
-        "locked": false,
-        "occurrence": {
-          "min": 1,
-          "max": null,
-          "sorting_label_field": null,
-          "default": 1
-        },
-        "allow_new_line": false,
-        "show_emoji_picker": true,
-        "type": "cta",
-        "default": {
-          "name": "cta",
-          "label": "CTA",
+      "children": [
+        {
+          "name": "element_type",
+          "id": "element_type",
+          "label": "Element Type",
           "required": false,
           "locked": false,
-          "type": "cta",
-          "default": null
+          "multiple": "false",
+          "display": "select",
+          "choices": [
+            ["richtext", "Richtext"],
+            ["list", "List"],
+            ["cta-group", "CTA Group"],
+            ["testimonial", "Testimonial"]
+          ],
+          "type": "choice",
+          "default": "richtext"
         },
-        "visibility": {
-          "controlling_field_path": "element_type",
-          "controlling_value_regex": "cta-group",
-          "operator": "EQUAL"
+        {
+          "name": "richtext",
+          "id": "richtext",
+          "label": "Richtext",
+          "required": false,
+          "locked": false,
+          "type": "richtext",
+          "default": "<h3>Heading 3</h3><p>Paragraph example text</p>",
+          "visibility": {
+            "controlling_field_path": "element_type",
+            "controlling_value_regex": "richtext",
+            "operator": "EQUAL"
+          }
+        },
+        {
+          "name": "cta_group",
+          "label": "CTA Group",
+          "required": false,
+          "locked": false,
+          "occurrence": {
+            "min": 1,
+            "max": null,
+            "default": 1
+          },
+          "allow_new_line": false,
+          "show_emoji_picker": true,
+          "type": "cta",
+          "visibility": {
+            "controlling_field_path": "element_type",
+            "controlling_value_regex": "cta-group",
+            "operator": "EQUAL"
+          }
         }
-      }
-    ]
-  }
-]
+      ],
+      "default": [
+        {
+          "element_type": "richtext",
+          "richtext": "<h3>Heading 3</h3><p>Paragraph example text</p>",
+          "cta_group": [ null ]
+        }
+      ]
+    }
+  ]
+}
