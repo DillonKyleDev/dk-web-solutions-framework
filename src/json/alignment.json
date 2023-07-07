@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "locked": false,
+  "multiple": "false",
+  "display": "select",
+  "choices": [
+    ["top", "Top"],
+    ["middle", "Middle"],
+    ["bottom", "Bottom"]
+  ],
+  "type": "choice"
+}

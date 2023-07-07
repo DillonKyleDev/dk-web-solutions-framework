@@ -1,3 +1,63 @@
 .two-column {
-  background-color: white;
+  &__grid {
+    display: flex;
+  }
+
+  &__column-type {
+    &--content {
+
+    }
+
+    &--image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  &__image--border-radius {
+    border-radius: $image-border-radius;
+  }
+
+  &__column-gap {
+    &--xxxs {
+      column-gap: $padding--xxxs;
+    }
+
+    &--xxs {
+      column-gap: $padding--xxs;
+    }
+
+    &--xs {
+      column-gap: $padding--xs;
+    }
+
+    &--small {
+      column-gap: $padding--small;
+    }
+
+    &--medium {
+      column-gap: $padding--medium;
+    }
+
+    &--large {
+      column-gap: $padding--large;
+    }
+
+    &--xl {
+      column-gap: $padding--xl;
+    }
+
+    &--xxl {
+      column-gap: $padding--xxl;
+    }
+
+    &--xxxl {
+      column-gap: $padding--xxxl;
+    }    
+  }
+
+  &__column {
+    width: 50%;
+  }
 }

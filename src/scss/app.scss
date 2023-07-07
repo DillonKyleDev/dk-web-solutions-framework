@@ -28,6 +28,9 @@
 
 // Modules
 @import 'socials';
+@import 'columns';
+@import 'one-column';
+@import 'two-column';
 
 * {
   margin: 0;
@@ -40,7 +43,7 @@ html {
 
 body {
   color: $body-text;
-  font-size: 16px;
+  font-size: 16px;  
 }
 
 .body-container {

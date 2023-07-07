@@ -5,15 +5,10 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
-  const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
+  const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));  
 
   let fields = [
-    setFieldParams(spacing, {
-      name: 'module_spacing',
-      label: 'Module Spacing',
-      default: 'medium',
-    }),
+    
   ];
 
   return [fields, styles];

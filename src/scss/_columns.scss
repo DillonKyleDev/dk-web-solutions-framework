@@ -1,0 +1,20 @@
+.one-column,
+.two-column {
+  &__vertical-alignment {
+    &--top {
+      align-items: flex-start;
+    }
+
+    &--middle {
+      align-items: center;
+    }
+
+    &--bottom {
+      align-items: flex-end;
+    }
+  }
+
+  &__appended-elements {
+    margin-top: $padding--xxs;
+  }
+}

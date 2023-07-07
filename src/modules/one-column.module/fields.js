@@ -6,18 +6,10 @@ const setFieldParams = (field, params) => {
 
 module.exports = (fieldOptions) => {
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
-  const column = JSON.parse(fs.readFileSync('../../json/column.json'));
-  const columnGap = JSON.parse(fs.readFileSync('../../json/spacing.json'));
-  const verticalAlignment = JSON.parse(
-    fs.readFileSync('../../json/alignment.json')
-  );
+  const column = JSON.parse(fs.readFileSync('../../json/column.json'));  
+  const verticalAlignment = JSON.parse(fs.readFileSync('../../json/alignment.json'));
 
   let fields = [
-    setFieldParams(columnGap, {
-      name: 'column_gap',
-      label: 'Column Gap',
-      default: 'medium',
-    }),
     setFieldParams(verticalAlignment, {
       name: 'vertical_alignment',
       label: 'Vertical Alignment',
@@ -31,7 +23,7 @@ module.exports = (fieldOptions) => {
       locked: false,
       occurrence: {
         min: 1,
-        max: 2,
+        max: 1,
         default: null,
       },
       children: column,

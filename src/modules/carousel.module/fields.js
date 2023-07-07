@@ -43,7 +43,7 @@ module.exports = (fieldOptions) => {
     setFieldParams(itemPadding, {
       name: 'item_padding',
       label: 'Item Padding',
-      default: 'small',
+      default: 'xxs',
     }),
     {
       name: 'carousel_source',

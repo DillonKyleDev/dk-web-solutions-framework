@@ -1,3 +1,21 @@
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .display--1,
+  .display--2,
+  .display--3 {    
+    font-family: $font--headlines;
+  }
+
+  p,
+  a,
+  li {
+    font-family: $font--body;
+  }
+
 .on-light {
   p,
   h1,
@@ -6,7 +24,7 @@
   h4,
   h5,
   h6 {
-    color: $body-text;
+    color: $body-text;    
   }
 }
 
@@ -129,7 +147,6 @@ h6 {
 }
 
 p {
-  font-family: 'Josefin Sans', sans-serif;
   text-align: left;
   font-size: 16px;
   font-weight: 400;

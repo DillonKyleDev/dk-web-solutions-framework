@@ -386,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk_hubspot_cms_theme_boilerplate"] = self["webpackChunk_hubspot_cms_theme_boilerplate"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkDK_Web_Solutions_Framework"] = self["webpackChunkDK_Web_Solutions_Framework"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	}();

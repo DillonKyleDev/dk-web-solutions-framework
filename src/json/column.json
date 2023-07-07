@@ -1,86 +1,142 @@
-{
-  "label": "Column",
-  "name": "column",
-  "type": "group",
-  "expanded": true,
-  "children": [
-    {
-      "name": "column_type",
-      "id": "column_type",
-      "label": "Column Type",
-      "required": false,
-      "locked": false,
-      "multiple": "false",
-      "display": "select",
-      "choices": [
-        ["content", "Content"],
-        ["image", "Image"]
-      ],
-      "type": "choice",
-      "default": "content"
-    },
-    {
-      "id": "ingredients",
-      "name": "ingredients",
-      "label": "Ingredients",
-      "required": false,
-      "locked": false,
-      "occurrence": {
-        "min": 1,
-        "max": null,
-        "sorting_label_field": "ingredients.ingredient",
-        "default": null
-      },
-      "children": [
-        {
-          "name": "element_type",
-          "id": "element_type",
-          "label": "Element Type",
-          "required": false,
-          "locked": false,
-          "multiple": "false",
-          "display": "select",
-          "choices": [
-            ["content", "Richtext"],
-            ["list", "List"],
-            ["cta-group", "CTA Group"],
-            ["testimonial", "Testimonial"]
-          ],
-          "type": "choice",
-          "default": "content"
-        },
-        {
-          "name": "text_conent",
-          "id": "text_conent",
-          "label": "Richtext",
-          "required": false,
-          "locked": false,
-          "type": "richtext",
-          "default": "<h3>Heading 3</h3><p>Paragraph example text</p>"
-        },
-        {
-          "name": "ingredient",
-          "label": "Ingredient",
-          "required": false,
-          "locked": false,
-          "occurrence": {
-            "min": 1,
-            "max": null,
-            "sorting_label_field": null,
-            "default": 1
-          },
-          "type": "text",
-          "default": [ "22112970" ]
-        }
-      ],
-      "type": "group",
-      "default": [
-        {
-          "element_type": "content",
-          "text_conent": "<h3>Heading 3</h3><p>Paragraph example text</p>",
-          "ingredient": [ "22112970" ]
-        }
-      ]
+[
+  {
+    "name": "column_type",
+    "id": "column_type",
+    "label": "Column Type",
+    "required": false,
+    "locked": false,
+    "multiple": "false",
+    "display": "select",
+    "choices": [
+      ["content", "Content"],
+      ["image", "Image"]
+    ],
+    "type": "choice",
+    "default": "content"
+  },
+  {
+    "name": "content",
+    "label": "Content",
+    "required": false,
+    "locked": false,
+    "type": "richtext",
+    "default": "<h2>Heading 2</h2><p>Example paragraph text.</p>",
+    "visibility": {
+      "controlling_field_path": "columns.column_type",
+      "controlling_value_regex": "content",
+      "operator": "EQUAL"
     }
-  ]
-}
+  },
+  {
+    "name": "image",
+    "label": "Image",
+    "required": false,
+    "locked": false,
+    "responsive": true,
+    "resizable": true,
+    "show_loading": false,
+    "type": "image",
+    "default": {
+      "size_type": "exact",
+      "src": "",
+      "alt": "image-alt-text",
+      "loading": "lazy"
+    },
+    "visibility": {
+      "controlling_field_path": "columns.column_type",
+      "controlling_value_regex": "image",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "name": "border_radius_",
+    "label": "Image Border Radius?",
+    "required": false,
+    "locked": false,
+    "type": "boolean",
+    "display": "checkbox",
+    "inline_help_text": "Adds border radius to corners of image.",
+    "default": true,
+    "visibility": {
+      "controlling_field_path": "columns.column_type",
+      "controlling_value_regex": "image",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "id": "appended_elements",
+    "name": "appended_elements",
+    "label": "Appended Elements",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "min": null,
+      "max": null,
+      "default": null
+    },
+    "children": [
+      {
+        "name": "element_type",
+        "label": "Element Type",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["content", "Richtext"],
+          ["list", "List"],
+          ["cta-group", "CTA Group"],
+          ["testimonial", "Testimonial"]
+        ],
+        "type": "choice",
+        "default": "content"
+      },
+      {
+        "name": "text_conent",
+        "id": "text_conent",
+        "label": "Richtext",
+        "required": false,
+        "locked": false,
+        "type": "richtext",
+        "default": "<h3>Heading 3</h3><p>Paragraph example text</p>",
+        "visibility": {
+          "controlling_field_path": "columns.appended_elements.element_type",
+          "controlling_value_regex": "content",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "cta_group",
+        "label": "CTA Group",
+        "required": false,
+        "locked": false,
+        "occurrence": {
+          "min": 1,
+          "max": null,
+          "sorting_label_field": null,
+          "default": 1
+        },
+        "type": "cta",
+        "default": ["f75a5d21-9693-4b63-b4e6-09b7d7e886f8"],
+        "visibility": {
+          "controlling_field_path": "columns.appended_elements.element_type",
+          "controlling_value_regex": "cta-group",
+          "operator": "EQUAL"
+        }
+      }
+    ],
+    "type": "group",
+    "default": [
+      {
+        "element_type": "content",
+        "text_conent": "<h3>Heading 3</h3><p>Paragraph example text</p>",
+        "cta_group": ["f75a5d21-9693-4b63-b4e6-09b7d7e886f8"]
+      }
+    ],
+    "visibility": {
+      "controlling_field_path": "columns.column_type",
+      "controlling_value_regex": "content",
+      "operator": "EQUAL"
+    }
+  }
+]

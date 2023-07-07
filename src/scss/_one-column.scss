@@ -1,0 +1,12 @@
+.one-column {
+  &__column-type {
+    &--content {
+    }
+
+    &--image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

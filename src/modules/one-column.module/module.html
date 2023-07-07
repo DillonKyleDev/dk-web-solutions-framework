@@ -2,13 +2,12 @@
 {% import "../../templates/macros.html" as macros %}
 
 {# Sets attributes used for the link field #}
-{% set module_name = "two-column" %}
+{% set module_name = "one-column" %}
 {% set styles = module.styles %}
 
 {# Module specific options #}
 {% set columns = module.columns %}
 {% set columnGap = module.column_gap %}
-{% set verticalAlignment = module.vertical_alignment %}
 
 {# Module #}
 {% call macros.module_base(module_name, styles) %}

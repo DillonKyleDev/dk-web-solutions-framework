@@ -15,3 +15,54 @@
 {% macro image_popup(linkContent, imageLink, class) %}
   <a class="image-link {{ class }}" href="{{ imageLink }}">{{ linkContent }}</a>
 {% endmacro %}
+
+{% macro column(module_name, column) %}
+  {% set columnType = column.column_type %}
+  {% set content = column.content %}
+  {% set image = column.image %}
+  {% set borderRadius_ = column.border_radius_ %}
+  {% set appendedElements = column.appended_elements %}
+
+  <div class="{{ module_name }}__column {{ module_name }}__column-type--{{ columnType }}">
+    {% if columnType == "content" %}
+      <div class="{{ module_name }}__content">
+        {{ content }}
+      </div>
+      
+      {% if appendedElements|length > 0 %}
+        {{ macros.appended_elements(module_name, appendedElements) }}
+      {% endif %}
+    {% elif columnType == "image" %}
+      <div class="{{ module_name }}__image-container">
+        <img class="{{ module_name }}__image {{ borderRadius_}}{% if borderRadius_ %} {{ module_name }}__image--border-radius{% endif %}" src="{{ image.src }}">
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+
+{% macro appended_elements(module_name, appended_elements) %}
+  <div class="{{ module_name }}__appended-elements">
+    {% for element in appended_elements %}
+      {% set elementType = element.element_type %}
+      {% set content = element.text_content %}
+      {% set ctaGroup = element.cta_group %}
+
+      <div class="{{ module_name }}__appended-element {{ module_name }}__appended-element-type--{{ elementType }}">
+        {% if elementType == "content" %}
+          {{ content }}
+        {% elif elementType == "list" %}
+
+        {% elif elementType == "cta-group" %}
+          {% for cta in ctaGroup %}
+            <div class="{{ module_name }}__cta">
+              {{ cta(cta) }}
+            </div>
+          {% endfor %}
+        {% elif elementType == "testimonial" %}
+
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}
