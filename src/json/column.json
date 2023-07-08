@@ -8,7 +8,7 @@
     "multiple": "false",
     "display": "select",
     "choices": [
-      ["text-content", "Content"],
+      ["text-content", "Richtext"],
       ["image", "Image"]
     ],
     "type": "choice",
@@ -20,7 +20,7 @@
     "required": false,
     "locked": false,
     "type": "richtext",
-    "default": "<h2>Heading 2</h2><p>Example paragraph text.</p>",
+    "default": "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
     "visibility": {
       "controlling_field_path": "columns.column_type",
       "controlling_value_regex": "text-content",
@@ -92,7 +92,7 @@
         "default": "text-content"
       },
       {
-        "name": "text_content",        
+        "name": "text_content",
         "label": "Richtext",
         "required": false,
         "locked": false,
@@ -101,6 +101,120 @@
         "visibility": {
           "controlling_field_path": "columns.appended_elements.element_type",
           "controlling_value_regex": "text-content",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "type": "group",
+        "name": "list_options",
+        "label": "List Options",
+        "expanded": true,
+        "children": [
+          {
+            "name": "list_type",
+            "id": "list_type",
+            "label": "List Type",
+            "required": false,
+            "locked": false,
+            "multiple": "false",
+            "display": "select",
+            "choices": [
+              ["no-style", "No Style"],
+              ["bullet", "Bullet"],
+              ["check", "Check"],
+              ["check-outline", "Check Outlined"],
+              ["icon", "Icon"]
+            ],
+            "type": "choice",
+            "default": "check"
+          },
+          {
+            "name": "list_layout",
+            "id": "list_layout",
+            "label": "List Layout",
+            "required": false,
+            "locked": false,
+            "multiple": "false",
+            "display": "select",
+            "choices": [
+              ["one-column", "One Column"],
+              ["two-column", "Two Column"],
+              ["three-column", "Three Column"],
+              ["four-column", "Four Column"]
+            ],
+            "type": "choice",
+            "default": "one-column"
+          },
+          {
+            "name": "icon_position",
+            "id": "icon_position",
+            "label": "Icon Position",
+            "required": false,
+            "locked": false,
+            "multiple": "false",
+            "display": "select",
+            "choices": [
+              ["top", "Top"],
+              ["middle", "Middle"],
+              ["bottom", "Bottom"]
+            ],
+            "type": "choice",
+            "default": "middle"
+          },
+          {
+            "name": "icon_color",
+            "id": "icon_color",
+            "label": "Icon Color",
+            "required": false,
+            "locked": false,
+            "multiple": "false",
+            "display": "select",
+            "choices": [
+              ["transparent", "Transparent"],
+              ["white", "White"],
+              ["primary", "Primary"],
+              ["primary-light", "Primary Light"],
+              ["primary-dark", "Primary Dark"],
+              ["secondary", "Secondary"],
+              ["secondary-light", "Secondary Light"],
+              ["secondary-dark", "Secondary Dark"],
+              ["tertiary", "Tertiary"],
+              ["tertiary-light", "Tertiary Light"],
+              ["tertiary-dark", "Tertiary Dark"]
+            ],
+            "type": "choice",
+            "default": "primary",
+            "visibility": {
+              "controlling_field_path": "columns.appended_elements.list_options.list_type",
+              "controlling_value_regex": "check",
+              "operator": "EQUAL"
+            }
+          },
+          {
+            "name": "list",
+            "label": "List",
+            "required": false,
+            "locked": false,
+            "occurrence": {
+              "min": 1,
+              "max": null,
+              "sorting_label_field": null,
+              "default": 4
+            },
+            "allow_new_line": false,
+            "show_emoji_picker": true,
+            "type": "richtext",
+            "default": [
+              "<h4>List Item Heading</h4><p>List item content</p>",
+              "<h4>List Item Heading</h4><p>List item content</p>",
+              "<h4>List Item Heading</h4><p>List item content</p>",
+              "<h4>List Item Heading</h4><p>List item content</p>"
+            ]
+          }
+        ],
+        "visibility": {
+          "controlling_field_path": "columns.appended_elements.element_type",
+          "controlling_value_regex": "list",
           "operator": "EQUAL"
         }
       },

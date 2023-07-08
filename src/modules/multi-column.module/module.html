@@ -1,9 +1,14 @@
 {# import marcros #}
 {% import "../../templates/macros.html" as macros %}
 
-{# Sets attributes used for the link field #}
+{# Global module options #}
 {% set module_name = "multi-column" %}
-{% set styles = module.styles %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
 
 {# Module specific options #}
 {% set column_type = module.column_type %}
@@ -16,7 +21,7 @@
 {% set columns = module.columns %}
 
 {# Module #}
-{% call macros.module_base(module_name, styles) %}
+{% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__grid {{ module_name }}__column-type--{{ column_type }} grid grid__column-layout--{{ column_layout }} grid__column-spacing--{{ column_spacing }} grid__column-padding--{{ column_padding }}">
     {% for column in columns %}
       {% set text_content = column.text_content %}

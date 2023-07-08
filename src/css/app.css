@@ -1,3 +1,7 @@
+.no-margin {
+  margin: 0 !important;
+}
+
 h1,
 h2,
 h3,
@@ -63,79 +67,79 @@ li {
   margin-bottom: 10px;
 }
 
-.h1 {
+.h1, h1 {
   display: block;
   font-size: 28px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
 @media (min-width: 769px) {
-  .h1 {
+  .h1, h1 {
     font-size: 38px;
     line-height: 1.1842105263;
   }
 }
 
-.h2 {
+.h2, h2 {
   display: block;
   font-size: 26px;
   line-height: 1.5;
   margin-bottom: 10px;
 }
 @media (min-width: 769px) {
-  .h2 {
+  .h2, h2 {
     font-size: 46px;
     line-height: 1.1956521739;
   }
 }
 
-.h3 {
+.h3, h3 {
   display: block;
   font-size: 23px;
   line-height: 1.4782608696;
   margin-bottom: 10px;
 }
 @media (min-width: 769px) {
-  .h3 {
+  .h3, h3 {
     font-size: 32px;
     line-height: 1.1875;
   }
 }
 
-.h4 {
+.h4, h4 {
   display: block;
   font-size: 26px;
   line-height: 1.5;
   margin-bottom: 10px;
 }
 @media (min-width: 769px) {
-  .h4 {
+  .h4, h4 {
     font-size: 26px;
     line-height: 1.1538461538;
   }
 }
 
-.h5 {
+.h5, h5 {
   display: block;
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 10px;
 }
 @media (min-width: 769px) {
-  .h5 {
+  .h5, h5 {
     font-size: 22px;
     line-height: 1.5;
   }
 }
 
-.h6 {
+.h6, h6 {
   display: block;
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 10px;
 }
 @media (min-width: 769px) {
-  .h6 {
+  .h6, h6 {
     font-size: 14px;
     line-height: 1.5;
   }
@@ -268,6 +272,18 @@ p.large {
   border-radius: 3px;
 }
 
+.owl-carousel__no-dots .owl-dots {
+  display: none;
+}
+
+.owl-dot > span {
+  background-color: #b7cee9 !important;
+}
+.owl-dot.active > span {
+  transition: background-color 0.2s ease-in-out !important;
+  background-color: #205899 !important;
+}
+
 .menu {
   display: flex;
   padding: 0;
@@ -308,6 +324,83 @@ p.large {
   border: solid 1px rgb(158, 158, 158) !important;
   border-radius: 6px;
   background-color: white;
+}
+
+.list {
+  list-style: none;
+  list-style-type: none;
+}
+.list__list-type--bullet {
+  list-style-type: bullet;
+}
+.list__list-type--check li::before {
+  content: "\e876";
+  display: inline-block;
+  font-family: "Material Symbols Rounded";
+  line-height: 1;
+}
+.list__list-type--check-outline li::before {
+  content: "\e86c";
+  display: inline-block;
+  font-family: "Material Symbols Rounded";
+  line-height: 1;
+}
+.list__list-item {
+  display: flex;
+}
+.list__list-item::before {
+  transform: scale(1.4);
+}
+.list__icon-position--top {
+  align-items: flex-start;
+}
+.list__icon-position--top::before {
+  transform: scale(1.4) translateX(-10px) translateY(5px);
+}
+.list__icon-position--middle {
+  align-items: center;
+}
+.list__icon-position--middle::before {
+  transform: scale(1.4) translateX(-10px);
+}
+.list__icon-position--bottom {
+  align-items: flex-end;
+}
+.list__icon-position--bottom::before {
+  transform: scale(1.4) translateX(-10px) translateY(-5px);
+}
+.list__icon-color--transparent::before {
+  color: transparent;
+}
+.list__icon-color--white::before {
+  color: white;
+}
+.list__icon-color--primary::before {
+  color: #205899;
+}
+.list__icon-color--primary-light::before {
+  color: #b7cee9;
+}
+.list__icon-color--primary-dark::before {
+  color: #213471;
+}
+.list__icon-color--secondary::before {
+  color: #d52a7a;
+}
+.list__icon-color--secondary-light::before {
+  color: #e476a9;
+}
+.list__icon-color--secondary-dark::before {
+  color: #a72160;
+}
+.list__icon-color--tertiary::before {
+  color: #7ad52a;
+}
+.list__icon-color--tertiary-light::before {
+  color: #a9e476;
+}
+.list__icon-color--tertiary-dark::before {
+  color: #57981e;
 }
 
 .blog__hero {
@@ -656,18 +749,27 @@ p.large {
   justify-content: space-between;
 }
 
-.owl-carousel__no-dots .owl-dots {
-  display: none;
+.module__endcap {
+  display: flex;
 }
-
-.owl-dot > span {
-  background-color: #b7cee9 !important;
+.module__endcap-block-alignment--left {
+  justify-content: flex-start;
 }
-.owl-dot.active > span {
-  transition: background-color 0.2s ease-in-out !important;
-  background-color: #205899 !important;
+.module__endcap-block-alignment--center {
+  justify-content: center;
 }
-
+.module__endcap-block-alignment--right {
+  justify-content: flex-end;
+}
+.module__endcap-content-alignment--left {
+  text-align: left;
+}
+.module__endcap-content-alignment--center {
+  text-align: center;
+}
+.module__endcap-content-alignment--right {
+  text-align: right;
+}
 .module.bg--transparent,
 .module .bg--transparent {
   background-color: transparent;

@@ -1,9 +1,14 @@
 {# import marcros #}
 {% import "../../templates/macros.html" as macros %}
 
-{# Sets attributes used for the link field #}
+{# Global module options #}
 {% set module_name = "carousel" %}
-{% set styles = module.styles %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
 {% set source = module.carousel_source %}
 {% set table = module.table %}
 {% set itemsVisible = module.items_visible %}
@@ -15,12 +20,12 @@
 {% set show_dots_ = module.show_dots_ %}
 
 {# Module #}
-{% call macros.module_base(module_name, styles) %}
+{% call macros.module_base(module_name, module_settings) %}
 <div class="{{ module_name }}__container owl-carousel owl-theme owl-nav grid grid__column-padding--{{ itemPadding }}" data-items="{{ itemsVisible }}" data-loop="{{ loop_ }}" data-spacing="{{ itemSpacing }}{% if !show_dots_ %} owl-carousel__no-dots{% endif %}">
     {% for column in columns %}
       <div class="{{ module_name }}__item card">
         <div class="{{ module_name }}__top-content card__top">
-          {% if source != "richtext" %}
+          {% if column.image.src is defined %}
             <div class="{{ module_name }}__item-image card__image-container">
               <img src={{ column.image.src }}>
             </div>

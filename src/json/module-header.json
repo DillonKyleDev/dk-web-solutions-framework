@@ -1,0 +1,118 @@
+[
+  {
+    "type": "group",
+    "name": "module_header",
+    "label": "Module Header",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Show Module Header?",
+        "name": "show_module_header_",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "display": "checkbox",
+        "inline_help_text": "Includes header above the module.",
+        "default": false
+      },
+      {
+        "name": "header_type_setting",
+        "label": "Type Setting",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["on-light", "On Light"],
+          ["on-dark", "On Dark"]
+        ],
+        "type": "choice",
+        "default": "on-light",
+        "visibility": {
+          "controlling_field_path": "module_header.show_module_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "padding_bottom",
+        "label": "Padding Bottom",
+        "default": "xs",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["none", "None"],
+          ["xxxs", "XXXS"],
+          ["xxs", "XXS"],
+          ["xs", "XS"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"],
+          ["xl", "Xl"],
+          ["xxl", "XXL"],
+          ["xxxl", "XXXL"]
+        ],
+        "type": "choice",
+        "visibility": {
+          "controlling_field_path": "module_header.show_module_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "label": "Header Block Alignment",
+        "name": "header_block_alignment",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ],
+        "type": "choice",
+        "default": "left",
+        "visibility": {
+          "controlling_field_path": "module_header.show_module_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "label": "Header Content Alignment",
+        "name": "header_content_alignment",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ],
+        "type": "choice",
+        "visibility": {
+          "controlling_field_path": "module_header.show_module_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "header_content",
+        "label": "Header Content",
+        "required": false,
+        "locked": false,
+        "type": "richtext",
+        "default": "<h2>Module Header</h2><p class='large'>Example module header paragraph.</p>",
+        "visibility": {
+          "controlling_field_path": "module_header.show_module_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  }
+]

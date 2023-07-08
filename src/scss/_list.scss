@@ -1,0 +1,110 @@
+.list {
+  list-style: none;
+  list-style-type: none;
+
+  &__list-type {
+    &--bullet {
+      list-style-type: bullet;
+    }
+    &--check {
+      li::before {
+        content: '\e876';
+        display: inline-block;
+        font-family: 'Material Symbols Rounded';
+        line-height: 1;
+      }
+    }
+    &--check-outline {
+      li::before {
+        content: '\e86c';
+        display: inline-block;
+        font-family: 'Material Symbols Rounded';
+        line-height: 1;        
+      }
+    }
+    &--icon {
+    }
+  }
+
+  &__list-layout {
+    &--one-column {
+    }
+    &--two-column {
+    }
+    &--three-column {
+    }
+    &--four-column {
+    }
+  }
+
+  &__list-item {
+    display: flex;
+
+    &::before {
+      transform: scale(1.4);
+    }
+  }
+
+  &__icon-position {
+    &--top {
+      align-items: flex-start;
+
+      &::before {
+        transform: scale(1.4) translateX(-10px) translateY(5px);
+      }
+    }
+    &--middle {
+      align-items: center;
+
+      &::before {
+        transform: scale(1.4) translateX(-10px);
+      }
+    }
+    &--bottom {
+      align-items: flex-end;
+
+      &::before {
+        transform: scale(1.4) translateX(-10px) translateY(-5px);
+      }
+    }
+  }
+
+  &__icon-color {
+    &--transparent::before {
+      color: transparent;
+    }
+    &--white::before {
+      color: white;
+    }
+
+    &--primary::before {
+      color: $primary;
+    }
+    &--primary-light::before {
+      color: $primary--light;
+    }
+    &--primary-dark::before {
+      color: $primary--dark;
+    }
+
+    &--secondary::before {
+      color: $secondary;
+    }
+    &--secondary-light::before {
+      color: $secondary--light;
+    }
+    &--secondary-dark::before {
+      color: $secondary--dark;
+    }
+
+    &--tertiary::before {
+      color: $tertiary;
+    }
+    &--tertiary-light::before {
+      color: $tertiary--light;
+    }
+    &--tertiary-dark::before {
+      color: $tertiary--dark;
+    }
+  }
+}

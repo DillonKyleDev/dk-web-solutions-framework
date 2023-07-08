@@ -1,15 +1,20 @@
 {# import marcros #}
 {% import "../../templates/macros.html" as macros %}
 
-{# Sets attributes used for the link field #}
+{# Global module options #}
 {% set module_name = "module-name" %}
-{% set styles = module.styles %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
 
 {# Module specific options #}
 
 
 {# Module #}
-{% call macros.module_base(module_name, styles) %}
+{% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__container">
     <p>Hello from base module</p>
   </div>

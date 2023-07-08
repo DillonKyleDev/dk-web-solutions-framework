@@ -1,9 +1,14 @@
 {# import marcros #}
 {% import "../../templates/macros.html" as macros %}
 
-{# Sets attributes used for the link field #}
+{# Global module options #}
 {% set module_name = "two-column" %}
-{% set styles = module.styles %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
 
 {# Module specific options #}
 {% set columns = module.columns %}
@@ -11,7 +16,7 @@
 {% set verticalAlignment = module.vertical_alignment %}
 
 {# Module #}
-{% call macros.module_base(module_name, styles) %}
+{% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__grid {{ module_name }}__column-gap--{{ columnGap }} {{ module_name }}__vertical-alignment--{{ verticalAlignment }}">
     {% for column in columns %}
       {{ column(module_name, column) }}

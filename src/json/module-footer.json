@@ -1,0 +1,118 @@
+[
+  {
+    "type": "group",
+    "name": "module_footer",
+    "label": "Module Footer",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Show Module Footer?",
+        "name": "show_module_footer_",
+        "id": "show_module_footer_",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "display": "checkbox",
+        "inline_help_text": "Includes footer under the module.",
+        "default": false
+      },
+      {
+        "name": "footer_type_setting",
+        "label": "Type Setting",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["on-light", "On Light"],
+          ["on-dark", "On Dark"]
+        ],
+        "type": "choice",
+        "default": "on-light",
+        "visibility": {
+          "controlling_field_path": "module_footer.show_module_footer_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "padding_top",
+        "label": "Padding Top",
+        "default": "xs",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["none", "None"],
+          ["xxxs", "XXXS"],
+          ["xxs", "XXS"],
+          ["xs", "XS"],
+          ["small", "Small"],
+          ["medium", "Medium"],
+          ["large", "Large"],
+          ["xl", "Xl"],
+          ["xxl", "XXL"],
+          ["xxxl", "XXXL"]
+        ],
+        "type": "choice",
+        "visibility": {
+          "controlling_field_path": "module_footer.show_module_footer_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "label": "Footer Block Alignment",
+        "name": "footer_block_alignment",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ],
+        "type": "choice",
+        "visibility": {
+          "controlling_field_path": "module_footer.show_module_footer_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "label": "Footer Content Alignment",
+        "name": "footer_content_alignment",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ],
+        "type": "choice",
+        "visibility": {
+          "controlling_field_path": "module_footer.show_module_footer_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "footer_content",
+        "label": "Footer Content",
+        "required": false,
+        "locked": false,
+        "type": "richtext",
+        "default": "<h2>Module Footer</h2><p class='large'>Example module footer paragraph.</p>",
+        "visibility": {
+          "controlling_field_path": "module_footer.show_module_footer_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  }
+]

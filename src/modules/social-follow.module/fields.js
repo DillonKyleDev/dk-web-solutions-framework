@@ -5,11 +5,11 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const sectionHeader = JSON.parse(fs.readFileSync('../../json/section-header.json'));  
-  const sectionFooter = JSON.parse(fs.readFileSync('../../json/section-footer.json'));
+  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));  
+  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
 
-  let fields = [sectionHeader, sectionFooter];
+  let fields = [moduleHeader, moduleFooter];
 
   return [fields, styles];
 };

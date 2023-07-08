@@ -5,8 +5,8 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const sectionHeader = JSON.parse(fs.readFileSync('../../json/section-header.json'));  
-  const sectionFooter = JSON.parse(fs.readFileSync('../../json/section-footer.json'));
+  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));
+  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));  
 
   const itemType = JSON.parse(fs.readFileSync('../../json/cards.json'));
@@ -14,8 +14,8 @@ module.exports = (fieldOptions) => {
   const itemPadding = JSON.parse(fs.readFileSync('../../json/spacing.json'));
 
   let fields = [
-    sectionHeader,
-    sectionFooter,
+    moduleHeader,
+    moduleFooter,
     {
       name: 'items_visible',
       label: 'Items Visible',

@@ -3,9 +3,11 @@
 @import './settings/type';
 @import './settings/grid';
 @import './settings/form';
+@import './owl-carousel';
 
 // Global
 @import './menu';
+@import './list';
 
 // Blog
 @import './blog/blog';
@@ -26,7 +28,6 @@
 @import 'card';
 
 // Modules
-@import './owl-carousel';
 @import './module';
 @import 'socials';
 @import 'columns';

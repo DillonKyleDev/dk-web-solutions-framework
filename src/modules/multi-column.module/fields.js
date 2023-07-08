@@ -5,15 +5,16 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const sectionHeader = JSON.parse(fs.readFileSync('../../json/section-header.json'));  
-  const sectionFooter = JSON.parse(fs.readFileSync('../../json/section-footer.json'));
+  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));  
+  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
   
   const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
   const colors = JSON.parse(fs.readFileSync('../../json/colors.json'));
 
   let fields = [
-    sectionHeader,
+    moduleHeader,
+    moduleFooter,
     {
       name: 'column_type',
       id: 'column_type',
@@ -50,7 +51,7 @@ module.exports = (fieldOptions) => {
       name: 'column_spacing',
       id: 'column_spacing',
       label: 'Column Spacing',
-      default: 'xs',
+      default: 'small',
     }),
     setFieldParams(spacing, {
       name: 'column_padding',
@@ -106,7 +107,8 @@ module.exports = (fieldOptions) => {
           required: false,
           locked: false,
           type: 'richtext',
-          default: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
+          default:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
           visibility: {
             controlling_field_path: 'column_type',
             controlling_value_regex: 'text-content',
@@ -177,15 +179,18 @@ module.exports = (fieldOptions) => {
       ],
       default: [
         {
-          text_content: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
+          text_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
           image: null,
         },
         {
-          text_content: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
+          text_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
           image: null,
         },
         {
-          text_content: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
+          text_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
           image: null,
         },
       ],

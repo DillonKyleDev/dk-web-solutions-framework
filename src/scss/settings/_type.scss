@@ -1,3 +1,7 @@
+  .no-margin {
+    margin: 0 !important;
+  }
+  
   h1,
   h2,
   h3,
@@ -66,7 +70,7 @@
 }
 
 
-.h1 {
+.h1, h1 {
   display: block;
   font-size: 28px;
   line-height: calc(42 / 28);
@@ -78,7 +82,7 @@
   }
 }
 
-.h2 {
+.h2, h2 {
   display: block;
   font-size: 26px;
   line-height: calc(39 / 26);
@@ -90,7 +94,7 @@
   }
 }
 
-.h3 {
+.h3, h3 {
   display: block;
   font-size: 23px;
   line-height: calc(34 / 23);
@@ -102,7 +106,7 @@
   }
 }
 
-.h4 {
+.h4, h4 {
   display: block;
   font-size: 26px;
   line-height: calc(39 / 26);
@@ -114,7 +118,7 @@
   }
 }
 
-.h5 {
+.h5, h5 {
   display: block;
   font-size: 18px;
   line-height: calc(27 / 18);
@@ -126,7 +130,7 @@
   }
 }
 
-.h6 {
+.h6, h6 {
   display: block;
   font-size: 16px;
   line-height: calc(24 / 16);

@@ -1,6 +1,24 @@
 
 
-{% macro module_base(module_name, styles) %}
+{% macro module_base(module_name, module_settings) %}
+  {% set styles = module_settings.styles %}
+  {# Module Header #}
+  {% set module_header = module_settings.module_header %}
+  {% set show_header_ = module_header.show_module_header_ %}
+  {% set header_type = module_header.header_type_setting %}
+  {% set header_block_alignment = module_header.header_block_alignment %}
+  {% set header_content_alignment = module_header.header_content_alignment %}
+  {% set header_padding = module_header.padding_bottom %}
+  {% set header_content = module_header.header_content %}
+  {# Module Footer #}
+  {% set module_footer = module_settings.module_footer %}
+  {% set show_footer_ = module_footer.show_module_footer_ %}
+  {% set footer_type = module_footer.footer_type_setting %}
+  {% set footer_block_alignment = module_footer.footer_block_alignment %}
+  {% set footer_content_alignment = module_footer.footer_content_alignment %}
+  {% set footer_padding = module_footer.padding_top %}
+  {% set footer_content = module_footer.footer_content %}
+  {# Module #}
   {% set padding_top = styles.padding_top %}
   {% set padding_bottom = styles.padding_bottom %}
   {% set background_color = styles.background_color %}
@@ -8,7 +26,25 @@
 
   <div class="{{ module_name }} module module__padding-top--{{ padding_top }} module__padding-bottom--{{ padding_bottom }} bg--{{ background_color }} {{ type_setting }}">
     <div class="{{ module_name }}__inner constrain">
+
+      {% if show_header_ %}
+        <div class="module__endcap {{ header_type }} module__endcap-block-alignment--{{ header_block_alignment }} padding-bottom--{{ header_padding }}">
+          <div class="module__endcap-content module__endcap-content-alignment--{{ header_content_alignment }}">
+            {{ header_content }}
+          </div>
+        </div>
+      {% endif %}
+      
       {{ caller() }}
+
+      {% if show_footer_ %}
+        <div class="module__endcap {{ footer_type }} module__endcap-block-alignment--{{ footer_block_alignment }} padding-top--{{ footer_padding }}">
+          <div class="module__endcap-content module__endcap-content-alignment--{{ footer_content_alignment }}">
+            {{ footer_content }}
+          </div>
+        </div>
+      {% endif %}
+
     </div>
   </div>
 {% endmacro %}
@@ -31,7 +67,7 @@
       </div>
       
       {% if appended_elements[0] %}   
-        {{ macros.append_elements(module_name, appended_elements) }}
+        {{ append_elements(module_name, appended_elements) }}
       {% endif %}
     {% elif column_type == "image" %}
       <div class="{{ module_name }}__image-container">
@@ -47,14 +83,14 @@
     {% for item in appended_elements %}
       {% set item_type = item.element_type %}
       {% set item_content = item.text_content %}
-      {% set cta_group = item.cta_group %}
-      
+      {% set list_options = item.list_options %}
+      {% set cta_group = item.cta_group %}      
         
       <div class="{{ module_name }}__appended-element {{ module_name }}__appended-element-type--{{ item_type }}">
         {% if item_type == "text-content" %}
           {{ item_content }}
         {% elif item_type == "list" %}
-
+          {{ list(module_name, list_options) }}
         {% elif item_type == "cta-group" %}
           {% for cta in cta_group %}
             <div class="{{ module_name }}__cta">
@@ -67,4 +103,22 @@
       </div>
     {% endfor %}
   </div>
+{% endmacro %}
+
+{% macro list(module_name, list_options) %}
+  {% set list_type = list_options.list_type %}
+  {% set list_layout = list_options.list_layout %}
+  {% set icon_position = list_options.icon_position %}
+  {% set icon_color = list_options.icon_color %}
+  {% set list = list_options.list %}    
+
+  <ul class="list list__list-type--{{ list_type }} list__list-layout--{{ list_layout }} {{ module_name }}__list">
+    {% for listItem in list %}
+      <li class="list__list-item list__icon-position--{{ icon_position }} list__icon-color--{{ icon_color }}">
+        <div class="list__content-wrapper">
+          {{ listItem }}
+        </div>    
+      </li>
+    {% endfor %}
+  </ul>
 {% endmacro %}

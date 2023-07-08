@@ -1,0 +1,103 @@
+[
+  {
+    "name": "list_type",
+    "id": "list_type",
+    "label": "List Type",
+    "required": false,
+    "locked": false,
+    "multiple": "false",
+    "display": "select",
+    "choices": [
+      ["no-style", "No Style"],
+      ["bullet", "Bullet"],
+      ["check", "Check"],
+      ["check-outline", "Check Outlined"],
+      ["icon", "Icon"]
+    ],
+    "type": "choice",
+    "default": "check"
+  },
+  {
+    "name": "list_layout",
+    "id": "list_layout",
+    "label": "List Layout",
+    "required": false,
+    "locked": false,
+    "multiple": "false",
+    "display": "select",
+    "choices": [
+      ["one-column", "One Column"],
+      ["two-column", "Two Column"],
+      ["three-column", "Three Column"],
+      ["four-column", "Four Column"]
+    ],
+    "type": "choice",
+    "default": "one-column"
+  },
+  {
+    "name": "icon_position",
+    "id": "icon_position",
+    "label": "Icon Position",
+    "required": false,
+    "locked": false,
+    "multiple": "false",
+    "display": "select",
+    "choices": [
+      ["top", "Top"],
+      ["middle", "Middle"],
+      ["bottom", "Bottom"]
+    ],
+    "type": "choice",
+    "default": "middle"
+  },
+  {
+    "name": "icon_color",
+    "id": "icon_color",
+    "label": "Icon Color",
+    "required": false,
+    "locked": false,
+    "multiple": "false",
+    "display": "select",
+    "choices": [
+      ["transparent", "Transparent"],
+      ["white", "White"],
+      ["primary", "Primary"],
+      ["primary-light", "Primary Light"],
+      ["primary-dark", "Primary Dark"],
+      ["secondary", "Secondary"],
+      ["secondary-light", "Secondary Light"],
+      ["secondary-dark", "Secondary Dark"],
+      ["tertiary", "Tertiary"],
+      ["tertiary-light", "Tertiary Light"],
+      ["tertiary-dark", "Tertiary Dark"]
+    ],
+    "type": "choice",
+    "default": "primary",
+    "visibility": {
+      "controlling_field_path": "list_type",
+      "controlling_value_regex": "check",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "name": "list",
+    "label": "List",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "min": 1,
+      "max": null,
+      "sorting_label_field": null,
+      "default": 4
+    },
+    "allow_new_line": false,
+    "show_emoji_picker": true,
+    "type": "richtext",
+    "default": [
+      "<h4>List Item Heading</h4><p>List item content</p>",
+      "<h4>List Item Heading</h4><p>List item content</p>",
+      "<h4>List Item Heading</h4><p>List item content</p>",
+      "<h4>List Item Heading</h4><p>List item content</p>"
+    ]
+  }
+]
