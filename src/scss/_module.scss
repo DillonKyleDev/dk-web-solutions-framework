@@ -1,14 +1,50 @@
-// .module {
-//   &__inner {
+.module {
+  &__inner {
+  }
 
-//   }
+  &.bg,
+  .bg {
+    &--transparent {
+      background-color: transparent;
+    }
+    &--white {
+      background-color: white;
+    }
 
-//   &--bg {
+    &--primary {
+      background-color: $primary;
+    }
+    &--primary-light {
+      background-color: $primary--light;
+    }
+    &--primary-dark {
+      background-color: $primary--dark;
+    }
 
-//   }
-// }
+    &--secondary {
+      background-color: $secondary;
+    }
+    &--secondary-light {
+      background-color: $secondary--light;
+    }
+    &--secondary-dark {
+      background-color: $secondary--dark;
+    }
 
-.padding-top {
+    &--tertiary {
+      background-color: $tertiary;
+    }
+    &--tertiary-light {
+      background-color: $tertiary--light;
+    }
+    &--tertiary-dark {
+      background-color: $tertiary--dark;
+    }
+  }
+}
+
+.padding-top,
+.module__padding-top {
   &--xxxs {
     padding-top: $padding--xxxs;
   }
@@ -38,7 +74,8 @@
   }
 }
 
-.padding-bottom {
+.padding-bottom,
+.module__padding-bottom {
   &--xxxs {
     padding-bottom: $padding--xxxs;
   }

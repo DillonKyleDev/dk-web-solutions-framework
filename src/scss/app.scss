@@ -3,7 +3,6 @@
 @import './settings/type';
 @import './settings/grid';
 @import './settings/form';
-@import './module';
 
 // Global
 @import './menu';
@@ -27,10 +26,13 @@
 @import 'card';
 
 // Modules
+@import './owl-carousel';
+@import './module';
 @import 'socials';
 @import 'columns';
 @import 'one-column';
 @import 'two-column';
+@import 'multi-column';
 
 * {
   margin: 0;

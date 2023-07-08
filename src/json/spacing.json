@@ -4,6 +4,7 @@
   "multiple": "false",
   "display": "select",
   "choices": [
+    ["none", "None"],
     ["xxxs", "XXXS"],
     ["xxs", "XXS"],
     ["xs", "XS"],

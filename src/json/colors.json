@@ -1,0 +1,20 @@
+{
+  "required": false,
+  "locked": false,
+  "multiple": "false",
+  "display": "select",
+  "choices": [
+    ["transparent", "Transparent"],
+    ["white", "White"],
+    ["primary", "Primary"],
+    ["primary-light", "Primary Light"],
+    ["primary-dark", "Primary Dark"],
+    ["secondary", "Secondary"],
+    ["secondary-light", "Secondary Light"],
+    ["secondary-dark", "Secondary Dark"],
+    ["tertiary", "Tertiary"],
+    ["tertiary-light", "Tertiary Light"],
+    ["tertiary-dark", "Tertiary Dark"]
+  ],
+  "type": "choice"
+}

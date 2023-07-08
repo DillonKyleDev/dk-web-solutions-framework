@@ -1,0 +1,19 @@
+{
+  "required": false,
+  "locked": false,
+  "multiple": "false",
+  "display": "select",
+  "choices": [
+    ["0", "None"],
+    ["10", "XXXS"],
+    ["20", "XXS"],
+    ["40", "XS"],
+    ["60", "Small"],
+    ["90", "Medium"],
+    ["120", "Large"],
+    ["160", "Xl"],
+    ["200", "XXL"],
+    ["250", "XXXL"]
+  ],
+  "type": "choice"
+}

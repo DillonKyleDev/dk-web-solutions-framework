@@ -1,0 +1,48 @@
+{# import marcros #}
+{% import "../../templates/macros.html" as macros %}
+
+{# Sets attributes used for the link field #}
+{% set module_name = "multi-column" %}
+{% set styles = module.styles %}
+
+{# Module specific options #}
+{% set column_type = module.column_type %}
+{% set column_layout = module.column_layout %}
+{% set column_background = module.column_background %}
+{% set border_ = module.border_ %}
+{% set border_radius_ = module.border_radius_ %}
+{% set column_spacing = module.column_spacing %}
+{% set column_padding = module.column_padding %}
+{% set columns = module.columns %}
+
+{# Module #}
+{% call macros.module_base(module_name, styles) %}
+  <div class="{{ module_name }}__grid {{ module_name }}__column-type--{{ column_type }} grid grid__column-layout--{{ column_layout }} grid__column-spacing--{{ column_spacing }} grid__column-padding--{{ column_padding }}">
+    {% for column in columns %}
+      {% set text_content = column.text_content %}
+      {% set image = column.image %}
+      {% set is_link_ = column.is_link_ %}
+      {% set link = column.link %}
+      
+      {% if is_link_ %}
+        {% set el = 'a' %}
+      {% else %}
+        {% set el = 'div' %}
+      {% endif %}
+      
+      <div class="grid__column">
+        <div>        
+          <{{ el }} {% if is_link_ %}href="{{ link.url.href }}"{% endif %}{% if link.open_in_new_tab %} target="_blank" {% endif %}class="{{ module_name }}__column bg--{{ column_background }} grid__column-content {% if border_ %} {{ module_name }}__column--border{% endif %}{% if border_radius_ %} {{ module_name }}__column--border-radius{% endif %}">
+            {% if column_type == 'text-content' %}  
+              <div class="{{ module_name }}__text-content">
+                {{ text_content }}
+              </div>
+            {% elif column_type == 'image' %}
+              <img src="{{ image.src }}" class="{{ module_name }}__image">
+            {% endif %}
+          </{{ el }}>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endcall %}

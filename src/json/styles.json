@@ -5,6 +5,20 @@
   "tab": "STYLE",
   "children": [
     {
+      "name": "type_setting",
+      "label": "Type Setting",
+      "required": false,
+      "locked": false,
+      "multiple": "false",
+      "display": "select",
+      "choices": [
+        ["on-light", "On Light"],
+        ["on-dark", "On Dark"]
+      ],
+      "type": "choice",
+      "default": "on-light"
+    },
+    {
       "name": "padding_top",
       "label": "Padding Top",
       "required": false,
@@ -12,6 +26,7 @@
       "multiple": "false",
       "display": "select",
       "choices": [
+        ["none", "None"],
         ["xxxs", "XXXS"],
         ["xxs", "XXS"],
         ["xs", "XS"],
@@ -33,6 +48,7 @@
       "multiple": "false",
       "display": "select",
       "choices": [
+        ["none", "None"],
         ["xxxs", "XXXS"],
         ["xxs", "XXS"],
         ["xs", "XS"],
@@ -57,7 +73,14 @@
         ["transparent", "Transparent"],
         ["white", "White"],
         ["primary", "Primary"],
-        ["secondary", "Secondary"]
+        ["primary-light", "Primary Light"],
+        ["primary-dark", "Primary Dark"],
+        ["secondary", "Secondary"],
+        ["secondary-light", "Secondary Light"],
+        ["secondary-dark", "Secondary Dark"],
+        ["tertiary", "Tertiary"],
+        ["tertiary-light", "Tertiary Light"],
+        ["tertiary-dark", "Tertiary Dark"]
       ],
       "type": "choice",
       "default": "transparent"

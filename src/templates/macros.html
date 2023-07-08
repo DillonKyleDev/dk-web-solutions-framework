@@ -4,8 +4,9 @@
   {% set padding_top = styles.padding_top %}
   {% set padding_bottom = styles.padding_bottom %}
   {% set background_color = styles.background_color %}
+  {% set type_setting = styles.type_setting %}
 
-  <div class="{{ module_name }} module padding-top--{{ padding_top }} padding-bottom--{{ padding_bottom }} module--bg-{{ background_color }}">
+  <div class="{{ module_name }} module module__padding-top--{{ padding_top }} module__padding-bottom--{{ padding_bottom }} bg--{{ background_color }} {{ type_setting }}">
     <div class="{{ module_name }}__inner constrain">
       {{ caller() }}
     </div>
@@ -17,49 +18,50 @@
 {% endmacro %}
 
 {% macro column(module_name, column) %}
-  {% set columnType = column.column_type %}
-  {% set content = column.content %}
+  {% set column_type = column.column_type %}
+  {% set column_content = column.text_content %}
   {% set image = column.image %}
-  {% set borderRadius_ = column.border_radius_ %}
-  {% set appendedElements = column.appended_elements %}
+  {% set border_radius_ = column.border_radius_ %}
+  {% set appended_elements = column.appended_elements %}
 
-  <div class="{{ module_name }}__column {{ module_name }}__column-type--{{ columnType }}">
-    {% if columnType == "content" %}
+  <div class="{{ module_name }}__column {{ module_name }}__column-type--{{ column_type }}">
+    {% if column_type == "text-content" %}
       <div class="{{ module_name }}__content">
-        {{ content }}
+        {{ column_content }}
       </div>
       
-      {% if appendedElements|length > 0 %}
-        {{ macros.appended_elements(module_name, appendedElements) }}
+      {% if appended_elements[0] %}   
+        {{ macros.append_elements(module_name, appended_elements) }}
       {% endif %}
-    {% elif columnType == "image" %}
+    {% elif column_type == "image" %}
       <div class="{{ module_name }}__image-container">
-        <img class="{{ module_name }}__image {{ borderRadius_}}{% if borderRadius_ %} {{ module_name }}__image--border-radius{% endif %}" src="{{ image.src }}">
+        <img class="{{ module_name }}__image {% if border_radius_ %} {{ module_name }}__image--border-radius{% endif %}" src="{{ image.src }}">
       </div>
     {% endif %}
   </div>
 {% endmacro %}
 
 
-{% macro appended_elements(module_name, appended_elements) %}
+{% macro append_elements(module_name, appended_elements) %}
   <div class="{{ module_name }}__appended-elements">
-    {% for element in appended_elements %}
-      {% set elementType = element.element_type %}
-      {% set content = element.text_content %}
-      {% set ctaGroup = element.cta_group %}
+    {% for item in appended_elements %}
+      {% set item_type = item.element_type %}
+      {% set item_content = item.text_content %}
+      {% set cta_group = item.cta_group %}
+      
+        
+      <div class="{{ module_name }}__appended-element {{ module_name }}__appended-element-type--{{ item_type }}">
+        {% if item_type == "text-content" %}
+          {{ item_content }}
+        {% elif item_type == "list" %}
 
-      <div class="{{ module_name }}__appended-element {{ module_name }}__appended-element-type--{{ elementType }}">
-        {% if elementType == "content" %}
-          {{ content }}
-        {% elif elementType == "list" %}
-
-        {% elif elementType == "cta-group" %}
-          {% for cta in ctaGroup %}
+        {% elif item_type == "cta-group" %}
+          {% for cta in cta_group %}
             <div class="{{ module_name }}__cta">
               {{ cta(cta) }}
             </div>
           {% endfor %}
-        {% elif elementType == "testimonial" %}
+        {% elif item_type == "testimonial" %}
 
         {% endif %}
       </div>

@@ -11,10 +11,12 @@
 {% set itemSpacing = module.item_spacing %}
 {% set itemPadding = module.item_padding %}
 {% set autoScroll_ = module.auto_scroll_ %}
+{% set loop_ = module.loop_ %}
+{% set show_dots_ = module.show_dots_ %}
 
 {# Module #}
 {% call macros.module_base(module_name, styles) %}
-  <div class="{{ module_name }}__container owl-carousel owl-theme owl-nav grid  grid--padding-{{ itemPadding }}">
+<div class="{{ module_name }}__container owl-carousel owl-theme owl-nav grid grid__column-padding--{{ itemPadding }}" data-items="{{ itemsVisible }}" data-loop="{{ loop_ }}" data-spacing="{{ itemSpacing }}{% if !show_dots_ %} owl-carousel__no-dots{% endif %}">
     {% for column in columns %}
       <div class="{{ module_name }}__item card">
         <div class="{{ module_name }}__top-content card__top">
@@ -25,7 +27,7 @@
           {% endif %}
         </div>
         
-        <div class="{{ module_name }}__item-content card__content">
+        <div class="{{ module_name }}__item-content grid__column-content">
           {{ column.richtext }}
         </div>
       </div>

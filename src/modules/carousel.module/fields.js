@@ -5,12 +5,17 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
+  const sectionHeader = JSON.parse(fs.readFileSync('../../json/section-header.json'));  
+  const sectionFooter = JSON.parse(fs.readFileSync('../../json/section-footer.json'));
+  const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));  
+
   const itemType = JSON.parse(fs.readFileSync('../../json/cards.json'));
-  const itemSpacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
+  const itemSpacing = JSON.parse(fs.readFileSync('../../json/spacing-numbered.json'));
   const itemPadding = JSON.parse(fs.readFileSync('../../json/spacing.json'));
 
   let fields = [
+    sectionHeader,
+    sectionFooter,
     {
       name: 'items_visible',
       label: 'Items Visible',
@@ -33,17 +38,40 @@ module.exports = (fieldOptions) => {
       type: 'boolean',
       display: 'checkbox',
       default: false,
+      display_width: 'half_width',
+    },
+    {
+      name: 'loop_',
+      label: 'Loop?',
+      required: false,
+      locked: false,
+      type: 'boolean',
+      display: 'checkbox',
+      default: false,
+      display_width: 'half_width',
+    },
+    {
+      name: 'show_dots_',
+      label: 'Show Dots?',
+      required: false,
+      locked: false,
+      type: 'boolean',
+      display: 'checkbox',
+      default: true,
+      display_width: 'half_width',
     },
     setFieldParams(itemType),
     setFieldParams(itemSpacing, {
       name: 'item_spacing',
       label: 'Item Spacing',
-      default: 'small',
+      default: '10',
+      display_width: 'half_width',
     }),
     setFieldParams(itemPadding, {
       name: 'item_padding',
       label: 'Item Padding',
       default: 'xxs',
+      display_width: 'half_width',
     }),
     {
       name: 'carousel_source',
@@ -142,13 +170,17 @@ module.exports = (fieldOptions) => {
       type: 'group',
       default: [
         {
-          ingredient: 'Water',
-          quantity: 1,
-          measurement: 'cups',
+          image: {
+            size_type: 'exact',
+            src: '',
+            alt: 'image-alt-text',
+            loading: 'lazy',
+          },
+          richtext: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
         },
       ],
     },
-  ];
+  ];  
 
   return [fields, styles];
 };

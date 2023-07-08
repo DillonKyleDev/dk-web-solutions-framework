@@ -8,14 +8,14 @@
     "multiple": "false",
     "display": "select",
     "choices": [
-      ["content", "Content"],
+      ["text-content", "Content"],
       ["image", "Image"]
     ],
     "type": "choice",
-    "default": "content"
+    "default": "text-content"
   },
   {
-    "name": "content",
+    "name": "text_content",
     "label": "Content",
     "required": false,
     "locked": false,
@@ -23,7 +23,7 @@
     "default": "<h2>Heading 2</h2><p>Example paragraph text.</p>",
     "visibility": {
       "controlling_field_path": "columns.column_type",
-      "controlling_value_regex": "content",
+      "controlling_value_regex": "text-content",
       "operator": "EQUAL"
     }
   },
@@ -83,25 +83,24 @@
         "multiple": "false",
         "display": "select",
         "choices": [
-          ["content", "Richtext"],
+          ["text-content", "Richtext"],
           ["list", "List"],
           ["cta-group", "CTA Group"],
           ["testimonial", "Testimonial"]
         ],
         "type": "choice",
-        "default": "content"
+        "default": "text-content"
       },
       {
-        "name": "text_conent",
-        "id": "text_conent",
+        "name": "text_content",        
         "label": "Richtext",
         "required": false,
         "locked": false,
         "type": "richtext",
-        "default": "<h3>Heading 3</h3><p>Paragraph example text</p>",
+        "default": "<h2>Heading 2</h2><p>Appended paragraph text</p>",
         "visibility": {
           "controlling_field_path": "columns.appended_elements.element_type",
-          "controlling_value_regex": "content",
+          "controlling_value_regex": "text-content",
           "operator": "EQUAL"
         }
       },
@@ -111,13 +110,12 @@
         "required": false,
         "locked": false,
         "occurrence": {
-          "min": 1,
+          "min": null,
           "max": null,
-          "sorting_label_field": null,
-          "default": 1
+          "default": null
         },
         "type": "cta",
-        "default": ["f75a5d21-9693-4b63-b4e6-09b7d7e886f8"],
+        "default": null,
         "visibility": {
           "controlling_field_path": "columns.appended_elements.element_type",
           "controlling_value_regex": "cta-group",
@@ -126,16 +124,10 @@
       }
     ],
     "type": "group",
-    "default": [
-      {
-        "element_type": "content",
-        "text_conent": "<h3>Heading 3</h3><p>Paragraph example text</p>",
-        "cta_group": ["f75a5d21-9693-4b63-b4e6-09b7d7e886f8"]
-      }
-    ],
+    "default": [],
     "visibility": {
       "controlling_field_path": "columns.column_type",
-      "controlling_value_regex": "content",
+      "controlling_value_regex": "text-content",
       "operator": "EQUAL"
     }
   }

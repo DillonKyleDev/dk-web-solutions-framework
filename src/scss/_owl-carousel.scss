@@ -1,0 +1,20 @@
+.owl-carousel {
+  &__no-dots {
+    .owl-dots {
+      display: none;
+    }
+  }
+}
+
+
+
+.owl-dot {
+  > span {
+    background-color: $primary--light !important;
+  }
+
+  &.active > span {
+    transition: background-color 0.2s ease-in-out !important;    
+    background-color: $primary !important;
+  }
+}

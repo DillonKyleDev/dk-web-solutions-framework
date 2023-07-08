@@ -25,6 +25,7 @@
     "prettier:write": "prettier --write 'src/**/*.js' 'src/**/*.json'",
     "webpack-watch": "npx mix watch",
     "production": "npm run production",
+    "hs-upload": "hs upload --convertFields src dk-web-solutions",
     "hs-watch": "hs watch --convertFields src dk-web-solutions",
     "mix-watch": "npx mix watch"
   },

@@ -79,7 +79,30 @@ function init() {
   //   <div> Your Content </div>
   // </div>
 
-  $('.owl-carousel').owlCarousel();
+  $('.owl-carousel').each(function () {
+    var itemCount = $(this).data('items');
+    var loop_ = $(this).data('loop');
+    var spacing = parseInt($(this).data('spacing'));
+    $(this).owlCarousel({
+      loop: loop_,
+      margin: spacing,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+          nav: false
+        },
+        600: {
+          items: 3,
+          nav: false
+        },
+        1000: {
+          items: itemCount,
+          nav: false
+        }
+      }
+    });
+  });
 }
 
 /***/ }),
