@@ -1,65 +1,72 @@
 [
   {
-    "label": "Show Section Header?",
-    "name": "show_section_header_",
-    "id": "show_section_header_",
-    "required": false,
-    "locked": false,
-    "type": "boolean",
-    "display": "checkbox",
-    "inline_help_text": "Adds a section header at the top of the module.",
-    "default": false
-  },
-  {
-    "name": "header_type_setting",
-    "label": "Type Setting",
-    "required": false,
-    "locked": false,
-    "multiple": "false",
-    "display": "select",
-    "choices": [
-      ["on-light", "On Light"],
-      ["on-dark", "On Dark"]
-    ],
-    "type": "choice",
-    "default": "on-light",
-    "visibility": {
-      "controlling_field_path": "show_section_header_",
-      "controlling_value_regex": true,
-      "operator": "EQUAL"
-    }
-  },
-  {
-    "label": "Header Alignment",
-    "name": "header_alignment",
-    "required": false,
-    "locked": false,
-    "multiple": "false",
-    "display": "select",
-    "choices": [
-      ["left", "Left"],
-      ["center", "Center"],
-      ["right", "Right"]
-    ],
-    "type": "choice",
-    "default": "left",
-    "visibility": {
-      "controlling_field_path": "show_section_header_",
-      "controlling_value_regex": true,
-      "operator": "EQUAL"
-    }
-  },
-  {
-    "name": "header_content",
-    "label": "Header Content",
-    "required": false,
-    "locked": false,
-    "type": "richtext",
-    "default": "<h2>Section Header</h2><p class='large'>Example section header paragraph.</p>",
-    "visibility": {
-      "controlling_field_path": "show_section_header_",
-      "controlling_value_regex": true,
-      "operator": "EQUAL"
-    }
+    "type": "group",
+    "name": "module_header",
+    "label": "Section Header",
+    "expanded": false,
+    "children": [
+      {
+        "label": "Show Section Header?",
+        "name": "show_section_header_",
+        "required": false,
+        "locked": false,
+        "type": "boolean",
+        "display": "checkbox",
+        "inline_help_text": "Adds a section header at the top of the module.",
+        "default": false
+      },
+      {
+        "name": "type_setting",
+        "label": "Type Setting",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["on-light", "On Light"],
+          ["on-dark", "On Dark"]
+        ],
+        "type": "choice",
+        "default": "on-light",
+        "visibility": {
+          "controlling_field_path": "module_header.show_section_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "label": "Header Alignment",
+        "name": "header_alignment",
+        "required": false,
+        "locked": false,
+        "multiple": "false",
+        "display": "select",
+        "choices": [
+          ["left", "Left"],
+          ["center", "Center"],
+          ["right", "Right"]
+        ],
+        "type": "choice",
+        "default": "left",
+        "visibility": {
+          "controlling_field_path": "module_header.show_section_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "header_content",
+        "label": "Header Content",
+        "required": false,
+        "locked": false,
+        "type": "richtext",
+        "default": "<h2>Section Header</h2><p class='large'>Example section header paragraph.</p>",
+        "visibility": {
+          "controlling_field_path": "module_header.show_section_header_",
+          "controlling_value_regex": true,
+          "operator": "EQUAL"
+        }
+      }
+    ]
   }
 ]
