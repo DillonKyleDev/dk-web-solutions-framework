@@ -1,0 +1,45 @@
+{# import marcros #}
+{% import "../../templates/macros.html" as macros %}
+
+{# Global module options #}
+{% set module_name = "hubdb-resources" %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
+
+{# Module specific options #}
+{% set table_id = module.table_id %}
+{% set table_rows = hubdb_table_rows(table_id) %}
+{% set table_field_names = module.table_field_names %}
+{% set title = table_field_names.column_title %}
+{% set snippet = table_field_names.column_snippet %}
+{% set content = table_field_names.column_content %}
+{% set image = table_field_names.column_image %}
+{% set is_link_ = table_field_names.is_link_ %}
+{% set link = table_field_names.link %}
+{% set link_text = table_field_names.link_text %}
+
+
+{# Module #}
+{% call macros.module_base(module_name, module_settings) %}
+  <div class="{{ module_name }}__grid">
+
+    {% for row in table_rows %}
+      {% set card_options = {
+          row_title: row[title],
+          row_snippet: row[snippet],
+          row_content: row[content],
+          row_image: row[image],
+          row_is_link_: row[is_link_],
+          row_link: row[link],
+          row_link_text: row[link_text]
+        }
+      %}
+
+      {{ macros.resource_card(module_name, card_options) }}
+    {% endfor %}
+  </div>
+{% endcall %}

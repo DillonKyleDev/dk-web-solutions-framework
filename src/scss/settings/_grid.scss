@@ -28,19 +28,37 @@
 
     &--two-column {
       .grid__column {
-        width: 50%;
+        width: 100%;
+
+        @media (min-width: $viewport-tablet--min) {
+          width: 50%;
+        }
       }
     }
 
     &--three-column {
       .grid__column {
-        width: 33.333%;
+        width: 100%;
+
+        @media (min-width: $viewport-tablet--min) {
+          width: 50%;
+        }
+        @media (min-width: $viewport-laptop--min) {
+          width: 33.333%;
+        }
       }
     }
 
     &--four-column {
       .grid__column {
-        width: 25%;
+        width: 100%;
+
+        @media (min-width: $viewport-tablet--min) {
+          width: 50%;
+        }
+        @media (min-width: $viewport-laptop--min) {
+          width: 25%;
+        }
       }
     }
   }

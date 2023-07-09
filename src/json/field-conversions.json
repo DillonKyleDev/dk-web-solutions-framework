@@ -1,0 +1,94 @@
+[
+  {
+    "type": "group",
+    "name": "table_field_names",
+    "label": "Table Field Names",
+    "expanded": false,
+    "children": [
+      {
+        "name": "column_title",
+        "label": "Name Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "title",
+        "inline_help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      },
+      {
+        "name": "column_snippet",
+        "label": "Snippet Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "snippet",
+        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      },
+      {
+        "name": "column_content",
+        "label": "Content Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "content",
+        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      },
+      {
+        "name": "column_image",
+        "label": "Image Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "image",
+        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      },
+      {
+        "name": "is_link_",
+        "label": "Is Link Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "is_link_",
+        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      },
+      {
+        "name": "link",
+        "label": "Link Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "link",
+        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      },
+      {
+        "name": "link_text",
+        "label": "Link Text Field",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "text",
+        "default": "link_text",
+        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
+      }
+    ]
+  }
+]

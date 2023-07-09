@@ -112,13 +112,49 @@
   {% set icon_color = list_options.icon_color %}
   {% set list = list_options.list %}    
 
-  <ul class="list list__list-type--{{ list_type }} list__list-layout--{{ list_layout }} {{ module_name }}__list">
+  <ul class="list  list__list-layout--{{ list_layout }} {{ module_name }}__list">
     {% for listItem in list %}
-      <li class="list__list-item list__icon-position--{{ icon_position }} list__icon-color--{{ icon_color }}">
+      <li class="list__list-item list__list-type--{{ list_type }} list__icon-position--{{ icon_position }} list__icon-color--{{ icon_color }}">
         <div class="list__content-wrapper">
           {{ listItem }}
         </div>    
       </li>
     {% endfor %}
   </ul>
+{% endmacro %}
+
+{% macro resource_card(module_name, card_options) %}
+  {% set title = card_options.row_title %}
+  {% set snippet = card_options.row_snippet %}
+  {% set content = card_options.row_content %}
+  {% set image = card_options.row_image %}
+  {% set is_link_ = card_options.row_is_link_ %}
+  {% set link = card_options.row_link %}
+  {% set link_text = card_options.row_link_text %}
+  
+  {% if is_link_ %}
+    {% set el = 'a' %}
+  {% else %}
+    {% set el = 'div' %}
+  {% endif %}
+  
+  <div class="resource-card grid__column {{ module_name }}__resource-card">
+    <div>        
+      <{{ el }} {% if is_link_ %}href="{{ link.url.href }}"{% endif %}{% if link.open_in_new_tab %} target="_blank" {% endif %}class="{{ module_name }}__column bg--{{ column_background }} grid__column-content {% if border_ %} {{ module_name }}__column--border{% endif %}{% if border_radius_ %} {{ module_name }}__column--border-radius{% endif %}">
+        {% if image.src is truthy %}
+          <div class="resource-card__image-container">
+            <img src="{{ image.src }}" class="resource-card__image">
+          </div>
+        {% endif %}
+
+        <div class="resource-card__content-wrapper">
+          <div class="resource-card__content">
+            <h4>{{ title }}</h4>
+            <p>{{ snippet }}</p>
+          </div>
+          <span class="cta-link cta-link--chevron">{{ link_text }}</span>
+        </div>
+      </{{ el }}>
+    </div>
+  </div>
 {% endmacro %}

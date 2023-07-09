@@ -1,11 +1,16 @@
 .two-column {
   &__grid {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $viewport-tablet--min) {
+      flex-direction: row;
+    }
   }
 
   &__column-type {
     &--content {
-
     }
 
     &--image {
@@ -22,42 +27,53 @@
   &__column-gap {
     &--xxxs {
       column-gap: $padding--xxxs;
+      row-gap: $padding--xxxs;
     }
 
     &--xxs {
       column-gap: $padding--xxs;
+      row-gap: $padding--xxs;
     }
 
     &--xs {
       column-gap: $padding--xs;
+      row-gap: $padding--xs;
     }
 
     &--small {
       column-gap: $padding--small;
+      row-gap: $padding--small;
     }
 
     &--medium {
       column-gap: $padding--medium;
+      row-gap: $padding--medium;
     }
 
     &--large {
       column-gap: $padding--large;
+      row-gap: $padding--large;
     }
 
     &--xl {
       column-gap: $padding--xl;
+      row-gap: $padding--xl;
     }
 
     &--xxl {
       column-gap: $padding--xxl;
+      row-gap: $padding--xxl;
     }
 
     &--xxxl {
       column-gap: $padding--xxxl;
-    }    
+      row-gap: $padding--xxxl;
+    }
   }
 
   &__column {
-    width: 50%;
+    @media (min-width: $viewport-tablet--min) {
+      width: 50%;
+    }
   }
 }

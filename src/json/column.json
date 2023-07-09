@@ -183,12 +183,7 @@
               ["tertiary-dark", "Tertiary Dark"]
             ],
             "type": "choice",
-            "default": "primary",
-            "visibility": {
-              "controlling_field_path": "columns.appended_elements.list_options.list_type",
-              "controlling_value_regex": "check",
-              "operator": "EQUAL"
-            }
+            "default": "primary"
           },
           {
             "name": "list",

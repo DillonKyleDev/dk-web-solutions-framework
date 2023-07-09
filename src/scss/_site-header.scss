@@ -26,10 +26,19 @@
     margin-bottom: 0;
 
     &--desktop {
+      display: none;
+
+      @media (min-width: $viewport-tablet--min) {
+        display: block;
+      }
     }
 
     &--mobile {
       display: none;
+      
+      @media (min-width: $viewport-tablet--min) {
+        display: none;
+      }
     }
   }
 

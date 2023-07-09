@@ -1,13 +1,9 @@
 .list {
-  list-style: none;
-  list-style-type: none;
-
   &__list-type {
     &--bullet {
-      list-style-type: bullet;
     }
     &--check {
-      li::before {
+      &::before {
         content: '\e876';
         display: inline-block;
         font-family: 'Material Symbols Rounded';
@@ -15,11 +11,11 @@
       }
     }
     &--check-outline {
-      li::before {
+      &::before {
         content: '\e86c';
         display: inline-block;
         font-family: 'Material Symbols Rounded';
-        line-height: 1;        
+        line-height: 1;
       }
     }
     &--icon {
@@ -28,20 +24,48 @@
 
   &__list-layout {
     &--one-column {
+      column-count: 1;
     }
+
     &--two-column {
+      column-count: 1;
+
+      @media (min-width: $viewport-tablet--min) {
+        column-count: 2;
+      }
+      @media (min-width: $viewport-laptop--min) {
+        column-count: 2;
+      }
     }
+
     &--three-column {
+      column-count: 1;
+
+      @media (min-width: $viewport-tablet--min) {
+        column-count: 2;
+      }
+      @media (min-width: $viewport-laptop--min) {
+        column-count: 3;
+      }
     }
+
     &--four-column {
+      column-count: 1;
+
+      @media (min-width: $viewport-tablet--min) {
+        column-count: 2;
+      }
+      @media (min-width: $viewport-laptop--min) {
+        column-count: 4;
+      }
     }
   }
 
   &__list-item {
-    display: flex;
+    page-break-inside: avoid;
 
-    &::before {
-      transform: scale(1.4);
+    &:not(.list__list-type--bullet) {
+      display: flex;
     }
   }
 
