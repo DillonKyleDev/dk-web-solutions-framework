@@ -1,4 +1,5 @@
 // Settings
+@import './settings/editor';
 @import './settings/variables';
 @import './settings/type';
 @import './settings/grid';
@@ -25,7 +26,11 @@
 @import 'site-footer';
 @import 'pagination';
 @import 'tag';
+
+// Cards
 @import 'card';
+@import 'simple-card';
+@import 'resource-card';
 
 // Modules
 @import './module';

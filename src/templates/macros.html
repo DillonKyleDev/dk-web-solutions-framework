@@ -124,13 +124,14 @@
 {% endmacro %}
 
 {% macro resource_card(module_name, card_options) %}
-  {% set title = card_options.row_title %}
-  {% set snippet = card_options.row_snippet %}
-  {% set content = card_options.row_content %}
-  {% set image = card_options.row_image %}
-  {% set is_link_ = card_options.row_is_link_ %}
-  {% set link = card_options.row_link %}
-  {% set link_text = card_options.row_link_text %}
+  {% set title = card_options.title %}
+  {% set snippet = card_options.snippet %}
+  {% set card_content = card_options.content %}
+  {% set image = card_options.image %}
+  {% set is_link_ = card_options.is_link_ %}
+  {% set link = card_options.link %}
+  {% set link_text = card_options.link_text %}
+  {% set page_root_path = card_options.page_root_path %}
   
   {% if is_link_ %}
     {% set el = 'a' %}
@@ -138,15 +139,15 @@
     {% set el = 'div' %}
   {% endif %}
   
-  <div class="resource-card grid__column {{ module_name }}__resource-card">
-    <div>        
-      <{{ el }} {% if is_link_ %}href="{{ link.url.href }}"{% endif %}{% if link.open_in_new_tab %} target="_blank" {% endif %}class="{{ module_name }}__column bg--{{ column_background }} grid__column-content {% if border_ %} {{ module_name }}__column--border{% endif %}{% if border_radius_ %} {{ module_name }}__column--border-radius{% endif %}">
-        {% if image.src is truthy %}
-          <div class="resource-card__image-container">
-            <img src="{{ image.src }}" class="resource-card__image">
-          </div>
-        {% endif %}
+  <div class="grid__column">
+    <{{ el }} {% if is_link_ %}href="{% if page_root_path %}/{{ page_root_path }}/{% endif %}{{ link }}"{% endif %}{% if link.open_in_new_tab %} target="_blank"{% endif %} class="{{ module_name }}__resource-card resource-card card{% if is_link_ %} is-linked{% endif %}">        
+      {% if image.url is truthy %}
+        <div class="resource-card__image-container">
+          <img src="{{ image.url }}" class="resource-card__image">
+        </div>
+      {% endif %}
 
+      <div class="{{ module_name }}__column grid__column-content">
         <div class="resource-card__content-wrapper">
           <div class="resource-card__content">
             <h4>{{ title }}</h4>
@@ -154,7 +155,23 @@
           </div>
           <span class="cta-link cta-link--chevron">{{ link_text }}</span>
         </div>
-      </{{ el }}>
+      </div>
+    </{{ el }}>
+  </div>
+{% endmacro %}
+
+{% macro simple_card(module_name, card_options) %}
+  {% set card_content = card_options.content %}
+  
+  <div class="grid__column">
+    <div class="{{ module_name }}__simple_card simple_card card">        
+      <div class="{{ module_name }}__column grid__column-content">
+        <div class="simple_card__content-wrapper">
+          <div class="simple_card__content">
+            {{ card_content }}            
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endmacro %}

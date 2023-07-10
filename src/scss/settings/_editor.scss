@@ -1,0 +1,7 @@
+.editor-only {
+  display: none;
+}
+.hs-inline-edit .editor-only {
+  display: block;
+  background-color: rgb(253, 204, 204);
+}

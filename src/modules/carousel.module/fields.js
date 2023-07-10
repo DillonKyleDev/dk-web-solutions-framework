@@ -9,7 +9,7 @@ module.exports = (fieldOptions) => {
   const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));  
 
-  const itemType = JSON.parse(fs.readFileSync('../../json/cards.json'));
+  const columnType = JSON.parse(fs.readFileSync('../../json/column-types.json'));
   const itemSpacing = JSON.parse(fs.readFileSync('../../json/spacing-numbered.json'));
   const itemPadding = JSON.parse(fs.readFileSync('../../json/spacing.json'));
 
@@ -60,7 +60,12 @@ module.exports = (fieldOptions) => {
       default: true,
       display_width: 'half_width',
     },
-    setFieldParams(itemType),
+    setFieldParams(columnType, {
+      name: 'column_type',
+      id: 'column_type',
+      label: 'Column Type',
+      default: 'simple',
+    }),
     setFieldParams(itemSpacing, {
       name: 'item_spacing',
       label: 'Item Spacing',
@@ -129,17 +134,17 @@ module.exports = (fieldOptions) => {
             boolean_operator: 'OR',
             criteria: [
               {
-                controlling_field_path: 'card_type',
+                controlling_field_path: 'column_type',
                 controlling_value_regex: 'image',
                 operator: 'EQUAL',
               },
               {
-                controlling_field_path: 'card_type',
+                controlling_field_path: 'column_type',
                 controlling_value_regex: 'icon',
                 operator: 'EQUAL',
               },
               {
-                controlling_field_path: 'card_type',
+                controlling_field_path: 'column_type',
                 controlling_value_regex: 'testimonial',
                 operator: 'EQUAL',
               },
@@ -151,32 +156,44 @@ module.exports = (fieldOptions) => {
           resizable: true,
           show_loading: false,
           type: 'image',
-          default: {
-            size_type: 'exact',
-            src: '',
-            alt: 'image-alt-text',
-            loading: 'lazy',
-          },
+          default: null,
         },
         {
-          name: 'richtext',
-          label: 'Rich Text',
+          name: 'column_content',
+          label: 'Content',
           required: false,
           locked: false,
           type: 'richtext',
-          default: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
+          default:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
         },
       ],
       type: 'group',
       default: [
         {
-          image: {
-            size_type: 'exact',
-            src: '',
-            alt: 'image-alt-text',
-            loading: 'lazy',
-          },
-          richtext: '<h3>Heading 3</h3><p>Example paragraph text.</p>',
+          image: null,
+          column_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+        },
+        {
+          image: null,
+          column_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+        },
+        {
+          image: null,
+          column_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+        },
+        {
+          image: null,
+          column_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+        },
+        {
+          image: null,
+          column_content:
+            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
         },
       ],
     },

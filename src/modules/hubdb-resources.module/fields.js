@@ -68,38 +68,7 @@ module.exports = (fieldOptions) => {
       id: 'card_padding',
       label: 'Card Padding',
       default: 'xs',
-    }),
-    setFieldParams(colors, {
-      name: 'card_background',
-      id: 'card_background',
-      label: 'Card Background Color',
-      default: 'white',
-    }),
-    {
-      name: 'border_',
-      label: 'Card Border',
-      required: false,
-      locked: false,
-      type: 'boolean',
-      display: 'checkbox',
-      default: true,
-      display_width: 'half_width',
-    },
-    {
-      name: 'border_radius_',
-      label: 'Card Border Radius',
-      required: false,
-      locked: false,
-      type: 'boolean',
-      display: 'checkbox',
-      default: true,
-      display_width: 'half_width',
-      visibility: {
-        controlling_field_path: 'border_',
-        controlling_value_regex: true,
-        operator: 'EQUAL',
-      },
-    },
+    })
   ];
 
   return [fields, styles];

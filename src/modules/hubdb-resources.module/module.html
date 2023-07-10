@@ -22,20 +22,25 @@
 {% set link = table_field_names.link %}
 {% set link_text = table_field_names.link_text %}
 
+{% set card_layout = module.card_layout %}
+{% set card_spacing = module.card_spacing %}
+{% set card_padding = module.card_padding %}
+
 
 {# Module #}
 {% call macros.module_base(module_name, module_settings) %}
-  <div class="{{ module_name }}__grid">
+  <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
 
     {% for row in table_rows %}
       {% set card_options = {
-          row_title: row[title],
-          row_snippet: row[snippet],
-          row_content: row[content],
-          row_image: row[image],
-          row_is_link_: row[is_link_],
-          row_link: row[link],
-          row_link_text: row[link_text]
+          title: row[title],
+          snippet: row[snippet],
+          content: row[content],
+          image: row[image],
+          is_link_: row[is_link_],
+          link: row[link],
+          link_text: row[link_text],
+          page_root_path: row.page_root_path
         }
       %}
 

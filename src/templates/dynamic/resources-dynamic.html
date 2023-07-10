@@ -1,0 +1,42 @@
+<!--
+    templateType: page
+    label: Resources Dynamic
+    isAvailableForNewContent: true
+-->
+
+{% extends "../layouts/base.html" %}
+
+{% block body %}
+
+    {% if dynamic_page_hubdb_row %}
+      <h1>{{ dynamic_page_hubdb_row.hs_name }}</h1>
+      <h2>{{ dynamic_page_hubdb_row.title }}</h2>
+      <h3>{{ dynamic_page_hubdb_row.snippet }}</h3>
+      <p>{{dynamic_page_hubdb_row.content}}</p>
+    {% elif dynamic_page_hubdb_table_id %}
+      <ul>
+        {% for row in hubdb_table_rows(dynamic_page_hubdb_table_id) %}
+        <li>
+          <a href="{{ request.path }}/{{ row.hs_path }}">{{ row.hs_name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    
+    {% endif %} 
+
+    {% if dynamic_page_hubdb_row || request.postDict.inpageEditorUI %}
+      <div class="editor-only">
+        <div class="constrain">
+          <h1>Viewing in Editor</h1>
+          <p class="large">This section is for editing individual dynamic page content.</p>
+        </div>
+      </div>
+
+      <h1 class="constrain">Viewed in both editor and dynamic post page</h1>
+      {% module "resources-listing" path="/dk-web-solutions/modules/hubdb-resources",
+        card_layout="four-column"        
+      %}
+
+    {% endif %}
+
+{% endblock body %}

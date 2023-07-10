@@ -1,6 +1,10 @@
   .no-margin {
     margin: 0 !important;
   }
+
+  p:not(:last-child) {
+    margin-bottom: $padding--xxs;
+  }
   
   h1,
   h2,

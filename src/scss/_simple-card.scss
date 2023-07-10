@@ -1,0 +1,24 @@
+.simple-card {
+  box-shadow: none;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+
+  &.is-linked:hover {
+    box-shadow: $shadow--level-1;
+  }
+
+  &__image-container {
+    position: relative;
+    padding-bottom: 60%;
+    overflow: hidden;
+
+    img {
+      height: 101%;
+      width: 101%;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      object-fit: cover;
+    }
+  }
+}

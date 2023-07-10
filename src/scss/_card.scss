@@ -1,31 +1,29 @@
 .card {
-  border: solid 1px $card-border;
-  border-radius: 6px;
-  display: block;
-  transition: all 0.2s;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  // border: solid 1px $card-border;
+  // border-radius: 6px;
+  // display: block;
+  // transition: all 0.2s;
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // overflow: hidden;
 
   &.is-linked:hover {    
-    box-shadow: $shadow--level-1;
-
     .cta-link--chevron::after {
       transform: scale(1.4) translateY(2px) translateX(7px);
     }
   }
 
   &__image-container {    
-    padding-bottom: 65%;
-    overflow: hidden;
-    position: relative;    
+    // padding-bottom: 65%;
+    // overflow: hidden;
+    // position: relative;    
 
     img {
-      position: absolute;
-      object-fit: cover;
-      min-width: 100%;
-      min-height: 100%;
+      // position: absolute;
+      // object-fit: cover;
+      // min-width: 100%;
+      // min-height: 100%;
     }
   }
 
@@ -34,9 +32,9 @@
   }
 
   &__content {    
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    // flex: 1;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
   }
 }

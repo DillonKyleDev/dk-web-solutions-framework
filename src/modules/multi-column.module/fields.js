@@ -5,10 +5,14 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));  
-  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
+  const moduleHeader = JSON.parse(
+    fs.readFileSync('../../json/module-header.json')
+  );
+  const moduleFooter = JSON.parse(
+    fs.readFileSync('../../json/module-footer.json')
+  );
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
-  
+
   const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
   const colors = JSON.parse(fs.readFileSync('../../json/colors.json'));
 
@@ -24,11 +28,11 @@ module.exports = (fieldOptions) => {
       multiple: 'false',
       display: 'select',
       choices: [
-        ['text-content', 'Content'],
+        ['simple', 'Simple'],
         ['image', 'Image'],
       ],
       type: 'choice',
-      default: 'text-content',
+      default: 'simple',
     },
     {
       name: 'column_layout',
@@ -59,36 +63,6 @@ module.exports = (fieldOptions) => {
       label: 'Column Padding',
       default: 'xs',
     }),
-    setFieldParams(colors, {
-      name: 'column_background',
-      label: 'Column Background Color',
-      default: 'white',
-    }),
-    {
-      name: 'border_',
-      label: 'Column Border',
-      required: false,
-      locked: false,
-      type: 'boolean',
-      display: 'checkbox',
-      default: true,
-      display_width: 'half_width',
-    },
-    {
-      name: 'border_radius_',
-      label: 'Column Border Radius',
-      required: false,
-      locked: false,
-      type: 'boolean',
-      display: 'checkbox',
-      default: true,
-      display_width: 'half_width',
-      visibility: {
-        controlling_field_path: 'border_',
-        controlling_value_regex: true,
-        operator: 'EQUAL',
-      },
-    },
     {
       name: 'columns',
       label: 'Columns',
@@ -108,10 +82,10 @@ module.exports = (fieldOptions) => {
           locked: false,
           type: 'richtext',
           default:
-            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
           visibility: {
             controlling_field_path: 'column_type',
-            controlling_value_regex: 'text-content',
+            controlling_value_regex: 'simple',
             operator: 'EQUAL',
           },
         },
@@ -144,6 +118,22 @@ module.exports = (fieldOptions) => {
           type: 'boolean',
           display: 'checkbox',
           default: false,
+          visibility_rules: 'ADVANCED',
+          advanced_visibility: {
+            boolean_operator: 'AND',
+            criteria: [
+              {
+                controlling_field_path: 'columns.is_link_',
+                controlling_value_regex: true,
+                operator: 'EQUAL',
+              },
+              {
+                controlling_field_path: 'column_type',
+                controlling_value_regex: 'simple',
+                operator: 'NOT_EQUAL',
+              },
+            ],
+          },
         },
         {
           name: 'link',
@@ -170,32 +160,103 @@ module.exports = (fieldOptions) => {
             open_in_new_tab: true,
             no_follow: false,
           },
-          visibility: {
-            controlling_field_path: 'columns.is_link_',
-            controlling_value_regex: true,
-            operator: 'EQUAL',
+          visibility_rules: 'ADVANCED',
+          advanced_visibility: {
+            boolean_operator: 'AND',
+            criteria: [
+              {
+                controlling_field_path: 'columns.is_link_',
+                controlling_value_regex: true,
+                operator: 'EQUAL',
+              },
+              {
+                controlling_field_path: 'column_type',
+                controlling_value_regex: 'simple',
+                operator: 'NOT_EQUAL',
+              },
+            ],
+          },
+        },
+        {
+          name: 'link_text',
+          label: 'Link Text',
+          required: false,
+          locked: false,
+          validation_regex: '',
+          allow_new_line: false,
+          show_emoji_picker: false,
+          type: 'text',
+          default: 'Read more',
+          visibility_rules: 'ADVANCED',
+          advanced_visibility: {
+            boolean_operator: 'AND',
+            criteria: [
+              {
+                controlling_field_path: 'columns.is_link_',
+                controlling_value_regex: true,
+                operator: 'EQUAL',
+              },
+              {
+                controlling_field_path: 'column_type',
+                controlling_value_regex: 'simple',
+                operator: 'NOT_EQUAL',
+              },
+            ],
           },
         },
       ],
       default: [
         {
           text_content:
-            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
           image: null,
+          is_link_: false,
+          link: {
+            url: {
+              content_id: null,
+              type: 'EXTERNAL',
+              href: 'https://www.example.com/',
+            },
+            open_in_new_tab: false,
+            no_follow: false,
+          },
+          link_text: 'Read more',
         },
         {
           text_content:
-            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
           image: null,
+          is_link_: false,
+          link: {
+            url: {
+              content_id: null,
+              type: 'EXTERNAL',
+              href: 'https://www.example.com/',
+            },
+            open_in_new_tab: false,
+            no_follow: false,
+          },
+          link_text: 'Read more',
         },
         {
           text_content:
-            '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
           image: null,
+          is_link_: false,
+          link: {
+            url: {
+              content_id: null,
+              type: 'EXTERNAL',
+              href: 'https://www.example.com/',
+            },
+            open_in_new_tab: false,
+            no_follow: false,
+          },
+          link_text: 'Read more',
         },
       ],
     },
-  ];  
+  ];
 
   return [fields, styles];
 };
