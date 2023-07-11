@@ -1,5 +1,11 @@
 node_modules
 
+*.yaml
+.yaml
+*.yml
+.blazar.yaml
+
+
 ### OSX ###
 # General
 .DS_Store

@@ -1,0 +1,21 @@
+{# import marcros #}
+{% import "../../templates/macros.html" as macros %}
+
+{# Global module options #}
+{% set module_name = "blog-header" %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
+
+{# Module specific options #}
+
+
+{# Module #}
+{% call macros.module_base(module_name, module_settings) %}
+  <div class="{{ module_name }}__container">
+    <p>Hello from base module</p>
+  </div>
+{% endcall %}

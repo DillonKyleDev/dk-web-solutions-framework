@@ -26,6 +26,23 @@ module.exports = (fieldOptions) => {
       default: 6677379,
     },
     {
+      name: 'filters_layout',
+      id: 'filters_layout',
+      label: 'Filters Layout',
+      required: false,
+      locked: false,
+      multiple: 'false',
+      display: 'select',
+      help_text: 'Choose where the filters sidebar will be displayed.',
+      choices: [
+        ['none', 'No Filters'],
+        ['left', 'Left Sidebar'],
+        ['right', 'Right Sidebar'],
+      ],
+      type: 'choice',
+      default: 'none',
+    },
+    {
       name: 'card_type',
       id: 'card_type',
       label: 'Card Type',
@@ -68,7 +85,7 @@ module.exports = (fieldOptions) => {
       id: 'card_padding',
       label: 'Card Padding',
       default: 'xs',
-    })
+    }),
   ];
 
   return [fields, styles];
