@@ -13,6 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _site_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./site-header */ "./src/js/site-header.js");
 /* harmony import */ var _owl_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./owl-carousel */ "./src/js/owl-carousel.js");
 /* harmony import */ var _magnific_popup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./magnific-popup */ "./src/js/magnific-popup.js");
+/* harmony import */ var _resources__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resources */ "./src/js/resources.js");
+
 
 
 
@@ -22,6 +24,7 @@ $(document).ready(function ($) {
   (0,_site_header__WEBPACK_IMPORTED_MODULE_1__["default"])();
   (0,_owl_carousel__WEBPACK_IMPORTED_MODULE_2__["default"])();
   (0,_magnific_popup__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  (0,_resources__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
 /***/ }),
@@ -102,6 +105,40 @@ function init() {
         }
       }
     });
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/resources.js":
+/*!*****************************!*\
+  !*** ./src/js/resources.js ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ init; }
+/* harmony export */ });
+function init() {
+  var generateUrl = function generateUrl() {
+    var queryParams = [];
+    $('.filter-sidebar__form').each(function () {
+      var $parent = $(this);
+      $(this).find('.filters-sidebar__input').each(function () {
+        var $child = $(this);
+        if ($child.prop('checked')) {
+          console.log("checked");
+          queryParams.push("?".concat($parent.data('filter'), "=\"").concat($child.val(), "\""));
+        }
+      });
+    });
+    if (queryParams.length > 0) {
+      document.location.href = queryParams;
+    }
+  };
+  $('.filter-sidebar__form').on('change', function (event) {
+    generateUrl();
   });
 }
 

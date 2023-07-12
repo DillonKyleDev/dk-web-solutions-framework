@@ -14,13 +14,17 @@
       <h2>{{ dynamic_page_hubdb_row.title }}</h2>
       <h3>{{ dynamic_page_hubdb_row.snippet }}</h3>
       <p>{{dynamic_page_hubdb_row.content}}</p>
+
+      {% module "resources-listing" path="/dk-web-solutions/modules/hubdb-resources",
+        card_layout="four-column"        
+      %}
     {% elif dynamic_page_hubdb_table_id %}
 
-      {{ macros.featured_post() }}
+      
 
     {% endif %} 
 
-    {% if dynamic_page_hubdb_row || request.postDict.inpageEditorUI %}
+    {% if !dynamic_page_hubdb_row || request.postDict.inpageEditorUI %}
       <div class="editor-only">
         <div class="constrain">
           <h1>Viewing in Editor</h1>

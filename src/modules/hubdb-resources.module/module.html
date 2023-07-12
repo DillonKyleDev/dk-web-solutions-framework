@@ -13,6 +13,10 @@
 {# Module specific options #}
 {% set table_id = module.table_id %}
 {% set table_rows = hubdb_table_rows(table_id) %}
+
+{% set filters_layout = module.filters_layout %}
+{% set filter_columns = module.filter_columns %}
+
 {% set table_field_names = module.table_field_names %}
 {% set title = table_field_names.column_title %}
 {% set snippet = table_field_names.column_snippet %}
@@ -29,22 +33,49 @@
 
 {# Module #}
 {% call macros.module_base(module_name, module_settings) %}
-  <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
+  <div class="{{ module_name }}__wrapper">  
 
-    {% for row in table_rows %}
-      {% set card_options = {
-          title: row[title],
-          snippet: row[snippet],
-          content: row[content],
-          image: row[image],
-          is_link_: row[is_link_],
-          link: row[link],
-          link_text: row[link_text],
-          page_root_path: row.page_root_path
-        }
-      %}
+    <div class="{{ module_name }}__filters-sidebar filters-sidebar">
+      {% for column in filter_columns %}
+        <form class="{{ module_name }}__form filter-sidebar__form" data-filter="{{ column }}">
+          {% set column_options = hubdb_table_column(table_id, column).options  %}  
 
-      {{ macros.resource_card(module_name, card_options) }}
-    {% endfor %}
+          <label class="{{ module_name }}__label filter-sidebar__label" id="label-by-{{ column }}">
+            By {{ column|replace("_", " ")|title }}
+          </label>
+      
+          <ul class="{{ module_name }}__list {{ module_name }}__list--radio filter-sidebar__list filter-sidebar__list--radio">
+          <h1>{{ request.query_dict.resource_type }}</h1>            
+            
+            {% for option in column_options %}
+              <li class="{{ module_name }}__item">
+                <input class="{{ module_name }}__input filters-sidebar__input" id="by-type--option-{{ option.id }}" type="radio" name="by-{{ column }}" value="{{ option.name }}" aria-labelledby="label-by-{{ column }}"{% if request.query_dict[column] == option.label %} checked="checked"{% endif %}>
+                <label class="{{ module_name }}__option-label filters-sidebar__option-label" for="by-type--option-{{ option.id }}">
+                  {{ option.label }}
+                </label>
+              </li>
+            {% endfor %}
+          </ul>
+        </form>
+      {% endfor %}
+    </div>
+      
+    <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
+      {% for row in table_rows %}
+        {% set card_options = {
+            title: row[title],
+            snippet: row[snippet],
+            content: row[content],
+            image: row[image],
+            is_link_: row[is_link_],
+            link: row[link],
+            link_text: row[link_text],
+            page_root_path: row.page_root_path
+          }
+        %}
+
+        {{ macros.resource_card(module_name, card_options) }}
+      {% endfor %}
+    </div>
   </div>
 {% endcall %}

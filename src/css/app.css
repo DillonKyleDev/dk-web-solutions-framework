@@ -29,7 +29,8 @@ h6,
 
 p,
 a,
-li {
+li,
+label {
   font-family: "Roboto";
 }
 
@@ -807,6 +808,11 @@ p.large {
        column-gap: 4px;
   row-gap: 3px;
   margin-bottom: 5px;
+}
+
+.filters-sidebar ul {
+  list-style-type: none;
+  padding-left: 20px;
 }
 
 .card.is-linked:hover .cta-link--chevron::after {

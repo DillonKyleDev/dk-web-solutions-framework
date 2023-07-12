@@ -5,11 +5,17 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));
-  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
+  const moduleHeader = JSON.parse(
+    fs.readFileSync('../../json/module-header.json')
+  );
+  const moduleFooter = JSON.parse(
+    fs.readFileSync('../../json/module-footer.json')
+  );
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
 
-  const fieldConversions = JSON.parse(fs.readFileSync('../../json/field-conversions.json'));
+  const fieldConversions = JSON.parse(
+    fs.readFileSync('../../json/field-conversions.json')
+  );
   const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
   const colors = JSON.parse(fs.readFileSync('../../json/colors.json'));
 
@@ -41,6 +47,23 @@ module.exports = (fieldOptions) => {
       ],
       type: 'choice',
       default: 'none',
+    },
+    {
+      name: 'filter_columns',
+      label: 'Filter Columns',
+      required: false,
+      locked: false,
+      occurrence: {
+        min: 1,
+        max: null,
+        sorting_label_field: null,
+        default: 1,
+      },
+      inline_help_text: "Add column names that you wish to be added to the filters sidebar.",
+      allow_new_line: false,
+      show_emoji_picker: true,
+      type: 'text',
+      default: ['resource_type'],
     },
     {
       name: 'card_type',
