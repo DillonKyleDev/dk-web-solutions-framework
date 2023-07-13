@@ -7,19 +7,23 @@ export default function init() {
     $('.filters-sidebar__form').each(function () {
       let $parent = $(this);
 
-      $(this)
-        .find('.filters-sidebar__input')
-        .each(function () {
-          let $child = $(this);
+      $(this).find('.filters-sidebar__input').each(function () {
+        let $child = $(this);
 
-          if ($child.prop('checked') && $child.val() != 'all') {
-            filterClasses.push(`${$parent.data('filter')}-${$child.val()}`);
-          }
-        });
+        if ($child.prop('checked') && $child.val() != 'all') {
+          filterClasses.push(`${$parent.data('filter')}-${$child.val()}`);
+        } else if ($child.prop('checked') && $child.val() == 'all') {
+          $filterable.each(function () {
+            if ($(this).attr('class').indexOf($parent.data('filter'))) {              
+              $(this).removeClass('hide-filterable');
+            }            
+          });
+        }
+      });              
 
       $filterable.each(function () {
         if (filterClasses.length > 0) {
-          $(this).addClass('hide-filterable');
+          $(this).addClass('hide-filterable');          
 
           for (let i = 0; i < filterClasses.length; i++) {
             if ($(this).hasClass(filterClasses[i])) {

@@ -130,6 +130,12 @@ function init() {
         var $child = $(this);
         if ($child.prop('checked') && $child.val() != 'all') {
           filterClasses.push("".concat($parent.data('filter'), "-").concat($child.val()));
+        } else if ($child.prop('checked') && $child.val() == 'all') {
+          $filterable.each(function () {
+            if ($(this).attr('class').indexOf($parent.data('filter'))) {
+              $(this).removeClass('hide-filterable');
+            }
+          });
         }
       });
       $filterable.each(function () {
