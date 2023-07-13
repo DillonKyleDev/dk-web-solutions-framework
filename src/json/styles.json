@@ -38,7 +38,7 @@
         ["xxxl", "XXXL"]
       ],
       "type": "choice",
-      "default": "xl"
+      "default": "medium"
     },
     {
       "name": "padding_bottom",
@@ -60,7 +60,7 @@
         ["xxxl", "XXXL"]
       ],
       "type": "choice",
-      "default": "xl"
+      "default": "medium"
     },
     {
       "name": "background_color",

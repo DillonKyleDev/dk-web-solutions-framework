@@ -101,13 +101,13 @@ module.exports = (fieldOptions) => {
       name: 'card_spacing',
       id: 'card_spacing',
       label: 'Card Spacing',
-      default: 'small',
+      default: 'xxs',
     }),
     setFieldParams(spacing, {
       name: 'card_padding',
       id: 'card_padding',
       label: 'Card Padding',
-      default: 'xs',
+      default: 'xxs',
     }),
   ];
 

@@ -1,23 +1,23 @@
 // Settings
-@import './settings/editor';
-@import './settings/variables';
-@import './settings/type';
-@import './settings/grid';
-@import './settings/form';
-@import './owl-carousel';
+@import 'settings/editor';
+@import 'settings/variables';
+@import 'settings/type';
+@import 'settings/grid';
+@import 'settings/form';
+@import 'owl-carousel';
 
 // Global
-@import './menu';
-@import './list';
+@import 'menu';
+@import 'list';
 
 // Blog
-@import './blog/blog';
-@import './blog/blog-post';
-@import './blog/blog-card';
+@import 'blog/blog';
+@import 'blog/blog-post';
+@import 'blog/blog-card';
 
 // Pages
-@import './search';
-@import './search-form';
+@import 'search';
+@import 'search-form';
 
 // Misc
 @import 'cta-btn';
@@ -34,12 +34,13 @@
 @import 'resource-card';
 
 // Modules
-@import './module';
+@import 'module';
 @import 'socials';
 @import 'columns';
 @import 'one-column';
 @import 'two-column';
 @import 'multi-column';
+@import 'resources';
 
 * {
   margin: 0;

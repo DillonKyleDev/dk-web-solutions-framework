@@ -1,0 +1,14 @@
+.resources-hubdb {
+  &__wrapper {
+    display: flex;
+    column-gap: $padding--xs;
+  }
+
+  &__filters-sidebar {
+    width: 25%;
+  }
+}
+
+.hide-filterable {
+  display: none;
+}

@@ -5,7 +5,7 @@ $font--headlines: 'Lato';
 // Colors
 // $primary: #2a7ad5;
 $primary: #205899;
-$primary--light: #b7cee9;
+$primary--light: #c9dcf3;
 $primary--dark: #213471;
 $secondary: #d52a7a;
 $secondary--light: #e476a9;
@@ -112,15 +112,15 @@ $viewport-hd--min: 1441px;
 $viewport-uhd--min: 1921px;
 
 // Spacing
-$padding--xxxs: 10px;
-$padding--xxs: 20px;
-$padding--xs: 20px;
-$padding--small: 30px;
-$padding--medium: 30px;
-$padding--large: 60px;
-$padding--xl: 60px;
-$padding--xxl: 90px;
-$padding--xxxl: 100px;
+// $padding--xxxs: 10px;
+// $padding--xxs: 20px;
+// $padding--xs: 20px;
+// $padding--small: 30px;
+// $padding--medium: 30px;
+// $padding--large: 60px;
+// $padding--xl: 60px;
+// $padding--xxl: 90px;
+// $padding--xxxl: 100px;
 
 @media (min-width: $viewport-tablet--min) {
   $padding--xxxs: 10px;

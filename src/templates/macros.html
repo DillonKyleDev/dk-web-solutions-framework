@@ -123,7 +123,7 @@
   </ul>
 {% endmacro %}
 
-{% macro resource_card(module_name, card_options) %}
+{% macro resource_card(module_name, card_options, filter_data) %}
   {% set title = card_options.title %}
   {% set snippet = card_options.snippet %}
   {% set card_content = card_options.content %}
@@ -139,7 +139,7 @@
     {% set el = 'div' %}
   {% endif %}
   
-  <div class="grid__column">
+  <div class="grid__column{% if filter_data|length > 0 %} filterable{% endif %}{% for dataObject in filter_data %} {{ dataObject.column }}-{{ dataObject.data }}{% endfor %}">  
     <{{ el }} {% if is_link_ %}href="{% if page_root_path %}/{{ page_root_path }}/{% endif %}{{ link }}"{% endif %}{% if link.open_in_new_tab %} target="_blank"{% endif %} class="{{ module_name }}__resource-card resource-card card{% if is_link_ %} is-linked{% endif %}">        
       {% if image.url is truthy %}
         <div class="resource-card__image-container">
@@ -182,8 +182,40 @@
   </div>
 {% endmacro %}
 
-{% macro resource_filter() %}
-  <div class="featured_post">
+{% macro resource_filter(module_name, filter_columns) %}
+  <div class="{{ module_name }}__filters-sidebar filters-sidebar">
+    <div class="{{ module_name }}__filters-header filters-sidebar__header">
+      <label class="{{ module_name }}__label filters-sidebar__label">
+        Filter Results
+      </label>
+      <button class="{{ module_name }}__reset filters-sidebar__reset">Reset</button>
+    </div>
 
+    {% for column in filter_columns %}
+      <form class="{{ module_name }}__form filters-sidebar__form" data-filter="{{ column }}">
+        {% set column_options = hubdb_table_column(table_id, column).options  %}  
+
+        <label class="{{ module_name }}__label filters-sidebar__label" id="label-by-{{ column }}">
+          By {{ column|replace("_", " ")|title }}
+        </label>
+    
+        <ul class="{{ module_name }}__list {{ module_name }}__list--radio filters-sidebar__list filters-sidebar__list--radio">    
+          <li class="{{ module_name }}__item filters-sidebar__item">
+            <input class="{{ module_name }}__input filters-sidebar__input filters-sidebar__input-all" id="by-{{ column }}--option-all" type="radio" name="by-{{ column }}" value="all" aria-labelledby="label-by-{{ column }}" checked="checked">
+            <label class="{{ module_name }}__option-label filters-sidebar__option-label" for="by-{{ column }}--option-all">
+              All
+            </label>
+          </li>                    
+          {% for option in column_options %}
+            <li class="{{ module_name }}__item filters-sidebar__item">
+              <input class="{{ module_name }}__input filters-sidebar__input" id="by-{{ column }}--option-{{ option.name }}" type="radio" name="by-{{ column }}" value="{{ option.name }}" aria-labelledby="label-by-{{ column }}"{% if request.query_dict[column] == option.label %} checked="checked"{% endif %}>
+              <label class="{{ module_name }}__option-label filters-sidebar__option-label" for="by-{{ column }}--option-{{ option.name }}">
+                {{ option.label }}
+              </label>
+            </li>
+          {% endfor %}
+        </ul>
+      </form>
+    {% endfor %}
   </div>
 {% endmacro %}

@@ -14,13 +14,11 @@
       <h2>{{ dynamic_page_hubdb_row.title }}</h2>
       <h3>{{ dynamic_page_hubdb_row.snippet }}</h3>
       <p>{{dynamic_page_hubdb_row.content}}</p>
-
-      {% module "resources-listing" path="/dk-web-solutions/modules/hubdb-resources",
-        card_layout="four-column"        
-      %}
     {% elif dynamic_page_hubdb_table_id %}
 
-      
+      {% module "resources-listing" path="/dk-web-solutions/modules/hubdb-resources",
+        card_layout="four-column"
+      %}
 
     {% endif %} 
 
@@ -31,12 +29,6 @@
           <p class="large">This section is for editing individual dynamic page content.</p>
         </div>
       </div>
-
-      <h1 class="constrain">Viewed in both editor and dynamic post page</h1>
-      {% module "resources-listing" path="/dk-web-solutions/modules/hubdb-resources",
-        card_layout="four-column"        
-      %}
-
     {% endif %}
 
 {% endblock body %}

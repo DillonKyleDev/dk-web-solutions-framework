@@ -3,6 +3,7 @@
   border-radius: 6px;
   box-shadow: none;
   overflow: hidden;
+  box-shadow: $shadow--level-3;
   transition: box-shadow 0.2s;
 
   &.is-linked:hover {
