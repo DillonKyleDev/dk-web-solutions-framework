@@ -11,25 +11,32 @@
 %}
 
 {# Module specific options #}
-{% set table_id = module.table_id %}
-{% set table_rows = hubdb_table_rows(table_id) %}
+{% set blog_posts = blog_recent_posts(module.blog) %}
 
-{% set filters_layout = module.filters_layout %}
-{% set filter_columns = module.filter_columns %}
-{% set filter_query = [] %}
+{# Prefilters #}
+{% set prefilter_results_ = module.prefilter_results_ %}
+{% set prefilter_options = module.prefilter_options %}
 
-{% for column in filter_columns %}
-  {% if request.query_dict[column] != null %}
-    {% do filter_query.append('&' + column + '=' + request.query_dict[column]) %} 
-  {% endif %}
-{% endfor %}
+{% if prefilter_results_ %}
+  {% set filter_query = [] %}
 
-{% set filter_query = filter_query|string|replace('[', '')|replace(']', '')|replace(', ', '') %}
+  {% for prefilter in prefilter_options %}
+    {% set prefilter_column = prefilter.prefilter_column %}
+    {% set prefilter_result = prefilter.prefilter_result %}
+    {% do filter_query.append('&' + prefilter_column + '__eq=' + prefilter_result) %} 
+  {% endfor %}
 
-{% if request.query_dict != null %}
-  {% set table_rows = hubdb_table_rows(table_id, filter_query) %}
+  {% set filter_query = filter_query|string|replace('[', '')|replace(']', '')|replace(', ', '') %}
+  {% set table_rows = hubdb_table_rows(table_id, filter_query) %}    
+{% else %}
+  {% set table_rows = hubdb_table_rows(table_id) %}
 {% endif %}
 
+{# Filters Sidebar #}
+{% set filters_layout = module.filters_layout %}
+{% set filter_columns = module.filter_columns %}
+
+{# Resource Grid #}
 {% set table_field_names = module.table_field_names %}
 {% set title = table_field_names.column_title %}
 {% set snippet = table_field_names.column_snippet %}
@@ -46,6 +53,12 @@
 {# Module #}
 {% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__wrapper">  
+  
+    {% for blog_post in blog_posts %}
+      <div class="post-title">{{ blog_post.name }}</div>      
+      <div class="post-title">{{ blog_post.meta_description }}</div>
+    {% endfor %}
+
 
     {% if filters_layout == 'left' %}
       {{ macros.resource_filter(module_name, filter_columns) }}

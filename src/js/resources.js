@@ -83,3 +83,18 @@ export default function init() {
 //     generateUrl();
 //   });
 // }
+
+// Add back to module for old method
+// {% set filter_query = [] %}
+
+// {% for column in filter_columns %}
+//   {% if request.query_dict[column] != null %}
+//     {% do filter_query.append('&' + column + '=' + request.query_dict[column]) %} 
+//   {% endif %}
+// {% endfor %}
+
+// {% set filter_query = filter_query|string|replace('[', '')|replace(']', '')|replace(', ', '') %}
+
+// {% if request.query_dict != null %}
+//   {% set table_rows = hubdb_table_rows(table_id, filter_query) %}
+// {% endif %}

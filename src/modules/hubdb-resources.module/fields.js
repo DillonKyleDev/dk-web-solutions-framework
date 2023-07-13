@@ -32,6 +32,61 @@ module.exports = (fieldOptions) => {
       default: 6677379,
     },
     {
+      name: 'prefilter_results_',
+      label: 'Prefilter Results?',
+      required: false,
+      locked: false,
+      type: 'boolean',
+      display: 'checkbox',
+      inline_help_text:
+        'Choose whether to only show results with a specific column value.',
+      default: false,
+    },
+    {
+      type: 'group',
+      name: 'prefilter_options',
+      label: 'Prefilter Options',
+      expanded: true,
+      occurrence: {
+        min: 1,
+        max: null,        
+        default: 1,
+      },
+      children: [
+        {
+          name: 'prefilter_column',
+          label: 'Column to Prefilter',
+          required: false,
+          locked: false,
+          validation_regex: '',
+          allow_new_line: false,
+          show_emoji_picker: false,
+          inline_help_text:
+            'Match column name exactly, including any trailing spaces.',
+          type: 'text',
+          default: 'resource_type',
+        },
+        {
+          name: 'prefilter_result',
+          label: 'Desired Column Value',
+          required: false,
+          locked: false,
+          validation_regex: '',
+          allow_new_line: false,
+          show_emoji_picker: false,
+          inline_help_text:
+            'Match desired value exactly, including any trailing spaces.',
+          type: 'text',
+          default: 'Download',
+        },
+      ],
+      visibility: {
+        controlling_field_path: 'prefilter_results_',
+        controlling_value_regex: true,
+        operator: 'EQUAL',
+      },
+    },
+    {
       name: 'filters_layout',
       id: 'filters_layout',
       label: 'Filters Layout',
@@ -59,11 +114,17 @@ module.exports = (fieldOptions) => {
         sorting_label_field: null,
         default: 1,
       },
-      inline_help_text: "Add column names that you wish to be added to the filters sidebar.",
+      inline_help_text:
+        'Add column names that you wish to be added to the filters sidebar.',
       allow_new_line: false,
       show_emoji_picker: true,
       type: 'text',
       default: ['resource_type'],
+      visibility: {
+        controlling_field_path: 'filters_layout',
+        controlling_value_regex: 'none',
+        operator: 'NOT_EQUAL',
+      },
     },
     {
       name: 'card_type',
@@ -95,7 +156,7 @@ module.exports = (fieldOptions) => {
         ['four-column', 'Four Column'],
       ],
       type: 'choice',
-      default: 'three-column',
+      default: 'four-column',
     },
     setFieldParams(spacing, {
       name: 'card_spacing',
