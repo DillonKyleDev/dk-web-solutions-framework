@@ -5,6 +5,8 @@
   overflow: hidden;
   box-shadow: $shadow--level-3;
   transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
 
   &.is-linked:hover {
     box-shadow: $shadow--level-1;
@@ -22,6 +24,18 @@
       position: absolute;
       transform: translateX(-50%);
       object-fit: cover;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &--bottom {
+      margin-top: $padding--xxxs;
+      text-align: right;
     }
   }
 }

@@ -126,7 +126,6 @@
 {% macro resource_card(module_name, card_options, filter_data) %}
   {% set title = card_options.title %}
   {% set snippet = card_options.snippet %}
-  {% set card_content = card_options.content %}
   {% set image = card_options.image %}
   {% set is_link_ = card_options.is_link_ %}
   {% set link = card_options.link %}
@@ -139,24 +138,84 @@
     {% set el = 'div' %}
   {% endif %}
   
-  <div class="grid__column{% if filter_data|length > 0 %} filterable{% endif %}{% for dataObject in filter_data %} {{ dataObject.column }}-{{ dataObject.data }}{% endfor %}">  
+  <div class="grid__column {{ module_name }}__column resource-card__column{% if filter_data|length > 0 %} filterable{% endif %}{% for dataObject in filter_data %} {{ dataObject.column }}-{{ dataObject.data }}{% endfor %}">  
     <{{ el }} {% if is_link_ %}href="{% if page_root_path %}/{{ page_root_path }}/{% endif %}{{ link }}"{% endif %}{% if link.open_in_new_tab %} target="_blank"{% endif %} class="{{ module_name }}__resource-card resource-card card{% if is_link_ %} is-linked{% endif %}">        
       {% if image.url is truthy %}
-        <div class="resource-card__image-container">
+        <div class="{{ module_name }}__image-container resource-card__image-container">
           <img src="{{ image.url }}" class="resource-card__image">
         </div>
       {% endif %}
 
-      <div class="{{ module_name }}__column grid__column-content">
-        <div class="resource-card__content-wrapper">
-          <div class="resource-card__content">
-            <h4>{{ title }}</h4>
-            <p>{{ snippet }}</p>
+      <div class="{{ module_name }}__info resource-card__info grid__column-content">
+        <div class="{{ module_name }}__info--top resource-card__info--top">
+          <div class="{{ module_name }}__content resource-card__content">
+            {% if title %}<h4 class="{{ module_name }}__title resource-card__title">{{ title }}</h4>{% endif %}
+            <p class="{{ module_name }}__snippet resource-card__snippet small">{{ snippet }}</p>
           </div>
-          <span class="cta-link cta-link--chevron">{{ link_text }}</span>
         </div>
+        
+        {% if is_link_ %}
+          <div class="{{ module_name }}__info--bottom resource-card__info--bottom">
+            <span class="{{ module_name }}__cta-link resource-card__cta-link cta-link cta-link--chevron">{{ link_text }}</span>
+          </div>
+        {% endif %}
       </div>
     </{{ el }}>
+  </div>
+{% endmacro %}
+
+{% macro blog_card(card_options, filter_data) %}
+  {% set title = card_options.title %}
+  {% set tag_list = card_options.tag_list %}
+  {% set author = card_options.author %}
+  {% set read_time = card_options.read_time %}
+  {% set publish_date = card_options.publish_date %}
+  {% set snippet = card_options.snippet %}
+  {% set image = card_options.image %}  
+  {% set link = card_options.link %}
+  {% set link_text = card_options.link_text %}  
+  
+  <div class="grid__column blog-card__column{% if filter_data|length > 0 %} filterable{% endif %}{% for dataObject in filter_data %} {{ dataObject.column }}-{{ dataObject.data }}{% endfor %}">  
+    <a class="blog-card card is-linked" href="{{ link }}" target="_blank">        
+      {% if image %}
+        <div class="blog-card__image-container">
+          <img class="blog-card__image" src="{{ image }}">
+        </div>
+      {% endif %}
+
+      <div class="blog-card__info grid__column-content">
+        <div class="blog-card__info--top">
+          {% if tag_list || read_time %}
+            <div class="blog-card__tags-container tags__container">
+              {% for tag in tag_list %}
+                <div class="blog-card__tag tags__tag">
+                  {{ tag }}
+                </div>
+              {% endfor %}
+              {% if read_time %}
+                <span class="blog-card__read-time"><span class="blog-card__read-time-number">{{ read_time }}</span> min read</span>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="blog-card__content">
+            <div class="blog-card__publish-info">
+              {% if publish_date %}<span class="blog-card__publish-date">{{ publish_date }}</span>{% endif %}
+              {% if publish_date && author %} - {% endif %}
+              {% if author %}<span class="blog-card__author">{{ author }}</span>{% endif %}            
+            </div>
+            {% if title %}<h4 class="blog-card__title">{{ title }}</h4>{% endif %}
+            {% if snippet %}<p class="blog-card__snippet small">{{ snippet }}</p>{% endif %}
+          </div>
+        </div>
+        
+        {% if show_link_text_ %}
+          <div class="blog-card__info--bottom">
+            <span class="blog-card__cta-link cta-link cta-link--chevron">{{ link_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </a>
   </div>
 {% endmacro %}
 

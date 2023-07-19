@@ -11,40 +11,39 @@
 %}
 
 {# Module specific options #}
-{% set blog_posts = blog_recent_posts(module.blog) %}
+{% set blog = module.blog %}
 
 {# Prefilters #}
 {% set prefilter_results_ = module.prefilter_results_ %}
-{% set prefilter_options = module.prefilter_options %}
+{% set prefilter_tag = module.prefilter_tag %}
 
 {% if prefilter_results_ %}
-  {% set filter_query = [] %}
+  {% set filtered_results = [] %}
 
-  {% for prefilter in prefilter_options %}
-    {% set prefilter_column = prefilter.prefilter_column %}
-    {% set prefilter_result = prefilter.prefilter_result %}
-    {% do filter_query.append('&' + prefilter_column + '__eq=' + prefilter_result) %} 
+  {% for post in blog_recent_posts(blog) %}
+    {% for tag in post.tagList %}        
+      {% if tag == prefilter_tag|capitalize %}
+        {% do filtered_results.append(post) %}
+      {% endif %}
+    {% endfor %}    
   {% endfor %}
 
-  {% set filter_query = filter_query|string|replace('[', '')|replace(']', '')|replace(', ', '') %}
-  {% set table_rows = hubdb_table_rows(table_id, filter_query) %}    
+  {% set blog_posts = filtered_results %}
 {% else %}
-  {% set table_rows = hubdb_table_rows(table_id) %}
+  {% set blog_posts = blog_recent_posts(blog) %}
 {% endif %}
 
-{# Filters Sidebar #}
-{% set filters_layout = module.filters_layout %}
-{% set filter_columns = module.filter_columns %}
-
 {# Resource Grid #}
-{% set table_field_names = module.table_field_names %}
-{% set title = table_field_names.column_title %}
-{% set snippet = table_field_names.column_snippet %}
-{% set content = table_field_names.column_content %}
-{% set image = table_field_names.column_image %}
-{% set is_link_ = table_field_names.is_link_ %}
-{% set link = table_field_names.link %}
-{% set link_text = table_field_names.link_text %}
+{% set fields_visibility = module.card_fields_visibility %}
+{% set show_title_ = fields_visibility.show_title_ %}
+{% set show_author_ = fields_visibility.show_author_ %}
+{% set show_read_time_ = fields_visibility.show_read_time_ %}
+{% set show_publish_date_ = fields_visibility.show_publish_date_ %}
+{% set show_tags_ = fields_visibility.show_tags_ %}
+{% set show_snippet_ = fields_visibility.show_snippet_ %}
+{% set show_image_ = fields_visibility.show_image_ %}
+{% set show_link_text_ = fields_visibility.show_link_text_ %}
+{% set link_text = fields_visibility.link_text %}
 
 {% set card_layout = module.card_layout %}
 {% set card_spacing = module.card_spacing %}
@@ -53,48 +52,26 @@
 {# Module #}
 {% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__wrapper">  
-  
-    {% for blog_post in blog_posts %}
-      <span class="post-title">{{ blog_post.name }}</span>      
-      <span class="post-title">{{ blog_post.meta_description }}</span>
-    {% endfor %}
-
-
-    {% if filters_layout == 'left' %}
-      {{ macros.resource_filter(module_name, filter_columns) }}
-    {% endif %}
 
     <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
-      {% for row in table_rows %}
-
-        {% set filter_data = [] %}
-        
-        {% for column_to_filter in filter_columns %}
-          {% do filter_data.append({ 
-              column: column_to_filter, 
-              data: row[column_to_filter].name
-            }) 
-          %}        
-        {% endfor %}
-
+      {% for post in blog_posts %}
+              
         {% set card_options = {
-            title: row[title],
-            snippet: row[snippet],
-            content: row[content],
-            image: row[image],
-            is_link_: row[is_link_],
-            link: row[link],
-            link_text: row[link_text],
-            page_root_path: row.page_root_path
+            title: show_title_ ? post.name : null,                    
+            tag_list: show_tags_ ? post.tagList : null,
+            author: show_author_ ? post.blog_author : null,
+            read_time: show_read_time_ ? (post.post_body|wordcount / 32 > 1 ? post.post_body|wordcount / 32|round(0, "floor") : 1) : null,
+            publish_date: show_publish_date_ ? format_date(post.publishDate, "long") : null,
+            snippet: show_snippet_ ? post.meta_description : null,
+            image: show_image_ ? post.featured_image : null,                      
+            link: post.absoluteUrl,
+            link_text: show_link_text_ ? link_text : null,        
           }
         %}
 
-        {{ macros.resource_card(module_name, card_options, filter_data) }}
+        {{ macros.blog_card(card_options, filter_data) }}
       {% endfor %}
     </div>
 
-    {% if filters_layout == 'right' %}
-      {{ macros.resource_filter(module_name, filter_columns) }}
-    {% endif %}
   </div>
 {% endcall %}

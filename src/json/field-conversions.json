@@ -30,18 +30,6 @@
         "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
       },
       {
-        "name": "column_content",
-        "label": "Content Field",
-        "required": false,
-        "locked": false,
-        "validation_regex": "",
-        "allow_new_line": false,
-        "show_emoji_picker": false,
-        "type": "text",
-        "default": "content",
-        "help_text": "Tells the module where to look for this data within HubDB. Match with 'Column Name' of desired column in table."
-      },
-      {
         "name": "column_image",
         "label": "Image Field",
         "required": false,
