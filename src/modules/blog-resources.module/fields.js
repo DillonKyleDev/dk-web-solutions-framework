@@ -5,24 +5,80 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const moduleHeader = JSON.parse(
-    fs.readFileSync('../../json/module-header.json')
-  );
-  const moduleFooter = JSON.parse(
-    fs.readFileSync('../../json/module-footer.json')
-  );
+  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));
+  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
 
-  const fieldConversions = JSON.parse(
-    fs.readFileSync('../../json/field-conversions.json')
-  );
   const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
-  const colors = JSON.parse(fs.readFileSync('../../json/colors.json'));
 
   let fields = [
     moduleHeader,
     moduleFooter,
-    fieldConversions,
+    {
+      type: 'group',
+      name: 'card_fields_visibility',
+      label: 'Card Fields Visibility',
+      expanded: false,
+      children: [
+        {
+          name: 'show_title_',
+          label: 'Show Title?',
+          required: false,
+          locked: false,
+          type: 'boolean',
+          display: 'checkbox',
+          inline_help_text: 'Choose whether or not to display this element.',
+          default: true,
+        },
+        {
+          name: 'show_snippet_',
+          label: 'Show Snippet?',
+          required: false,
+          locked: false,
+          type: 'boolean',
+          display: 'checkbox',
+          help_text: 'Choose whether or not to display this element.',
+          default: true,
+        },
+        {
+          name: 'show_image_',
+          label: 'Show Image?',
+          required: false,
+          locked: false,
+          type: 'boolean',
+          display: 'checkbox',
+          help_text: 'Choose whether or not to display this element.',
+          default: true,
+        },
+        {
+          name: 'show_link_text_',
+          label: 'Show Link Text?',
+          required: false,
+          locked: false,
+          type: 'boolean',
+          display: 'checkbox',
+          help_text: 'Choose whether or not to display this element.',
+          default: true,
+        },
+        {
+          name: 'link_text_',
+          label: 'Link Text',
+          required: false,
+          locked: false,
+          validation_regex: '',
+          allow_new_line: false,
+          show_emoji_picker: false,
+          type: 'text',
+          default: 'Read more',
+          help_text: 'Choose what text to display for each CTA link.',
+          visibility: {
+            controlling_field_path: 'card_fields_visibility.show_link_text_',
+            controlling_value_regex: true,
+            operator: 'EQUAL',
+          },
+        },
+      ],
+    },
     {
       name: 'blog',
       label: 'Blog',
@@ -39,47 +95,17 @@ module.exports = (fieldOptions) => {
       type: 'boolean',
       display: 'checkbox',
       inline_help_text:
-        'Choose whether to only show results with a specific column value.',
+        'Choose whether to only show results from a specific tag and/or author.',
       default: false,
     },
     {
-      type: 'group',
-      name: 'prefilter_options',
-      label: 'Prefilter Options',
-      expanded: true,
-      occurrence: {
-        min: 1,
-        max: null,
-        default: 1,
-      },
-      children: [
-        {
-          name: 'prefilter_column',
-          label: 'Column to Prefilter',
-          required: false,
-          locked: false,
-          validation_regex: '',
-          allow_new_line: false,
-          show_emoji_picker: false,
-          inline_help_text:
-            'Match column name exactly, including any trailing spaces.',
-          type: 'text',
-          default: 'resource_type',
-        },
-        {
-          name: 'prefilter_result',
-          label: 'Desired Column Value',
-          required: false,
-          locked: false,
-          validation_regex: '',
-          allow_new_line: false,
-          show_emoji_picker: false,
-          inline_help_text:
-            'Match desired value exactly, including any trailing spaces.',
-          type: 'text',
-          default: 'Download',
-        },
-      ],
+      name: 'prefilter_tag',
+      label: 'Prefilter Tag',
+      required: false,
+      locked: false,
+      tag_value: 'SLUG',
+      type: 'tag',
+      default: null,
       visibility: {
         controlling_field_path: 'prefilter_results_',
         controlling_value_regex: true,
@@ -87,43 +113,21 @@ module.exports = (fieldOptions) => {
       },
     },
     {
-      name: 'filters_layout',
-      id: 'filters_layout',
-      label: 'Filters Layout',
+      name: 'prefilter_author',
+      label: 'Prefilter Author',
       required: false,
       locked: false,
-      multiple: 'false',
-      display: 'select',
-      help_text: 'Choose where the filters sidebar will be displayed.',
-      choices: [
-        ['none', 'No Filters'],
-        ['left', 'Left Sidebar'],
-        ['right', 'Right Sidebar'],
-      ],
-      type: 'choice',
-      default: 'none',
-    },
-    {
-      name: 'filter_columns',
-      label: 'Filter Columns',
-      required: false,
-      locked: false,
-      occurrence: {
-        min: 1,
-        max: null,
-        sorting_label_field: null,
-        default: 1,
-      },
-      inline_help_text:
-        'Add column names that you wish to be added to the filters sidebar.',
+      validation_regex: '',
       allow_new_line: false,
-      show_emoji_picker: true,
+      show_emoji_picker: false,
+      inline_help_text:
+        'Match desired author exactly, including any trailing spaces.',
       type: 'text',
-      default: ['resource_type'],
+      default: '',
       visibility: {
-        controlling_field_path: 'filters_layout',
-        controlling_value_regex: 'none',
-        operator: 'NOT_EQUAL',
+        controlling_field_path: 'prefilter_results_',
+        controlling_value_regex: true,
+        operator: 'EQUAL',
       },
     },
     {

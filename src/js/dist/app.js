@@ -14,6 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _owl_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./owl-carousel */ "./src/js/owl-carousel.js");
 /* harmony import */ var _magnific_popup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./magnific-popup */ "./src/js/magnific-popup.js");
 /* harmony import */ var _resources__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resources */ "./src/js/resources.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './get-data'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
 
 
 
@@ -25,6 +27,7 @@ $(document).ready(function ($) {
   (0,_owl_carousel__WEBPACK_IMPORTED_MODULE_2__["default"])();
   (0,_magnific_popup__WEBPACK_IMPORTED_MODULE_3__["default"])();
   (0,_resources__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(function webpackMissingModule() { var e = new Error("Cannot find module './get-data'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())();
 });
 
 /***/ }),

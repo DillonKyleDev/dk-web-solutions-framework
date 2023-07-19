@@ -28,6 +28,7 @@ h6,
 }
 
 p,
+span,
 a,
 li,
 label {
@@ -35,6 +36,7 @@ label {
 }
 
 .on-light p,
+.on-light span,
 .on-light li,
 .on-light h1,
 .on-light h2,
@@ -46,6 +48,7 @@ label {
 }
 
 .on-dark p,
+.on-dark span,
 .on-dark li,
 .on-dark h1,
 .on-dark h2,
