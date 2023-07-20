@@ -5,8 +5,12 @@ const setFieldParams = (field, params) => {
 };
 
 module.exports = (fieldOptions) => {
-  const moduleHeader = JSON.parse(fs.readFileSync('../../json/module-header.json'));
-  const moduleFooter = JSON.parse(fs.readFileSync('../../json/module-footer.json'));
+  const moduleHeader = JSON.parse(
+    fs.readFileSync('../../json/module-header.json')
+  );
+  const moduleFooter = JSON.parse(
+    fs.readFileSync('../../json/module-footer.json')
+  );
   const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
 
   const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
@@ -148,6 +152,35 @@ module.exports = (fieldOptions) => {
       default: null,
       visibility: {
         controlling_field_path: 'prefilter_results_',
+        controlling_value_regex: true,
+        operator: 'EQUAL',
+      },
+    },
+    {
+      name: 'limit_results_',
+      label: 'Limit Results?',
+      required: false,
+      locked: false,
+      type: 'boolean',
+      display: 'checkbox',
+      help_text: 'Only show a specific amount of results?',
+      default: false,
+    },
+    {
+      name: 'max_results',
+      label: 'Maximum Results',
+      required: false,
+      locked: false,
+      display: 'slider',
+      min: 1,
+      max: null,
+      step: 1,
+      type: 'number',
+      prefix: '',
+      suffix: '',
+      default: 1,      
+      visibility: {
+        controlling_field_path: 'limit_results_',
         controlling_value_regex: true,
         operator: 'EQUAL',
       },

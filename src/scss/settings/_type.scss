@@ -28,7 +28,7 @@
 
 .on-light {
   p,
-  span,
+  span:not(.cta-link),
   li,
   h1,
   h2,
@@ -42,7 +42,7 @@
 
 .on-dark {
   p,
-  span,
+  span:not(.cta-link),
   li,
   h1,
   h2,
@@ -56,7 +56,7 @@
 
 .display--1 {
   font-size: 64px;
-  margin-bottom: $padding--xs;
+  margin-bottom: $padding--xxs;
 }
 
 .display--2 {

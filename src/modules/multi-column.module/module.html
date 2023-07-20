@@ -25,13 +25,18 @@
       {% set card_options = {
           content: column.text_content,
           image: column.image,
+          icon: column.icon,
           is_link_: column.is_link_,
-          link: column.link,
+          link: column.link.url.href,
           link_text: column.link_text
         }
       %}
 
-      {{ macros.simple_card(module_name, card_options) }}
+      {% if column_type == 'simple' %}
+        {{ macros.simple_card(module_name, card_options) }}
+      {% elif column_type == 'icon' %}
+        {{ macros.icon_card(module_name, card_options) }}
+      {% endif %}
     {% endfor %}
   </div>
 {% endcall %}

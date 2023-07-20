@@ -12,6 +12,8 @@
 
 {# Module specific options #}
 {% set blog = module.blog %}
+{% set limit_results_ = module.limit_results_ %}
+{% set max_results = module.max_results %}
 
 {# Prefilters #}
 {% set prefilter_results_ = module.prefilter_results_ %}
@@ -54,23 +56,52 @@
   <div class="{{ module_name }}__wrapper">  
 
     <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
-      {% for post in blog_posts %}
-              
-        {% set card_options = {
-            title: show_title_ ? post.name : null,                    
-            tag_list: show_tags_ ? post.tagList : null,
-            author: show_author_ ? post.blog_author : null,
-            read_time: show_read_time_ ? (post.post_body|wordcount / 32 > 1 ? post.post_body|wordcount / 32|round(0, "floor") : 1) : null,
-            publish_date: show_publish_date_ ? format_date(post.publishDate, "long") : null,
-            snippet: show_snippet_ ? post.meta_description : null,
-            image: show_image_ ? post.featured_image : null,                      
-            link: post.absoluteUrl,
-            link_text: show_link_text_ ? link_text : null,        
-          }
-        %}
+      {% if is_listing_view %}
 
-        {{ macros.blog_card(card_options, filter_data) }}
-      {% endfor %}
+        {% for post in contents %}                      
+          {% if !limit_results_ || (limit_results_ && loop.index <= max_results) %}            
+            {% set publish_date = format_date(post.publishDate, "long") %}          
+            {% set card_options = {
+                blog_slug: blog.slug,
+                title: post.name,                    
+                tag_list: post.tagList,
+                author: post.blog_author,
+                read_time: null,
+                publish_date: publish_date,
+                snippet: post.meta_description,
+                image: post.featured_image,                      
+                link: post.absoluteUrl,
+                link_text: "Read more",        
+              }
+            %}
+
+            {{ macros.blog_card(card_options) }}
+          {% endif %}
+        {% endfor %}
+
+      {% else %}
+
+        {% for post in blog_posts %}
+          {% if !limit_results_ || (limit_results_ && loop.index <= max_results) %}                        
+            {% set card_options = {                
+                title: show_title_ ? post.name : null,                    
+                tag_list: show_tags_ ? post.tagList : null,
+                author: show_author_ ? post.blog_author : null,
+                read_time: show_read_time_ ? (post.post_body|wordcount / 32 > 1 ? post.post_body|wordcount / 32|round(0, "floor") : 1) : null,
+                publish_date: show_publish_date_ ? format_date(post.publishDate, "long") : null,
+                snippet: show_snippet_ ? post.meta_description : null,
+                image: show_image_ ? post.featured_image : null,                      
+                link: post.absoluteUrl,
+                link_text: show_link_text_ ? link_text : null,        
+              }
+            %}
+
+            {{ macros.blog_card(card_options) }}
+
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
     </div>
 
   </div>

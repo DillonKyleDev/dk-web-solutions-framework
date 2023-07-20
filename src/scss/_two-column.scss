@@ -2,7 +2,6 @@
   &__grid {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     @media (min-width: $viewport-tablet--min) {
       flex-direction: row;

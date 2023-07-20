@@ -36,7 +36,7 @@ label {
 }
 
 .on-light p,
-.on-light span,
+.on-light span:not(.cta-link),
 .on-light li,
 .on-light h1,
 .on-light h2,
@@ -48,7 +48,7 @@ label {
 }
 
 .on-dark p,
-.on-dark span,
+.on-dark span:not(.cta-link),
 .on-dark li,
 .on-dark h1,
 .on-dark h2,
@@ -61,7 +61,7 @@ label {
 
 .display--1 {
   font-size: 64px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .display--2 {
@@ -561,55 +561,6 @@ p.large {
   height: auto;
 }
 
-.blog-card {
-  border: solid 1px rgb(158, 158, 158);
-  border-radius: 6px;
-  box-shadow: none;
-  overflow: hidden;
-  box-shadow: 0px 9px 23px rgba(0, 0, 0, 0.09), 0px 6px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-}
-.blog-card.is-linked:hover {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08), 0px 5px 5px rgba(0, 0, 0, 0.09);
-}
-.blog-card__image-container {
-  position: relative;
-  padding-bottom: 60%;
-  overflow: hidden;
-}
-.blog-card__image-container img {
-  height: 101%;
-  width: 101%;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.blog-card__info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.blog-card__info--bottom {
-  margin-top: 10px;
-  text-align: right;
-}
-.blog-card__read-time {
-  font-size: 14px;
-}
-.blog-card__read-time-number {
-  font-weight: bold;
-}
-.blog-card__author, .blog-card__publish-date {
-  display: inline-block;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
 .search__results-text {
   border-bottom: solid 2px rgb(158, 158, 158);
   padding-bottom: 20px;
@@ -705,7 +656,6 @@ p.large {
   transition: all 0.2s;
   font-weight: 700;
   font-size: 16px;
-  color: #205899;
   text-decoration: none;
 }
 .cta-link:hover, .site-footer .footer-menu li > a:hover, .menu li > a:hover {
@@ -861,8 +811,10 @@ p.large {
   row-gap: 3px;
   margin-bottom: 7px;
 }
+.tags a {
+  display: block !important;
+}
 .tags__tag {
-  display: block;
   background-color: #ffaca9;
   color: #424242;
   border-radius: 6px;
@@ -1007,6 +959,82 @@ p.large {
   text-align: right;
 }
 
+.icon-card {
+  border: solid 1px rgb(158, 158, 158);
+  border-radius: 6px;
+  box-shadow: none;
+  overflow: hidden;
+  box-shadow: 0px 9px 23px rgba(0, 0, 0, 0.09), 0px 6px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.icon-card.is-linked:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08), 0px 5px 5px rgba(0, 0, 0, 0.09);
+}
+.icon-card__icon-container {
+  margin-bottom: 10px;
+}
+.icon-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.icon-card__info--bottom {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.blog-card {
+  border: solid 1px rgb(158, 158, 158);
+  border-radius: 6px;
+  box-shadow: none;
+  overflow: hidden;
+  box-shadow: 0px 9px 23px rgba(0, 0, 0, 0.09), 0px 6px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.blog-card.is-linked:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08), 0px 5px 5px rgba(0, 0, 0, 0.09);
+}
+.blog-card__image-container {
+  position: relative;
+  padding-bottom: 60%;
+  overflow: hidden;
+}
+.blog-card__image-container img {
+  height: 101%;
+  width: 101%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.blog-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.blog-card__info--bottom {
+  margin-top: 10px;
+  text-align: right;
+}
+.blog-card__read-time {
+  font-size: 14px;
+}
+.blog-card__read-time-number {
+  font-weight: bold;
+}
+.blog-card__author, .blog-card__publish-date {
+  display: inline-block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
 .module__endcap {
   display: flex;
 }
@@ -1019,13 +1047,13 @@ p.large {
 .module__endcap-block-alignment--right {
   justify-content: flex-end;
 }
-.module__endcap-content-alignment--left {
+.module__endcap-content-alignment--left * {
   text-align: left;
 }
-.module__endcap-content-alignment--center {
+.module__endcap-content-alignment--center * {
   text-align: center;
 }
-.module__endcap-content-alignment--right {
+.module__endcap-content-alignment--right * {
   text-align: right;
 }
 .module.bg--transparent,
@@ -1203,7 +1231,6 @@ p.large {
 .two-column__grid {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 @media (min-width: 769px) {
   .two-column__grid {

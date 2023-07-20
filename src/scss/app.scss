@@ -13,7 +13,6 @@
 // Blog
 @import 'blog/blog';
 @import 'blog/blog-post';
-@import 'blog/blog-card';
 
 // Pages
 @import 'search';
@@ -29,9 +28,11 @@
 @import 'filters-sidebar';
 
 // Cards
-@import 'card';
-@import 'simple-card';
-@import 'resource-card';
+@import 'cards/card';
+@import 'cards/simple-card';
+@import 'cards/resource-card';
+@import 'cards/icon-card';
+@import 'cards/blog-card';
 
 // Modules
 @import 'module';

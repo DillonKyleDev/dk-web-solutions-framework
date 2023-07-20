@@ -1,72 +1,140 @@
 <!--
-  templateType: blog_listing
-  isAvailableForNewContent: true
-  label: Boilerplate - blog listing
-  screenshotPath: ../images/template-previews/blog-index.png
+    templateType: blog_listing
+    isAvailableForNewContent: true
+    label: Blog listing
 -->
-{% set template_css = "../../css/templates/blog.css" %}
 {% extends "./layouts/base.html" %}
+{# import marcros #}
+{% import "./macros.html" as macros %}
 
-{% block body %}
-{% dnd_area "dnd_area"
-  label="Main section",
-  class="body-container body-container--blog-index"
+{% set module_settings = {
+    module_header: {
+      show_module_header_: false,      
+    },
+    module_footer: {
+      show_module_footer_: false,      
+    },
+    styles: {
+      type_setting: "on-light",
+      padding_top: "medium",
+      padding_bottom: "medium",
+      background_color: "transparent"
+    }
+  }
 %}
 
-  {# Hero banner #}
+{% block body %}
+  <div class="body-container body-container--blog-listing">
 
-  {% dnd_section
-    background_color="#f8fafc",
-    max_width=600,
-    padding={
-      "default": {
-        "top": 80,
-        "right": 0,
-        "bottom": 80,
-        "left": 0
-      },
-      "mobile": {
-        "top": 80,
-        "right": 20,
-        "bottom": 80,
-        "left": 20
-      }
-    }
-  %}
-    {% dnd_column %}
-      {% dnd_row %}
-        {% dnd_module
-          path="@hubspot/rich_text",
-          html='<div style="text-align: center;"><h1>Blog</h1><p>Use this space to tell everyone about what you have to offer.</p></div>'
-        %}
-        {% end_dnd_module %}
-      {% end_dnd_row %}
-      {% dnd_row %}
-        {% dnd_module
-          path="@hubspot/blog_subscribe",
-          title=""
-        %}
-        {% end_dnd_module %}
-      {% end_dnd_row %}
-    {% end_dnd_column %}
-  {% end_dnd_section %}
+      {# Blog author listing #}
 
-  {# Blog listings and pagination #}
+      {% if blog_author %}
+        <section class="constrain">
+          {% if blog_author.avatar %}
+            <img src="{{ blog_author.avatar }}" alt="image of blog {{ blog_author.display_name }}">
+          {% endif %}
+          <h1>{{ blog_author.display_name }}</h1>
+          {% if blog_author.bio %}
+            <p>{{ blog_author.bio }}</p>
+          {% endif %}
+          {% if blog_author.has_social_profiles %}
+            <div>
+              {% if blog_author.website %}
+                <a href="{{ blog_author.website }}" target="_blank" rel="noopener">
+                  {% icon
+                    name="link",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on our website",
+                    width="10"
+                  %}
+                </a>
+              {% endif %}
+              {% if blog_author.facebook %}
+                <a href="{{ blog_author.facebook }}" target="_blank" rel="noopener">
+                  {% icon
+                    name="facebook-f",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on Facebook",
+                    width="10"
+                  %}
+                </a>
+              {% endif %}
+              {% if blog_author.linkedin %}
+                <a href="{{ blog_author.linkedin }}" target="_blank" rel="noopener">
+                  {% icon
+                    name="linkedin-in",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on LinkedIn",
+                    width="10"
+                  %}
+                </a>
+              {% endif %}
+              {% if blog_author.twitter %}
+                <a href="{{ blog_author.twitter }}" target="_blank" rel="noopener">
+                  {% icon
+                    name="twitter",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on Twitter",
+                    width="10"
+                  %}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </section>
+      {% elif tag %}
 
-  {% dnd_section
-    vertical_alignment="TOP"
-  %}
-    {% dnd_column %}
-      {% dnd_row %}
-        {% dnd_module path="@hubspot/blog_listing" %}
-        {% end_dnd_module %}
-      {% end_dnd_row %}
-      {% dnd_row %}
-        {% dnd_module path="@hubspot/pagination" %}
-        {% end_dnd_module %}
-      {% end_dnd_row %}
-    {% end_dnd_column %}
-  {% end_dnd_section %}
+      {# Blog tag listing #}
 
-{% end_dnd_area %}
+        <section>
+          <h1>Posts about {{ page_meta.html_title|split(" | ")|last }}</h1>
+        </section>
+      {% else %}
+
+      {# Blog listing heading #}
+
+        <section>
+          <h1>{{ group.public_title }}</h1>
+          <p>{{ group.description }}</p>
+        </section>
+
+        {% call macros.module_base("blog-listing", module_settings) %}
+          <div class="{{ module_name }}__container">
+            <p>Hello from base module</p>
+          </div>
+        {% endcall %}
+
+        <div>
+          {% dnd_area "dnd_area"
+            label="Main section"
+          %}
+            {% dnd_section %}
+              {% dnd_column %}
+                {% dnd_row %}
+
+                  {% dnd_module path="@hubspot/blog_listing" %}
+                  {% end_dnd_module %}
+
+                {% end_dnd_row %}
+                {% dnd_row %}
+
+                  {% dnd_module path="@hubspot/pagination" %}
+                  {% end_dnd_module %}
+
+                {% end_dnd_row %}
+              {% end_dnd_column %}
+            {% end_dnd_section %}
+          {% end_dnd_area %}
+        </div>
+
+      {% endif %}
+
+
+    </main>
+    {{ standard_footer_includes }}
+</div>
 {% endblock body %}

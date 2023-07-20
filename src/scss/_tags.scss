@@ -8,8 +8,12 @@
     margin-bottom: 7px;
   }
 
+  a {
+    display: block !important;
+  }
+
   &__tag {
-    display: block;
+    
     background-color: $tags--background;
     color: $tags--text;
     border-radius: 6px;

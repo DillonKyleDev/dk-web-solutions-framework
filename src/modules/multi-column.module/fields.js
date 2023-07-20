@@ -29,6 +29,7 @@ module.exports = (fieldOptions) => {
       display: 'select',
       choices: [
         ['simple', 'Simple'],
+        ['icon', 'Icon'],
         ['image', 'Image'],
       ],
       type: 'choice',
@@ -76,20 +77,6 @@ module.exports = (fieldOptions) => {
       type: 'group',
       children: [
         {
-          name: 'text_content',
-          label: 'Content',
-          required: false,
-          locked: false,
-          type: 'richtext',
-          default:
-            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
-          visibility: {
-            controlling_field_path: 'column_type',
-            controlling_value_regex: 'simple',
-            operator: 'EQUAL',
-          },
-        },
-        {
           name: 'image',
           label: 'Image',
           required: false,
@@ -111,6 +98,43 @@ module.exports = (fieldOptions) => {
           },
         },
         {
+          name: 'icon',
+          label: 'Icon',
+          required: false,
+          locked: false,
+          responsive: true,
+          resizable: true,
+          show_loading: false,
+          type: 'image',
+          default: {
+            size_type: 'exact',
+            src: 'https://22112970.fs1.hubspotusercontent-na1.net/hubfs/22112970/icons/token-icon.svg',
+            alt: 'image-alt-text',
+            loading: 'lazy',
+            width: 64,
+            height: 64,
+          },
+          visibility: {
+            controlling_field_path: 'column_type',
+            controlling_value_regex: 'icon',
+            operator: 'EQUAL',
+          },
+        },
+        {
+          name: 'text_content',
+          label: 'Content',
+          required: false,
+          locked: false,
+          type: 'richtext',
+          default:
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+          visibility: {
+            controlling_field_path: 'column_type',
+            controlling_value_regex: 'image',
+            operator: 'NOT_EQUAL',
+          },
+        },
+        {
           name: 'is_link_',
           label: 'Is Link?',
           required: false,
@@ -120,12 +144,12 @@ module.exports = (fieldOptions) => {
           default: false,
           visibility_rules: 'ADVANCED',
           advanced_visibility: {
-            boolean_operator: 'AND',
+            boolean_operator: 'OR',
             criteria: [
               {
-                controlling_field_path: 'columns.is_link_',
-                controlling_value_regex: true,
-                operator: 'EQUAL',
+                controlling_field_path: 'column_type',
+                controlling_value_regex: 'image',
+                operator: 'NOT_EQUAL',
               },
               {
                 controlling_field_path: 'column_type',
@@ -174,6 +198,11 @@ module.exports = (fieldOptions) => {
                 controlling_value_regex: 'simple',
                 operator: 'NOT_EQUAL',
               },
+              {
+                controlling_field_path: 'column_type',
+                controlling_value_regex: 'image',
+                operator: 'NOT_EQUAL',
+              },
             ],
           },
         },
@@ -187,6 +216,7 @@ module.exports = (fieldOptions) => {
           show_emoji_picker: false,
           type: 'text',
           default: 'Read more',
+          inline_help_text: 'Leave blank if you do not want a visible link.',
           visibility_rules: 'ADVANCED',
           advanced_visibility: {
             boolean_operator: 'AND',
@@ -201,6 +231,11 @@ module.exports = (fieldOptions) => {
                 controlling_value_regex: 'simple',
                 operator: 'NOT_EQUAL',
               },
+              {
+                controlling_field_path: 'column_type',
+                controlling_value_regex: 'image',
+                operator: 'NOT_EQUAL',
+              },
             ],
           },
         },
@@ -208,8 +243,16 @@ module.exports = (fieldOptions) => {
       default: [
         {
           text_content:
-            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
           image: null,
+          icon: {
+            size_type: 'exact',
+            src: 'https://22112970.fs1.hubspotusercontent-na1.net/hubfs/22112970/icons/token-icon.svg',
+            alt: 'image-alt-text',
+            loading: 'lazy',
+            width: 64,
+            height: 64,
+          },
           is_link_: false,
           link: {
             url: {
@@ -224,8 +267,16 @@ module.exports = (fieldOptions) => {
         },
         {
           text_content:
-            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
           image: null,
+          icon: {
+            size_type: 'exact',
+            src: 'https://22112970.fs1.hubspotusercontent-na1.net/hubfs/22112970/icons/token-icon.svg',
+            alt: 'image-alt-text',
+            loading: 'lazy',
+            width: 64,
+            height: 64,
+          },
           is_link_: false,
           link: {
             url: {
@@ -240,8 +291,16 @@ module.exports = (fieldOptions) => {
         },
         {
           text_content:
-            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p>{{cta('f75a5d21-9693-4b63-b4e6-09b7d7e886f8')}}</p>",
+            "<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
           image: null,
+          icon: {
+            size_type: 'exact',
+            src: 'https://22112970.fs1.hubspotusercontent-na1.net/hubfs/22112970/icons/token-icon.svg',
+            alt: 'image-alt-text',
+            loading: 'lazy',
+            width: 64,
+            height: 64,
+          },
           is_link_: false,
           link: {
             url: {

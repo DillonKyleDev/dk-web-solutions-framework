@@ -12,6 +12,8 @@
 
 {# Module specific options #}
 {% set table_id = module.table_id %}
+{% set limit_results_ = module.limit_results_ %}
+{% set max_results = module.max_results %}
 
 {# Prefilters #}
 {% set prefilter_results_ = module.prefilter_results_ %}
@@ -60,29 +62,31 @@
 
     <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
       {% for row in table_rows %}
+        {% if !limit_results_ || (limit_results_ && loop.index <= max_results) %}
 
-        {% set filter_data = [] %}
-        
-        {% for column_to_filter in filter_columns %}
-          {% do filter_data.append({ 
-              column: column_to_filter, 
-              data: row[column_to_filter].name
-            }) 
-          %}        
-        {% endfor %}
+          {% set filter_data = [] %}
+          
+          {% for column_to_filter in filter_columns %}
+            {% do filter_data.append({ 
+                column: column_to_filter, 
+                data: row[column_to_filter].name
+              }) 
+            %}        
+          {% endfor %}
 
-        {% set card_options = {
-            title: row[title],
-            snippet: row[snippet],            
-            image: row[image],
-            is_link_: row[is_link_],
-            link: row[link],
-            link_text: row[link_text],
-            page_root_path: row.page_root_path
-          }
-        %}
+          {% set card_options = {
+              title: row[title],
+              snippet: row[snippet],            
+              image: row[image],
+              is_link_: row[is_link_],
+              link: row[link],
+              link_text: row[link_text],
+              page_root_path: row.page_root_path
+            }
+          %}
 
-        {{ macros.resource_card(module_name, card_options, filter_data) }}
+          {{ macros.resource_card(module_name, card_options, filter_data) }}
+        {% endif %}
       {% endfor %}
     </div>
 

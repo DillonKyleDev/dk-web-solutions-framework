@@ -156,7 +156,7 @@
         
         {% if is_link_ %}
           <div class="{{ module_name }}__info--bottom resource-card__info--bottom">
-            <span class="{{ module_name }}__cta-link resource-card__cta-link cta-link cta-link--chevron">{{ link_text }}</span>
+            <span class="{{ module_name }}__cta-link resource-card__cta-link cta-link cta-link--chevron cta-link--primary">{{ link_text }}</span>
           </div>
         {% endif %}
       </div>
@@ -164,7 +164,7 @@
   </div>
 {% endmacro %}
 
-{% macro blog_card(card_options, filter_data) %}
+{% macro blog_card(card_options) %}  
   {% set title = card_options.title %}
   {% set tag_list = card_options.tag_list %}
   {% set author = card_options.author %}
@@ -175,7 +175,7 @@
   {% set link = card_options.link %}
   {% set link_text = card_options.link_text %}  
   
-  <div class="grid__column blog-card__column{% if filter_data|length > 0 %} filterable{% endif %}{% for dataObject in filter_data %} {{ dataObject.column }}-{{ dataObject.data }}{% endfor %}">  
+  <div class="grid__column blog-card__column">  
     <a class="blog-card card is-linked" href="{{ link }}" target="_blank">        
       {% if image %}
         <div class="blog-card__image-container">
@@ -187,11 +187,14 @@
         <div class="blog-card__info--top">
           {% if tag_list || read_time %}
             <div class="blog-card__tags-container tags__container">
-              {% for tag in tag_list %}
-                <div class="blog-card__tag tags__tag">
-                  {{ tag }}
-                </div>
-              {% endfor %}
+              {% if tag_list %}
+                {% for tag in tag_list %}
+                  <div class="blog-card__tag tags__tag">
+                    {{ tag }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+              
               {% if read_time %}
                 <span class="blog-card__read-time"><span class="blog-card__read-time-number">{{ read_time }}</span> min read</span>
               {% endif %}
@@ -203,15 +206,15 @@
               {% if publish_date %}<span class="blog-card__publish-date">{{ publish_date }}</span>{% endif %}
               {% if publish_date && author %} - {% endif %}
               {% if author %}<span class="blog-card__author">{{ author }}</span>{% endif %}            
-            </div>
+            </div>                        
             {% if title %}<h4 class="blog-card__title">{{ title }}</h4>{% endif %}
             {% if snippet %}<p class="blog-card__snippet small">{{ snippet }}</p>{% endif %}
           </div>
         </div>
         
-        {% if show_link_text_ %}
+        {% if link_text != '' %}
           <div class="blog-card__info--bottom">
-            <span class="blog-card__cta-link cta-link cta-link--chevron">{{ link_text }}</span>
+            <span class="blog-card__cta-link cta-link cta-link--chevron cta-link--primary">{{ link_text }}</span>
           </div>
         {% endif %}
       </div>
@@ -222,16 +225,53 @@
 {% macro simple_card(module_name, card_options) %}
   {% set card_content = card_options.content %}
   
-  <div class="grid__column">
-    <div class="{{ module_name }}__simple_card simple_card card">        
-      <div class="{{ module_name }}__column grid__column-content">
-        <div class="simple_card__content-wrapper">
-          <div class="simple_card__content">
+  <div class="{{ module_name }}__column grid__column">
+    <div class="{{ module_name }}__simple-card simple-card card">        
+      <div class="{{ module_name }}__card-body grid__column-content">
+        <div class="{{ module_name }}__content-wrapper simple-card__content-wrapper">
+          <div class="{{ module_name }}__content simple-card__content">
             {{ card_content }}            
           </div>
         </div>
       </div>
     </div>
+  </div>
+{% endmacro %}
+
+{% macro icon_card(module_name, card_options) %}
+  {% set card_content = card_options.content %}
+  {% set icon = card_options.icon %}
+  {% set is_link_ = card_options.is_link_ %}
+  {% set link = card_options.link %}
+  {% set link_text = card_options.link_text %}
+
+  {% if is_link_ %}
+    {% set el = 'a' %}
+  {% else %}
+    {% set el = 'div' %}
+  {% endif %}
+  
+  <div class="{{ module_name }}__column grid__column">  
+    <{{ el }} {% if is_link_ %}href="{% if page_root_path %}/{{ page_root_path }}/{% endif %}{{ link }}"{% endif %}{% if link.open_in_new_tab %} target="_blank"{% endif %} class="{{ module_name }}__icon-card icon-card card{% if is_link_ %} is-linked{% endif %}">             
+      <div class="{{ module_name }}__card-body grid__column-content">
+        <div class="blog-card__info--top">
+          <div class="{{ module_name }}__content-wrapper icon-card__content-wrapper">
+            <div class="{{ module_name }}__icon-container icon-card__icon-container">
+              <img class="{{ module_name }}__icon icon-card__icon" src="{{ icon.src }}" alt="{{ icon.alt }}" width="{{ icon.width }}">
+            </div>
+            <div class="{{ module_name }}__content icon-card__content">
+              {{ card_content }}        
+            </div>
+          </div>
+        </div>
+
+        {% if link_text != '' %}
+          <div class="blog-card__info--bottom">
+            <span class="blog-card__cta-link cta-link cta-link--chevron cta-link--primary">{{ link_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </{{ el }}>
   </div>
 {% endmacro %}
 
