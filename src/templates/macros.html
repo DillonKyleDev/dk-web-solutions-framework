@@ -195,7 +195,7 @@
                 {% endfor %}
               {% endif %}
               
-              {% if read_time %}
+              {% if read_time != null %}
                 <span class="blog-card__read-time"><span class="blog-card__read-time-number">{{ read_time }}</span> min read</span>
               {% endif %}
             </div>
@@ -212,7 +212,7 @@
           </div>
         </div>
         
-        {% if link_text != '' %}
+        {% if link_text != null %}
           <div class="blog-card__info--bottom">
             <span class="blog-card__cta-link cta-link cta-link--chevron cta-link--primary">{{ link_text }}</span>
           </div>
