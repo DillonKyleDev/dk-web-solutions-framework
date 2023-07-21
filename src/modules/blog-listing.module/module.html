@@ -1,0 +1,94 @@
+{# import marcros #}
+{% import "../../templates/macros.html" as macros %}
+
+{# Global module options #}
+{% set module_name = "blog-listing" %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
+
+{####################################################}
+{################# Module Options ####################}
+{####################################################}
+
+{# Columns #}
+{% set card_layout = module.card_layout %}
+{% set card_spacing = module.card_spacing %}
+{% set card_padding = module.card_padding %}
+
+{# Content options #}
+
+{% if module.display_for_each_list_item.index("image") >= 0 %}
+  {% set show_image_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("title") >= 0 %}
+  {% set show_title_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("author_image") >= 0 %}
+  {% set show_author_image_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("author_name") >= 0 %}
+  {% set show_author_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("tags") >= 0 %}
+  {% set show_tags_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("publish_date") >= 0 %}
+  {% set show_publish_date_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("description") >= 0 %}
+  {% set show_snippet_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("button") >= 0 %}
+  {% set show_button_ = true %}
+{% endif %}
+
+{% if module.display_for_each_list_item.index("link_text") >= 0 %}
+  {% set show_link_text_ = true %}
+  {% set link_text = module.link_text %}
+{% endif %}
+
+{# Alternate image #}
+
+{% if show_image and layout == "side-by-side" and module.alternate_image %}
+  {% set has_alternate_image_ = true %}
+  {% set alternate_image = "alternate-image" %}
+{% endif %}
+
+
+{# Module #}
+{% call macros.module_base(module_name, module_settings) %}
+  <div class="{{ module_name }}__container">    
+    <div class="{{ module_name }}__grid grid grid__column-layout--{{ card_layout }} grid__column-spacing--{{ card_spacing }} grid__column-padding--{{ card_padding }}">
+      {% for post in contents %}
+
+        {% set publish_date = format_date(post.publishDate, "long") %}          
+        {% set card_options = {                
+            title: show_title_ ? post.name : null,                    
+            tag_list: show_tags_ ? post.tagList : null,
+            author: show_author_ ? post.blog_author : null,
+            read_time: show_read_time_ ? (post.post_body|wordcount / 32 > 1 ? post.post_body|wordcount / 32|round(0, "floor") : 1) : null,
+            publish_date: show_publish_date_ ? format_date(post.publishDate, "long") : null,
+            snippet: show_snippet_ ? post.meta_description : null,
+            image: show_image_ ? post.featured_image : null,                      
+            link: post.absoluteUrl,
+            link_text: show_link_text_ ? link_text : null,        
+          }
+        %}
+
+        {{ macros.blog_card(card_options) }}
+        
+      {% endfor %}
+    </div>
+  </div>
+{% endcall %}

@@ -1,0 +1,180 @@
+{# import marcros #}
+{% import "../../templates/macros.html" as macros %}
+
+{# Global module options #}
+{% set module_name = "pagination" %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
+
+{# Module specific options #}
+{% set first_page = blog_page_link(1)|cut("/page/1") %}
+
+{% if module.numbers.index("show_numbers") >= 0 %}
+  {% set show_numbers = true %}
+{% endif %}
+
+{% if module.previous_and_next.index("show_labels") >= 0 %}
+  {% set show_next_and_previous_labels = true %}
+{% endif %}
+
+{% if module.previous_and_next.index("show_arrows") >= 0 %}
+  {% set show_next_and_previous_arrows = true %}
+{% endif %}
+
+{% if module.first_and_last.index("show_labels") >= 0 %}
+  {% set show_first_and_last_labels = true %}
+{% endif %}
+
+{% if module.first_and_last.index("show_arrows") >= 0 %}
+  {% set show_first_and_last_arrows = true %}
+{% endif %}
+
+{% if is_in_editor %}
+  {% set total_page_count = 6 %}
+  {% set current_page_num = 2 %}
+  {% set next_page_num = true %}
+  {% set last_page_num = true %}
+{% else %}
+  {% set total_page_count = contents.total_page_count %}
+{% endif %}
+
+{# Module #}
+{% call macros.module_base(module_name, module_settings) %}
+  <div class="{{ module_name }}__container">
+    {% if total_page_count > 1 %}
+      <nav aria-label="{{ module.default_text.pagination_navigation }}" role="navigation" class="hs-pagination">
+        {# First page link #}
+
+        {% if last_page_num and (show_first_and_last_arrows or show_first_and_last_labels) %}
+          <a
+            class="hs-pagination__link hs-pagination__link--first {{ "hs-pagination__link--text-and-icon" if show_first_and_last_arrows and show_first_and_last_labels }}"
+            href="{{ first_page }}"
+          >
+            {% if show_first_and_last_arrows %}
+              {% icon "hs_first_icon"
+                extra_classes="hs-pagination__link-icon",
+                name="angle-double-left",
+                purpose="decorative",
+                style="SOLID",
+                unicode="f100" %}
+            {% endif %}
+            {% if show_first_and_last_labels %}
+              <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+                {{ module.first_label }}
+              </span>
+            {% endif %}
+          </a>
+        {% endif %}
+
+        {# Previous page link #}
+
+        {% if last_page_num and (show_next_and_previous_arrows or show_next_and_previous_labels) %}
+          <a
+            class="hs-pagination__link hs-pagination__link--prev {{ "hs-pagination__link--text-and-icon" if show_next_and_previous_arrows and show_next_and_previous_labels }}"
+            href="{{ first_page if current_page_num == 2 else blog_page_link(last_page_num) }}"
+          >
+            {% if show_next_and_previous_arrows %}
+              {% icon "hs_previous_icon"
+                extra_classes="hs-pagination__link-icon",
+                name="angle-left",
+                purpose="decorative",
+                style="SOLID",
+                unicode="f104" %}
+            {% endif %}
+            {% if show_next_and_previous_labels %}
+              <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+                {{ module.previous_label }}
+              </span>
+            {% endif %}
+          </a>
+        {% endif %}
+
+        {# Numbered pagination #}
+
+        {% if show_numbers %}
+
+          {% set current_page_count = total_page_count - current_page_num %}
+
+          {% set page_list = [ -2, -1, 0, 1, 2] %}
+
+          {% if current_page_count == 1 %}
+            {% set offset = -1 %}
+          {% elif current_page_count == 0 %}
+            {% set offset = -2 %}
+          {% elif current_page_num == 2 %}
+            {% set offset = 1 %}
+          {% elif current_page_num == 1 %}
+            {% set offset = 2 %}
+          {% else %}
+            {% set offset = 0 %}
+          {% endif %}
+
+          {% for page in page_list %}
+          {% set this_page = current_page_num + page + offset %}
+          {% if this_page > 0 and this_page <= total_page_count %}
+            <a
+              class="hs-pagination__link hs-pagination__link--number {{ "hs-pagination__link--active" if this_page == current_page_num }}"
+              aria-label="{{ module.default_text.go_to_page }}"
+              {{ "aria-current=\"true\"" if this_page == current_page_num }}
+              href="{{ first_page if this_page == 1 else blog_page_link(this_page) }}"
+              >
+                {{ this_page }}
+              </a>
+          {% endif %}
+          {% endfor %}
+
+        {% endif %}
+
+        {# Next page link #}
+
+        {% if next_page_num and (show_next_and_previous_arrows or show_next_and_previous_labels) %}
+          <a
+            class="hs-pagination__link hs-pagination__link--next {{ "hs-pagination__link--text-and-icon" if show_next_and_previous_arrows and show_next_and_previous_labels }}"
+            href="{{ blog_page_link(current_page_num + 1) }}"
+          >
+            {% if show_next_and_previous_labels %}
+              <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+                {{ module.next_label }}
+              </span>
+            {% endif %}
+            {% if show_next_and_previous_arrows %}
+              {% icon "hs_next_icon"
+                extra_classes="hs-pagination__link-icon",
+                name="angle-right",
+                purpose="decorative",
+                style="SOLID",
+                unicode="f105" %}
+            {% endif %}
+          </a>
+        {% endif %}
+
+        {# Last page link #}
+
+        {% if next_page_num and (show_first_and_last_arrows or show_first_and_last_labels) %}
+          <a
+            class="hs-pagination__link hs-pagination__link--last {{ "hs-pagination__link--text-and-icon" if show_first_and_last_arrows and show_first_and_last_labels }}"
+            href="{{ blog_page_link(total_page_count) }}"
+          >
+            {% if show_first_and_last_labels %}
+              <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+                {{ module.last_label }}
+              </span>
+            {% endif %}
+            {% if show_first_and_last_arrows %}
+              {% icon "hs_last_icon"
+                extra_classes="hs-pagination__link-icon",
+                name="angle-double-right",
+                purpose="decorative",
+                style="SOLID",
+                unicode="f101" %}
+            {% endif %}
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+{% endcall %}

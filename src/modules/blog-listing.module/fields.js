@@ -1,0 +1,248 @@
+const fs = require('fs');
+
+const setFieldParams = (field, params) => {
+  return { ...field, ...params };
+};
+
+module.exports = (fieldOptions) => {
+  const moduleHeader = JSON.parse(
+    fs.readFileSync('../../json/module-header.json')
+  );
+  const moduleFooter = JSON.parse(
+    fs.readFileSync('../../json/module-footer.json')
+  );
+  const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
+
+  const spacing = JSON.parse(fs.readFileSync('../../json/spacing.json'));
+
+  let fields = [
+    moduleHeader,
+    moduleFooter,
+    {
+      name: 'card_layout',
+      id: 'card_layout',
+      label: 'Card Layout',
+      required: false,
+      locked: false,
+      multiple: 'false',
+      display: 'select',
+      choices: [
+        ['one-column', 'One Column'],
+        ['two-column', 'Two Column'],
+        ['three-column', 'Three Column'],
+        ['four-column', 'Four Column'],
+      ],
+      type: 'choice',
+      default: 'four-column',
+    },
+    setFieldParams(spacing, {
+      name: 'card_spacing',
+      id: 'card_spacing',
+      label: 'Card Spacing',
+      default: 'xxs',
+    }),
+    setFieldParams(spacing, {
+      name: 'card_padding',
+      id: 'card_padding',
+      label: 'Card Padding',
+      default: 'xxs',
+    }),
+    {
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        children: [],
+        criteria: [
+          {
+            controlling_field: 'display_for_each_list_item',
+            controlling_value_regex: 'image',
+            operator: 'MATCHES_REGEX',
+          },
+        ],
+      },
+      default: false,
+      display: 'toggle',
+      display_width: null,
+      id: 'alternate_image',
+      label: 'Alternate image',
+      locked: false,
+      name: 'alternate_image',
+      required: false,
+      type: 'boolean',
+      visibility_rules: 'ADVANCED',
+    },
+    {
+      choices: [
+        ['image', 'Image'],
+        ['title', 'Title'],
+        ['author_image', 'Author image'],
+        ['author_name', 'Author name'],
+        ['tags', 'Tags'],
+        ['publish_date', 'Publish date'],
+        ['description', 'Description'],
+        ['button', 'Button'],
+        ['link_text', 'Link Text'],
+      ],
+      default: [
+        'image',
+        'title',
+        'author_image',
+        'author_name',
+        'tags',
+        'publish_date',
+        'description',
+        'button',
+      ],
+      display: 'checkbox',
+      display_width: null,
+      help_text:
+        "The publish date format can be changed in blog settings. <a href='https://knowledge.hubspot.com/blog/manage-your-blog-template-and-settings#set-your-blog-s-date-formats' target='_blank' rel='noopener'>Learn more</a>",
+      id: 'display_for_each_list_item',
+      label: 'Display for each list item',
+      locked: false,
+      multiple: true,
+      name: 'display_for_each_list_item',
+      preset: null,
+      reordering_enabled: false,
+      required: false,
+      type: 'choice',
+    },
+    {
+      name: 'link_text',
+      label: 'Link Text',
+      required: false,
+      locked: false,
+      validation_regex: '',
+      allow_new_line: false,
+      show_emoji_picker: false,
+      type: 'text',
+      default: 'Read more',
+      help_text: 'Choose what text to display for each CTA link.',
+      visibility: {
+        controlling_field: 'display_for_each_list_item',
+        controlling_value_regex: 'link_text',
+        operator: 'MATCHES_REGEX',
+      },
+    },
+    {
+      children: [
+        {
+          allow_new_line: false,
+          default: 'Blog post summary:',
+          display_width: null,
+          id: 'default_text.blog_post_summary_text',
+          label: 'Blog post summary text',
+          locked: false,
+          name: 'blog_post_summary_text',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default: 'Featured image:',
+          display_width: null,
+          id: 'default_text.featured_image_text',
+          label: 'Featured image text',
+          locked: false,
+          name: 'featured_image_text',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default: 'Read full post:',
+          display_width: null,
+          id: 'default_text.read_full_post_text',
+          label: 'Read full post text',
+          locked: false,
+          name: 'read_full_post_text',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default: 'Picture of',
+          display_width: null,
+          id: 'default_text.picture_of_text',
+          label: 'Picture of text',
+          locked: false,
+          name: 'picture_of_text',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default:
+            '{{ picture_of_text }} {{ content.blog_author.display_name }}',
+          display_width: null,
+          id: 'default_text.author_alt_text',
+          label: 'Author alt text',
+          locked: false,
+          name: 'author_alt_text',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default: '{{ read_full_post_text }} {{ content.name }}',
+          display_width: null,
+          id: 'default_text.read_full_post_aria_label',
+          label: 'Read full post aria-label',
+          locked: false,
+          name: 'read_full_post_aria_label',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default:
+            '{{ featured_image_text }} {{ content.featured_image_alt_text }}',
+          display_width: null,
+          id: 'default_text.full_featured_image_aria_label',
+          label: 'Full featured image aria-label',
+          locked: false,
+          name: 'full_featured_image_aria_label',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+        {
+          allow_new_line: false,
+          default: '{{ blog_post_summary_text }} {{ content.name }}',
+          display_width: null,
+          id: 'default_text.full_blog_post_summary_text',
+          label: 'Full blog post summary text',
+          locked: false,
+          name: 'full_blog_post_summary_text',
+          required: false,
+          show_emoji_picker: false,
+          type: 'text',
+          validation_regex: '',
+        },
+      ],
+      display_width: null,
+      expanded: false,
+      id: 'default_text',
+      label: 'Default text',
+      locked: true,
+      name: 'default_text',
+      required: false,
+      tab: 'CONTENT',
+      type: 'group',
+    },
+  ];
+
+  return [fields, styles];
+};
