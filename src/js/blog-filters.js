@@ -6,13 +6,17 @@ export default function init() {
     const $list = $wrapper.find('.blog-header__filters-list');  
     const $button = $wrapper.find('.blog-header__dropdown-button');
 
-    $button.on('click', function () {                  
-      $list.toggleClass('hide-list');
+    $wrapper.focusin(function () {
+      $list.removeClass('hide-list');
     });
 
-    $button.blur(function () {
-      console.log('lost focus');
-      $list.addClass('hide-list');
+    // Try an event on the window or the body and check to see if the 
+    // event target has children with the classes needed
+    $wrapper.focusout(function (event) {
+      // event.relatedTarget returns any
+      if (event.relatedTarget == null) {        
+        $list.addClass('hide-list');
+      };
     });
   })
 }
