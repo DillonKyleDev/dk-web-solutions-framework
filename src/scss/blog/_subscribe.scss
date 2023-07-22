@@ -1,0 +1,30 @@
+.hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+
+  .hs-button {    
+    @extend .cta-btn;
+    @extend .cta-btn--primary-fill;
+    @extend .cta-btn--large;
+  }
+
+  label {
+    display: none;
+  }
+}
+
+.blog-header {
+  &__subscribe-link {
+    @extend .cta-btn;
+    @extend .cta-btn--primary-fill;    
+  }
+
+  &__subscribe-modal {
+    background-color: white;
+    padding: $padding--xs;
+    border-radius: 6px;
+    max-width: 600px;
+    margin: auto;
+  }
+}

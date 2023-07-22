@@ -3,7 +3,8 @@ import siteHeader from './site-header';
 import owlCarousel from './owl-carousel';
 import magnificPopup from './magnific-popup';
 import resources from './resources';
-// import getData from './get-data';
+import search from './search';
+import blogFilters from './blog-filters';
 
 $( document ).ready(function($) {
   settings();
@@ -11,5 +12,6 @@ $( document ).ready(function($) {
   owlCarousel(); 
   magnificPopup();
   resources();
-  // getData();
+  search();
+  blogFilters();
 });

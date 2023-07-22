@@ -2,6 +2,13 @@
 {% import "../../templates/macros.html" as macros %}
 
 {# Global module options #}
+{% set tempStyles = module.styles %}
+
+{% do module.styles.update({
+    padding_top: 'xxs', 
+    padding_bottom: 'xxs'
+}) %}
+
 {% set module_name = "blog-header" %}
 {% set module_settings = {
     styles: module.styles,
@@ -12,10 +19,70 @@
 
 {# Module specific options #}
 
+{# Filter Options #}
+{% set filter_tags_ = module.filter_options.index("tags") >= 0 %}
+{% set filter_author = module.filter_options.index("authors") >= 0 %}
+{% set show_search_ = module.filter_options.index("search") >= 0 %}
+
+{# Subscribe Options #}
+{% set blog = module.subscribe_options.select_blog %}
+{% set subscribe_title = module.subscribe_options.subscribe_title %}
+{% set response_message = module.subscribe_options.response_message %}
+
+{# Search Options #}
 
 {# Module #}
 {% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__container">
-    <p>Hello from base module</p>
+    <div class="{{ module_name }}__filters-wrapper">
+
+      {% if filter_tags_ %}        
+        {% set tags = blog_tags(blog, 250) %}                 
+        <div class="{{ module_name }}__filter-wrapper">
+          <button class="{{ module_name }}__dropdown-button filter-by-tag">By Tag</button>
+          <ul class="{{ module_name }}__filters-list hide-list">          
+            {% for tag in tags %}
+              {% set item_url = blog_tag_url(blog, tag.name) %}    
+              <li>
+                <a href="{{ item_url }}">{{ tag.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+
+      {% if filter_author %}
+        {% set authors = blog_authors(blog, 250) %}  
+        <div class="{{ module_name }}__filter-wrapper">
+          <button class="{{ module_name }}__dropdown-button filter-by-author">By Author</button>
+          <ul class="{{ module_name }}__filters-list hide-list">
+            {% for author in authors %}            
+              {% set author_url = blog_author_url(blog, author.slug) %}                
+              <li>
+                <a href="{{ author_url }}">{{ author }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if show_search_ %}
+        
+      {% endif %}
+    </div>
+
+    <div class="{{ module_name }}__subscribe-wrapper">
+      <a href="#subscribe-modal" class="{{ module_name }}__subscribe-link subscribe-link">Subscribe</a>
+
+      <div id="subscribe-modal" class="{{ module_name }}__subscribe-modal mfp-hide">
+        {% blog_subscribe "blog_subscribe"
+          select_blog='{{ blog }}',
+          title='{{ subscribe_title }}',
+          response_message='{{ response_message }}'
+        %}
+      </div>
+    </div>
+
   </div>
 {% endcall %}

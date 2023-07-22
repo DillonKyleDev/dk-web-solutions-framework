@@ -5,6 +5,10 @@
   p:not(:last-child) {
     margin-bottom: $padding--xxs;
   }
+
+  a:not(.cta-link):not(.cta-btn) {
+    color: $primary !important;
+  }
   
   h1,
   h2,
@@ -22,7 +26,8 @@
   span,
   a,
   li,
-  label {
+  label,
+  button {
     font-family: $font--body;
   }
 

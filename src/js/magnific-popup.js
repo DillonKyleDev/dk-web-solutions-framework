@@ -5,8 +5,21 @@ export default function init() {
   $('.image-link').magnificPopup({
     type:'image',
     callbacks: {
-      open: function() {
-        console.log("Hello");
+      open: function() {        
+        $('body').css('padding-right', '17px');
+        $('.site-header--bg').css('padding-right', '17px');
+      },
+      close: function() {
+        $('body').css('padding-right', '0px');
+        $('.site-header--bg').css('padding-right', '0px');
+      }
+    }
+  });
+
+  $('.subscribe-link').magnificPopup({
+    type:'inline',    
+    callbacks: {
+      open: function() {        
         $('body').css('padding-right', '17px');
         $('.site-header--bg').css('padding-right', '17px');
       },

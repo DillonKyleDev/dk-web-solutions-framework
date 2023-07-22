@@ -15,6 +15,10 @@ p:not(:last-child) {
   margin-bottom: 20px;
 }
 
+a:not(.cta-link):not(.cta-btn):not(.blog-header__subscribe-link) {
+  color: #205899 !important;
+}
+
 h1,
 h2,
 h3,
@@ -31,7 +35,8 @@ p,
 span,
 a,
 li,
-label {
+label,
+button {
   font-family: "Roboto";
 }
 
@@ -496,6 +501,41 @@ p.large {
   color: #57981e;
 }
 
+.blog-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blog-header__filters-wrapper {
+  display: flex;
+  align-items: center;
+}
+.blog-header__filters-list {
+  list-style-type: none;
+}
+.blog-header__dropdown-button {
+  background-color: white;
+  padding: 10px;
+  border-radius: 3px;
+  border: solid 1px #205899;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #4b4b4b;
+}
+.blog-header__dropdown-button::after {
+  content: "\e5cf";
+  display: inline-block;
+  font-family: "Material Symbols Rounded";
+  line-height: 1;
+  transform: scale(1.4) translateY(2px) translateX(2px);
+  transition: transform 0.2s;
+}
+.blog-header .hide-list {
+  display: none;
+}
+
 .blog__hero {
   position: relative;
 }
@@ -561,6 +601,23 @@ p.large {
   height: auto;
 }
 
+.hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+.hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form label {
+  display: none;
+}
+
+.blog-header__subscribe-modal {
+  background-color: white;
+  padding: 40px;
+  border-radius: 6px;
+  max-width: 600px;
+  margin: auto;
+}
+
 .search__results-text {
   border-bottom: solid 2px rgb(158, 158, 158);
   padding-bottom: 20px;
@@ -570,7 +627,7 @@ p.large {
   padding: 250px 0;
 }
 
-.cta-btn, .search-form button {
+.cta-btn, .hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form .hs-button, .blog-header__subscribe-link, .search-form button {
   display: inline-block;
   padding: 0.3em 0.6em;
   border-radius: 6px;
@@ -578,12 +635,13 @@ p.large {
   transition: all 0.2s;
   font-weight: 700;
   font-size: 1em;
+  cursor: pointer;
 }
 .cta-btn--small {
   padding: 0.1em 0.3em;
   font-size: 0.75em;
 }
-.cta-btn--large {
+.cta-btn--large, .hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form .hs-button {
   padding: 0.5em 0.9em;
   border-radius: 8px;
   font-size: 1.25em;
@@ -593,12 +651,12 @@ p.large {
   border-radius: 3px;
   border-width: 4px !important;
 }
-.cta-btn--primary-fill, .search-form button {
+.cta-btn--primary-fill, .hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form .hs-button, .blog-header__subscribe-link, .search-form button {
   background-color: #205899;
   border: solid 2px #205899;
   color: white;
 }
-.cta-btn--primary-fill:hover, .search-form button:hover {
+.cta-btn--primary-fill:hover, .hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_blog_subscribe form .hs-button:hover, .blog-header__subscribe-link:hover, .search-form button:hover {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08), 0px 5px 5px rgba(0, 0, 0, 0.09);
   color: white;
   background-color: #213471;
