@@ -46,14 +46,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ init; }
 /* harmony export */ });
 function init() {
-  console.log('blog-filters js');
   var $filterWrappers = $('.blog-header__filter-wrapper');
   $filterWrappers.each(function () {
     var $wrapper = $(this);
-    $wrapper.find('.blog-header__dropdown-button').on('click', function () {
-      var $list = $wrapper.find('.blog-header__filters-list');
-      console.log($list.length);
-      $list.removeClass('hide-list');
+    var $list = $wrapper.find('.blog-header__filters-list');
+    var $button = $wrapper.find('.blog-header__dropdown-button');
+    $button.on('click', function () {
+      $list.toggleClass('hide-list');
+    });
+    $button.blur(function () {
+      console.log('lost focus');
+      $list.addClass('hide-list');
     });
   });
 }
@@ -267,7 +270,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ init; }
 /* harmony export */ });
 function init() {
-  console.log('search.js');
   var hsSearch = function hsSearch(_instance) {
     var TYPEAHEAD_LIMIT = 3;
     var KEYS = {

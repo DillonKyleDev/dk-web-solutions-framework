@@ -8,10 +8,34 @@
   &__filters-wrapper {
     display: flex;
     align-items: center;
+    column-gap: $padding--xxxs;
+  }
+
+  &__filter-wrapper {
+    position: relative;
   }
 
   &__filters-list {
     list-style-type: none;
+    position: absolute;
+    background-color: white;
+    padding-left: 0;
+    padding: $padding--xxxs 0;
+    box-shadow: $shadow--level-1;   
+    border-radius: 6px; 
+    
+    a {
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      padding: $padding--xxxs $padding--xxs;
+      white-space: nowrap;      
+      font-weight: bold;
+      
+      &:hover {
+        background-color: $primary--light;
+      }
+    }
   }
 
   &__dropdown-button {
@@ -20,10 +44,13 @@
     border-radius: 3px;    
     border: solid 1px $primary;
     cursor: pointer;
-    font-size: 16px;
-    margin-right: $padding--xxxs;
+    font-size: 16px;    
     font-weight: bold;
     color: $body-text;
+
+    &:focus {
+      background-color: $primary--light;
+    }
 
     &::after {
       content: '\e5cf';

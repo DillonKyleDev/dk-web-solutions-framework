@@ -1,5 +1,4 @@
-export default function init() {
-  console.log('search.js');
+export default function init() {  
   var hsSearch = function (_instance) {
     var TYPEAHEAD_LIMIT = 3;
     var KEYS = {

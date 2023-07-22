@@ -1,15 +1,18 @@
 export default function init() {
-  console.log('blog-filters js');
   const $filterWrappers = $('.blog-header__filter-wrapper');
 
   $filterWrappers.each(function () {
     const $wrapper = $(this);
+    const $list = $wrapper.find('.blog-header__filters-list');  
+    const $button = $wrapper.find('.blog-header__dropdown-button');
 
-    $wrapper.find('.blog-header__dropdown-button').on('click', function () {
-      const $list = $wrapper.find('.blog-header__filters-list');
-      
-      console.log($list.length);
-      $list.removeClass('hide-list');
+    $button.on('click', function () {                  
+      $list.toggleClass('hide-list');
+    });
+
+    $button.blur(function () {
+      console.log('lost focus');
+      $list.addClass('hide-list');
     });
   })
 }
