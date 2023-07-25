@@ -30,10 +30,10 @@
 {% set response_message = module.subscribe_options.response_message %}
 
 {# Search Options #}
-
+{% set search_options = module.search_options %}
 
 {# Module #}
-{% call macros.module_base(module_name, module_settings) %}
+{% call macros.module_base(module_name, module_options) %}
   <div class="{{ module_name }}__container">
     <div class="{{ module_name }}__filters-wrapper">
 
@@ -45,7 +45,7 @@
             {% for tag in tags %}
               {% set item_url = blog_tag_url(blog, tag.name) %}    
               <li>
-                <a href="{{ item_url }}">{{ tag.name }}</a>
+                <a class="{{ module_name }}__filters-link" href="{{ item_url }}">{{ tag.name }}</a>
               </li>
             {% endfor %}
           </ul>
@@ -61,7 +61,7 @@
             {% for author in authors %}            
               {% set author_url = blog_author_url(blog, author.slug) %}                
               <li>
-                <a href="{{ author_url }}">{{ author }}</a>
+                <a class="{{ module_name }}__filters-link" href="{{ author_url }}">{{ author }}</a>
               </li>
             {% endfor %}
           </ul>
@@ -69,7 +69,7 @@
       {% endif %}
 
       {% if show_search_ %}
-        
+        {{ macros.search_bar(module_name, search_options) }}
       {% endif %}
     </div>
 

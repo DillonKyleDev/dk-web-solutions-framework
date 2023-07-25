@@ -319,7 +319,11 @@
   </div>
 {% endmacro %}
 
-{% macro search_bar(module_name, search_settings) %}
+{% macro search_bar(module_name, search_settings) %}  
+  {% set field_label = search_settings.field_label %}
+  {% set include_search_button = search_settings.include_search_button %}
+  {% set placeholder = search_settings.placeholder %}
+  {% set content_types = search_settings.content_types %}
   {% set search_page = search_settings.results.use_custom_search_results_template is truthy and search_settings.results.path_id ? content_by_id(search_settings.results.path_id).absolute_url : site_settings.content_search_results_page_path %}
 
   {% unless (search_page is string_containing "//") %}
@@ -331,26 +335,26 @@
   <div class="{{ module_name }}__search-field hs-search-field">
     <div class="{{ module_name }}__search-bar hs-search-field__bar">
       <form data-hs-do-not-collect="true" action="{{ search_page }}">
-        {% if search_settings.field_label %}
-          <label for="term">{{ search_settings.field_label }}</label>
+        {% if field_label %}
+          <label for="term">{{ field_label }}</label>
         {% endif %}
-        <input type="text" class="hs-search-field__input" name="term" autocomplete="off" aria-label="{{ search_settings.field_label || "Search" }}" placeholder="{{ search_settings.placeholder }}">
+        <input type="text" class="hs-search-field__input" name="term" autocomplete="off" aria-label="{{ field_label || "Search" }}" placeholder="{{ placeholder }}">
 
-        {% if search_settings.content_types.website_pages %}
+        {% if content_types.website_pages %}
           <input type="hidden" name="type" value="SITE_PAGE">
         {% endif %}
-        {% if search_settings.content_types.landing_pages %}
+        {% if content_types.landing_pages %}
           <input type="hidden" name="type" value="LANDING_PAGE">
         {% endif %}
-        {% if search_settings.content_types.blog_posts %}
+        {% if content_types.blog_posts %}
           <input type="hidden" name="type" value="BLOG_POST">
           <input type="hidden" name="type" value="LISTING_PAGE">
         {% endif %}
-        {% if search_settings.content_types.knowledge_articles %}
+        {% if content_types.knowledge_articles %}
           <input type="hidden" name="type" value="KNOWLEDGE_ARTICLE">
         {% endif %}
 
-        {% if search_settings.include_search_button %}
+        {% if include_search_button %}
           <button aria-label="Search">{% icon name="search" style="solid" %}</button>
         {% endif %}
       </form>

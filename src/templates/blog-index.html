@@ -117,7 +117,11 @@
 
       {# Blog listing heading #}
       
-      {% module 'blog-header' path="/dk-web-solutions/modules/blog-header" %}
+      {% module 'blog-header' path="/dk-web-solutions/modules/blog-header" 
+        styles={
+          background_color: "primary-light"
+        }
+      %}
 
       {% call macros.module_base("blog-listing-heading", heading_module_settings) %}
         <div class="{{ module_name }}__container">

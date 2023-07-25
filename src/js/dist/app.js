@@ -46,25 +46,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ init; }
 /* harmony export */ });
 function init() {
+  var $currentlyActiveList;
   var $filterWrappers = $('.blog-header__filter-wrapper');
   $filterWrappers.each(function () {
     var $wrapper = $(this);
     var $list = $wrapper.find('.blog-header__filters-list');
-    var $button = $wrapper.find('.blog-header__dropdown-button');
     $wrapper.focusin(function () {
       $list.removeClass('hide-list');
     });
-
-    // Try an event on the window or the body and check to see if the 
-    // event target has children with the classes needed
-    $wrapper.focusout(function (event) {
-      // event.relatedTarget returns any
-      if (event.relatedTarget == null) {
-        $list.addClass('hide-list');
-      }
-      ;
-    });
   });
+  if ($filterWrappers.length > 0) {
+    $('body').on('click', function (event) {
+      var $target = $(event.target);
+      if (!$target.hasClass('blog-header__filters-list') && !$target.hasClass('blog-header__filters-link') && !$target.hasClass('blog-header__dropdown-button')) {
+        console.log('close');
+        $filterWrappers.each(function () {
+          var $wrapper = $(this);
+          var $list = $wrapper.find('.blog-header__filters-list');
+          $list.addClass('hide-list');
+        });
+      }
+    });
+  }
 }
 
 /***/ }),

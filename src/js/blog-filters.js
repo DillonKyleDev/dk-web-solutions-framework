@@ -1,22 +1,34 @@
 export default function init() {
+  let $currentlyActiveList;
+  
   const $filterWrappers = $('.blog-header__filter-wrapper');
 
   $filterWrappers.each(function () {
     const $wrapper = $(this);
-    const $list = $wrapper.find('.blog-header__filters-list');  
-    const $button = $wrapper.find('.blog-header__dropdown-button');
+    const $list = $wrapper.find('.blog-header__filters-list');      
 
     $wrapper.focusin(function () {
       $list.removeClass('hide-list');
     });
-
-    // Try an event on the window or the body and check to see if the 
-    // event target has children with the classes needed
-    $wrapper.focusout(function (event) {
-      // event.relatedTarget returns any
-      if (event.relatedTarget == null) {        
-        $list.addClass('hide-list');
-      };
-    });
   })
+
+  if ($filterWrappers.length > 0) {
+    $('body').on('click', function (event) {
+      const $target = $(event.target);  
+
+      if (
+        !$target.hasClass('blog-header__filters-list') &&
+        !$target.hasClass('blog-header__filters-link') &&
+        !$target.hasClass('blog-header__dropdown-button')
+      ) {
+        console.log('close');
+        $filterWrappers.each(function () {
+          const $wrapper = $(this);
+          const $list = $wrapper.find('.blog-header__filters-list');
+          $list.addClass('hide-list');
+        });
+      }
+    });
+  }
+
 }

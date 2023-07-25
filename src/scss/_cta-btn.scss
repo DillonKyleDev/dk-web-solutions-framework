@@ -21,6 +21,13 @@
     font-size: 1.25em;
   }
 
+  &--subscribe {
+    box-sizing: border-box;
+    height: 42px;    
+    border-radius: 8px;
+    font-size: 1.25em;
+  }
+
   &--search {
     height: 100%;    
     border-radius: 3px;

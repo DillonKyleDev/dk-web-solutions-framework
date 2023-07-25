@@ -15,36 +15,78 @@
     position: relative;
   }
 
-  &__filters-list {
+  &__filters-list,
+  .hs-search-field__suggestions {
     list-style-type: none;
     position: absolute;
     background-color: white;
     padding-left: 0;
     padding: $padding--xxxs 0;
-    box-shadow: $shadow--level-1;   
-    border-radius: 6px; 
-    
-    a {
+    box-shadow: $shadow--level-1;
+    border-radius: 6px;
+
+    a,
+    #results-for {
       box-sizing: border-box;
       display: block;
       width: 100%;
-      padding: $padding--xxxs $padding--xxs;
-      white-space: nowrap;      
+      white-space: nowrap;
       font-weight: bold;
-      
-      &:hover {
+      padding: $padding--xxxs $padding--xxs;
+
+      &:not(#results-for):hover {
         background-color: $primary--light;
       }
     }
+
+    #results-for {      
+      font-weight: normal;
+  
+      &::after {
+        content: "...";
+      }
+    }
+  }
+
+  .blog-header__search-bar {
+    position: relative;
+
+    label {
+      margin-right: 10px;
+    }
+
+    button {
+      height: 26px;
+      width: 26px;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      svg {
+        fill: $body-text;
+      }
+    }
+  }
+
+  .hs-search-field__input {
+    height: 42px;
+    box-sizing: border-box;
+    padding: $padding--xxxs;
+    border: $body-text solid 2px;
+    border-radius: 4px;
   }
 
   &__dropdown-button {
     background-color: white;
     padding: $padding--xxxs;
-    border-radius: 3px;    
+    border-radius: 3px;
     border: solid 1px $primary;
     cursor: pointer;
-    font-size: 16px;    
+    font-size: 16px;
     font-weight: bold;
     color: $body-text;
 
@@ -64,5 +106,9 @@
 
   .hide-list {
     display: none;
+  }
+
+  .blog-header__search-field {
+    position: relative;
   }
 }

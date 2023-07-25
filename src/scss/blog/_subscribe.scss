@@ -17,7 +17,8 @@
 .blog-header {
   &__subscribe-link {
     @extend .cta-btn;
-    @extend .cta-btn--primary-fill;    
+    @extend .cta-btn--primary-fill;  
+    @extend .cta-btn--subscribe;  
   }
 
   &__subscribe-modal {
