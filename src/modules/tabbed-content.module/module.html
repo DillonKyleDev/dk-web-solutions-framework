@@ -1,0 +1,37 @@
+{# import marcros #}
+{% import "../../templates/macros.html" as macros %}
+
+{# Global module options #}
+{% set module_name = "tabbed-content" %}
+{% set module_settings = {
+    styles: module.styles,
+    module_header: module.module_header,
+    module_footer: module.module_footer
+  }
+%}
+
+{# Module specific options #}
+{% set tabs = module.tabs %}
+
+{# Module #}
+{% call macros.module_base(module_name, module_settings) %}
+  <div class="{{ module_name }}__container">
+    <ul class="{{ module_name }}__tabs-list">
+      {% for tab in tabs %}
+        <li class="{{ module_name }}__list-item">
+          <button class="{{ module_name }}__button{% if loop.index == 1 %} active{% endif %}" data-button-id="{{ loop.index }}">
+            {{ tab.tab_label }}
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="{{ module_name }}__tab-panel">
+      {% for tab in tabs %}
+        <div class="{{ module_name }}__panel-content {% if loop.index == 1 %} active{% endif %}" data-panel-id="{{ loop.index }}">
+          {{ macros.column(module_name, tab.tab_content) }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endcall %}

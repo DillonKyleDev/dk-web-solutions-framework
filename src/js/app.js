@@ -5,6 +5,7 @@ import magnificPopup from './magnific-popup';
 import resources from './resources';
 import search from './search';
 import blogFilters from './blog-filters';
+import tabbedContent from './tabbed-content';
 
 $( document ).ready(function($) {
   settings();
@@ -14,4 +15,5 @@ $( document ).ready(function($) {
   resources();
   search();
   blogFilters();
+  tabbedContent();
 });

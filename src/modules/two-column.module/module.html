@@ -19,7 +19,7 @@
 {% call macros.module_base(module_name, module_settings) %}
   <div class="{{ module_name }}__grid {{ module_name }}__column-gap--{{ columnGap }} {{ module_name }}__vertical-alignment--{{ verticalAlignment }}">
     {% for column in columns %}
-      {{ column(module_name, column) }}
+      {{ macros.column(module_name, column) }}
     {% endfor %}
   </div>
 {% endcall %}

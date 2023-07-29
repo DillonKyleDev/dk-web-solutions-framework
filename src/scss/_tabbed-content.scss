@@ -1,0 +1,24 @@
+.tabbed-content {
+  &__tabs-list {
+    list-style-type: none;
+    display: flex;
+
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &.active {
+        border-bottom: solid 2px $primary;
+      }
+    }
+  }
+
+  &__panel-content {
+    display: none;
+    
+    &.active {
+      display: block;
+    }
+  }
+}

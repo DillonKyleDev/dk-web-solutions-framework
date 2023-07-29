@@ -1,0 +1,305 @@
+const fs = require('fs');
+
+const setFieldParams = (field, params) => {
+  return { ...field, ...params };
+};
+
+module.exports = (fieldOptions) => {
+  const moduleHeader = JSON.parse(
+    fs.readFileSync('../../json/module-header.json')
+  );
+  const moduleFooter = JSON.parse(
+    fs.readFileSync('../../json/module-footer.json')
+  );
+  const styles = JSON.parse(fs.readFileSync('../../json/styles.json'));
+
+  const tabContent = JSON.parse(fs.readFileSync('../../json/column.json'));
+
+  let fields = [
+    moduleHeader,
+    moduleFooter,
+    // Repeating field group example
+    {
+      id: 'tabs',
+      name: 'tabs',
+      label: 'Tabs',
+      required: false,
+      locked: false,
+      occurrence: {
+        min: 1,
+        max: null,
+        default: null,
+      },
+      children: [
+        {
+          name: 'tab_label',
+          label: 'Tab Label',
+          required: false,
+          locked: false,
+          validation_regex: '',
+          allow_new_line: false,
+          show_emoji_picker: false,
+          type: 'text',
+          default: 'Tab Label',
+        },
+        {
+          type: 'group',
+          id: 'tab_content',
+          name: 'tab_content',
+          label: 'Tab Content',
+          expanded: true,
+          children: [
+            {
+              name: 'column_type',
+              id: 'column_type',
+              label: 'Column Type',
+              required: false,
+              locked: false,
+              multiple: 'false',
+              display: 'select',
+              choices: [
+                ['text-content', 'Richtext'],
+                ['image', 'Image'],
+              ],
+              type: 'choice',
+              default: 'text-content',
+            },
+            {
+              name: 'text_content',
+              label: 'Content',
+              required: false,
+              locked: false,
+              type: 'richtext',
+              default:
+                '<h3>Heading 3</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>',
+              visibility: {
+                controlling_field_path: 'tabs.tab_content.column_type',
+                controlling_value_regex: 'text-content',
+                operator: 'EQUAL',
+              },
+            },
+            {
+              name: 'image',
+              label: 'Image',
+              required: false,
+              locked: false,
+              responsive: true,
+              resizable: true,
+              show_loading: false,
+              type: 'image',
+              default: {
+                size_type: 'exact',
+                src: '',
+                alt: 'image-alt-text',
+                loading: 'lazy',
+              },
+              visibility: {
+                controlling_field_path: 'tabs.tab_content.column_type',
+                controlling_value_regex: 'image',
+                operator: 'EQUAL',
+              },
+            },
+            {
+              name: 'border_radius_',
+              label: 'Image Border Radius?',
+              required: false,
+              locked: false,
+              type: 'boolean',
+              display: 'checkbox',
+              inline_help_text: 'Adds border radius to corners of image.',
+              default: true,
+              visibility: {
+                controlling_field_path: 'tabs.tab_content.column_type',
+                controlling_value_regex: 'image',
+                operator: 'EQUAL',
+              },
+            },
+            {
+              id: 'appended_elements',
+              name: 'appended_elements',
+              label: 'Appended Elements',
+              required: false,
+              locked: false,
+              occurrence: {
+                min: null,
+                max: null,
+                default: null,
+              },
+              children: [
+                {
+                  name: 'element_type',
+                  label: 'Element Type',
+                  required: false,
+                  locked: false,
+                  multiple: 'false',
+                  display: 'select',
+                  choices: [
+                    ['text-content', 'Richtext'],
+                    ['list', 'List'],
+                    ['cta-group', 'CTA Group'],
+                    ['testimonial', 'Testimonial'],
+                  ],
+                  type: 'choice',
+                  default: 'text-content',
+                },
+                {
+                  name: 'text_content',
+                  label: 'Richtext',
+                  required: false,
+                  locked: false,
+                  type: 'richtext',
+                  default: '<h2>Heading 2</h2><p>Appended paragraph text</p>',
+                  visibility: {
+                    controlling_field_path:
+                      'tabs.tab_content.appended_elements.element_type',
+                    controlling_value_regex: 'text-content',
+                    operator: 'EQUAL',
+                  },
+                },
+                {
+                  type: 'group',
+                  name: 'list_options',
+                  label: 'List Options',
+                  expanded: true,
+                  children: [
+                    {
+                      name: 'list_type',
+                      id: 'list_type',
+                      label: 'List Type',
+                      required: false,
+                      locked: false,
+                      multiple: 'false',
+                      display: 'select',
+                      choices: [
+                        ['no-style', 'No Style'],
+                        ['bullet', 'Bullet'],
+                        ['check', 'Check'],
+                        ['check-outline', 'Check Outlined'],
+                        ['icon', 'Icon'],
+                      ],
+                      type: 'choice',
+                      default: 'check',
+                    },
+                    {
+                      name: 'list_layout',
+                      id: 'list_layout',
+                      label: 'List Layout',
+                      required: false,
+                      locked: false,
+                      multiple: 'false',
+                      display: 'select',
+                      choices: [
+                        ['one-column', 'One Column'],
+                        ['two-column', 'Two Column'],
+                        ['three-column', 'Three Column'],
+                        ['four-column', 'Four Column'],
+                      ],
+                      type: 'choice',
+                      default: 'one-column',
+                    },
+                    {
+                      name: 'icon_position',
+                      id: 'icon_position',
+                      label: 'Icon Position',
+                      required: false,
+                      locked: false,
+                      multiple: 'false',
+                      display: 'select',
+                      choices: [
+                        ['top', 'Top'],
+                        ['middle', 'Middle'],
+                        ['bottom', 'Bottom'],
+                      ],
+                      type: 'choice',
+                      default: 'middle',
+                    },
+                    {
+                      name: 'icon_color',
+                      id: 'icon_color',
+                      label: 'Icon Color',
+                      required: false,
+                      locked: false,
+                      multiple: 'false',
+                      display: 'select',
+                      choices: [
+                        ['transparent', 'Transparent'],
+                        ['white', 'White'],
+                        ['primary', 'Primary'],
+                        ['primary-light', 'Primary Light'],
+                        ['primary-dark', 'Primary Dark'],
+                        ['secondary', 'Secondary'],
+                        ['secondary-light', 'Secondary Light'],
+                        ['secondary-dark', 'Secondary Dark'],
+                        ['tertiary', 'Tertiary'],
+                        ['tertiary-light', 'Tertiary Light'],
+                        ['tertiary-dark', 'Tertiary Dark'],
+                      ],
+                      type: 'choice',
+                      default: 'primary',
+                    },
+                    {
+                      name: 'list',
+                      label: 'List',
+                      required: false,
+                      locked: false,
+                      occurrence: {
+                        min: 1,
+                        max: null,
+                        sorting_label_field: null,
+                        default: 4,
+                      },
+                      allow_new_line: false,
+                      show_emoji_picker: true,
+                      type: 'richtext',
+                      default: [
+                        '<h4>List Item Heading</h4><p>List item content</p>',
+                        '<h4>List Item Heading</h4><p>List item content</p>',
+                        '<h4>List Item Heading</h4><p>List item content</p>',
+                        '<h4>List Item Heading</h4><p>List item content</p>',
+                      ],
+                    },
+                  ],
+                  visibility: {
+                    controlling_field_path:
+                      'tabs.tab_content.appended_elements.element_type',
+                    controlling_value_regex: 'list',
+                    operator: 'EQUAL',
+                  },
+                },
+                {
+                  name: 'cta_group',
+                  label: 'CTA Group',
+                  required: false,
+                  locked: false,
+                  occurrence: {
+                    min: null,
+                    max: null,
+                    default: null,
+                  },
+                  type: 'cta',
+                  default: null,
+                  visibility: {
+                    controlling_field_path:
+                      'tabs.tab_content.appended_elements.element_type',
+                    controlling_value_regex: 'cta-group',
+                    operator: 'EQUAL',
+                  },
+                },
+              ],
+              type: 'group',
+              default: [],
+              visibility: {
+                controlling_field_path: 'tabs.tab_content.column_type',
+                controlling_value_regex: 'text-content',
+                operator: 'EQUAL',
+              },
+            },
+          ],
+        },
+      ],
+      type: 'group',
+    },
+  ];
+
+  return [fields, styles];
+};

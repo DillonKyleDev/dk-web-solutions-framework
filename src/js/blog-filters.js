@@ -1,6 +1,9 @@
 export default function init() {
   let $currentlyActiveList;
-  
+  // Have record of currentlyActive list and check if this list
+  // is active or something
+  // Or, on click, hide all again and then reveal only the one clicked?
+
   const $filterWrappers = $('.blog-header__filter-wrapper');
 
   $filterWrappers.each(function () {

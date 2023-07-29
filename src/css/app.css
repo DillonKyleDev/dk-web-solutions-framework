@@ -1509,6 +1509,25 @@ p.large {
   display: none;
 }
 
+.tabbed-content__tabs-list {
+  list-style-type: none;
+  display: flex;
+}
+.tabbed-content__tabs-list button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.tabbed-content__tabs-list button.active {
+  border-bottom: solid 2px #205899;
+}
+.tabbed-content__panel-content {
+  display: none;
+}
+.tabbed-content__panel-content.active {
+  display: block;
+}
+
 * {
   margin: 0;
 }

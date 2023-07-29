@@ -16,6 +16,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _resources__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./resources */ "./src/js/resources.js");
 /* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./search */ "./src/js/search.js");
 /* harmony import */ var _blog_filters__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blog-filters */ "./src/js/blog-filters.js");
+/* harmony import */ var _tabbed_content__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tabbed-content */ "./src/js/tabbed-content.js");
+
 
 
 
@@ -31,6 +33,7 @@ $(document).ready(function ($) {
   (0,_resources__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_search__WEBPACK_IMPORTED_MODULE_5__["default"])();
   (0,_blog_filters__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  (0,_tabbed_content__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 
 /***/ }),
@@ -47,6 +50,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function init() {
   var $currentlyActiveList;
+  // Have record of currentlyActive list and check if this list
+  // is active or something
+  // Or, on click, hide all again and then reveal only the one clicked?
+
   var $filterWrappers = $('.blog-header__filter-wrapper');
   $filterWrappers.each(function () {
     var $wrapper = $(this);
@@ -602,6 +609,57 @@ function init() {
   $hasChildren.on('mouseleave', function () {
     var $childMenu = $(this).find('ul');
     $childMenu.removeClass('visible');
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/tabbed-content.js":
+/*!**********************************!*\
+  !*** ./src/js/tabbed-content.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ init; }
+/* harmony export */ });
+function init() {
+  var $tabsContainers = $('.tabbed-content__container');
+  function tabClicked(id) {
+    // Remove active from all tab buttons and panels
+    $tabsContainers.each(function () {
+      var tabsList = $(this).find('.tabbed-content__tabs-list');
+      var panels = $(this).find('.tabbed-content__tab-panel');
+      tabsList.each(function () {
+        var $button = $(this).find('.tabbed-content__button');
+        if ($button.data('button-id') == id) {
+          $button.addClass('active');
+          console.log($button.data('button-id'), " id passed ", id);
+        } else if ($button.hasClass('active')) {
+          $button.removeClass('active');
+        }
+      });
+      panels.each(function () {
+        $(this).find('.tabbed-content__panel-content').removeClass('active');
+      });
+      tabsList.each(function (index) {
+        if ($(this).find('.tabbed-content__button').hasClass('active')) {
+
+          // panels.eq(index)
+        }
+      });
+    });
+  }
+
+  // Add click listeners
+  $tabsContainers.each(function () {
+    var tabsList = $(this).find('.tabbed-content__tabs-list');
+    tabsList.each(function () {
+      $(this).find('.tabbed-content__button').on('click', function () {
+        tabClicked($(this).data('button-id'));
+      });
+    });
   });
 }
 
